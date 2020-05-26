@@ -39,12 +39,12 @@ public class subtitleText : MonoBehaviour
             if (char.ToLower(message[2]) == 'i')
             {
                 italics = true;
-                return message.Substring(6, message.Length - 7);
+                return message.Substring(6).Trim('"');
             }
             else
             {
                 italics = false;
-                return message.Substring(5, message.Length - 6);
+                return message.Substring(5).Trim('"');
             }
         }
         return "";
