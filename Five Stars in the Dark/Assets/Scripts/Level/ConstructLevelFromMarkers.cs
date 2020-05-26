@@ -109,22 +109,13 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         int lineNumber = 1;
         foreach (string line in lines)
         {
-<<<<<<< HEAD
-            string[] tokens = line.Split(new char[] { ' ', '\t' });
-            if (tokens.Length < 3 || (!char.IsDigit(tokens[0][0]) && tokens[0][0] != '-')) continue;
-            float spawnTime = float.Parse(tokens[0].Trim());
-            if (spawnTime < 0) spawnTime = 0;
-            float despawnTime = float.Parse(tokens[1].Trim());
-            if (despawnTime < spawnTime) despawnTime = spawnTime;
-=======
             string[] tokens = line.Split(new char[0], System.StringSplitOptions.RemoveEmptyEntries);
             if (tokens.Length < 3 || !char.IsDigit(tokens[0][0])) continue;
             float startTime = float.Parse(tokens[0]);
->>>>>>> origin/feature-tutorial-level
             //markers will either be obstacles/dialogue, or news/realtime events
             if (tokens.Length == 3)
             {
-                Marker newMarker = new Marker(spawnTime, despawnTime, tokens[2].Trim());
+                Marker newMarker = new Marker(float.Parse(tokens[0].Trim()), float.Parse(tokens[1].Trim()), tokens[2].Trim());
                 if (newMarker.data[0] == '[')
                 {
                     sortedMarkerInsert(commandMarkers, newMarker);
@@ -137,7 +128,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         endOfLevel = newMarker.spawnTime;
                     }
                 }
-                else
+                else if (newMarker.despawnTime - newMarker.spawnTime > 0.1f) //must have this check because it breaks for dialogue markers of length 0
                 {
                     sortedMarkerInsert(dialogueMarkers, newMarker);
                 }
@@ -145,7 +136,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 Debug.Log(newMarker.data);
             } else
             {
-                Marker newMarker = new Marker(spawnTime, despawnTime, string.Join(" ", tokens, 2, tokens.Length - 2));
+                Marker newMarker = new Marker(float.Parse(tokens[0].Trim()), float.Parse(tokens[1].Trim()), string.Join(" ", tokens, 2, tokens.Length - 2));
                 if (newMarker.data[0] == '"' || newMarker.data[0] == '<')
                 {
                     sortedMarkerInsert(subtitleMarkers, newMarker);
@@ -240,28 +231,26 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     {
         float updateRate = 50; //how long fixedupdate runs per second
         
-        GameObject curb = null;
+        float length = levelDialogue.clip.length * controls.neutralSpeed * updateRate;
         if(curbType == 0)
         {
-            curb = Resources.Load<GameObject>("Prefabs/Curb");
+            GameObject road = Resources.Load<GameObject>("Prefabs/Road");GameObject map = new GameObject("Map");
+            
+            GameObject roadtile = Instantiate(road, new Vector3(0, 0, 1), Quaternion.identity);
+            roadtile.transform.localScale = new Vector3(roadWidth, length, 1);
+            roadtile.transform.parent = map.transform;
         }
         else
         {
-            curb = Resources.Load<GameObject>("Prefabs/TutorialCurb");
+            GameObject map = GameObject.Find("Map");
+            GameObject curb = Resources.Load<GameObject>("Prefabs/Curb");
+            GameObject leftcurb = Instantiate(curb, new Vector3((-roadWidth/2 - 0.5f), 0, 1), Quaternion.identity);
+            leftcurb.transform.localScale = new Vector3(20,length,1);
+            leftcurb.transform.parent = map.transform;
+            GameObject rightcurb = Instantiate(curb, new Vector3((roadWidth/2 + 0.5f), 0, 1), Quaternion.identity);
+            rightcurb.transform.localScale = new Vector3(20, length, 1);
+            rightcurb.transform.parent = map.transform;
         }
-        GameObject road = Resources.Load<GameObject>("Prefabs/Road");
-
-        GameObject map = new GameObject("Map");
-        float length = levelDialogue.clip.length * controls.neutralSpeed * updateRate;
-        GameObject roadtile = Instantiate(road, new Vector3(0, 0, 1), Quaternion.identity);
-        roadtile.transform.localScale = new Vector3(roadWidth, length, 1);
-        roadtile.transform.parent = map.transform;
-        GameObject leftcurb = Instantiate(curb, new Vector3((-roadWidth/2 - 0.5f), 0, 1), Quaternion.identity);
-        leftcurb.transform.localScale = new Vector3(20,length,1);
-        leftcurb.transform.parent = map.transform;
-        GameObject rightcurb = Instantiate(curb, new Vector3((roadWidth/2 + 0.5f), 0, 1), Quaternion.identity);
-        rightcurb.transform.localScale = new Vector3(20, length, 1);
-        rightcurb.transform.parent = map.transform;
         player.transform.position = new Vector3(0, -length / 2, 0);
     }
 
@@ -275,17 +264,12 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
     IEnumerator playLevel()
     {
-<<<<<<< HEAD
-=======
         levelDialogue.Play();
         nextDialogueStartTime = levelDialogue.clip.length;
         print("current level time is " + levelDialogue.time);
->>>>>>> origin/feature-tutorial-level
         //perform these checks every frame for as long as the dialogue plays
         while (dialogueMarkers.Count > 0 || timedObstacleMarkers.Count > 0 || commandMarkers.Count > 0 || levelDialogue.isPlaying)
         {
-            //print("current level time is " + levelDialogue.time);
-            //print(timedObstacleMarkers.Count + " many dialogues left");
             yield return new WaitForSeconds(0);
 
             if (dialogueMarkers.Count > 0 && !isSpeaking && nextDialogueTrigger == null)
@@ -380,20 +364,13 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         print("ending player control");
                         StartCoroutine(parkCar());
                     }
-<<<<<<< HEAD
-                    else if (string.Equals(command, "[EndLevel]"))
+                    else if (string.Equals(command, "[ConstructRoad]"))
                     {
-                        print("level ended");
-                        //This is where the level ends
-                        ScoreStorage.Instance.setScoreAll();
-                        MasterkeyEndScreen.currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
-                        ScoreStorage.Instance.setScoreProgress(100);
-                        LoadScene.Loader("EndScreen");
-=======
-                    else if (string.Equals(command, "[ConstructMap]"))
+                        StartCoroutine(ConstructMap(0));
+                    }
+                    else if (string.Equals(command, "[ConstructCurbs]"))
                     {
                         StartCoroutine(ConstructMap(1));
->>>>>>> origin/feature-tutorial-level
                     }
                     commandMarkers.RemoveAt(0);
                 }
@@ -409,15 +386,17 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 //print("trying to spawn obstacle at time " + spawnTime);
 
                 //if the next obstacle is due or if the obstacle trigger was touched, spawn it
-                if (obstacleMarker.spawnTime < levelDialogue.time)
+                if (obstacleMarker.spawnTime < nextDialogueStartTime)
                 {
-                    debugMessage += "spawning obstacles: " + obstacleMarker.data;
-                    spawnObstacles(obstacleMarker.despawnTime, obstacleMarker.data);
-                    timedObstacleMarkers.RemoveAt(0);
-                } else if (!isSpeaking)
-                {
-                    //this will only pull the next obstacle earlier in time
-                    obstacleMarker.spawnTime -= Time.deltaTime;
+                    if (obstacleMarker.spawnTime < levelDialogue.time)
+                    {
+                        debugMessage += "spawning obstacles: " + obstacleMarker.data;
+                        spawnObstacles(obstacleMarker.despawnTime, obstacleMarker.data);
+                        timedObstacleMarkers.RemoveAt(0);
+                    } else if (!isSpeaking)
+                    {
+                        obstacleMarker.spawnTime -= Time.deltaTime;
+                    }
                 }
             }
 
@@ -460,18 +439,11 @@ public class ConstructLevelFromMarkers : MonoBehaviour
             }
         }
 
-        print("level ended");
         //This is where the level ends
         ScoreStorage.Instance.setScoreAll();
-        MasterkeyEndScreen.currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
+        MasterkeyEndScreen.currentLevel = SceneManager.GetActiveScene().name;
         ScoreStorage.Instance.setScoreProgress(100);
-        if (levelDialogue.clip.length > 180) //mini-levels will be less than 3 minutes
-        {
-            LoadScene.Loader("EndScreen");
-        } else
-        {
-            LoadScene.LoadNextScene();
-        }
+        LoadScene.Loader("EndScreen");
     }
 
     void spawnObstacles(float despawnTime, string obstacleData)
@@ -533,14 +505,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         obj.GetComponent<TargetMovement>().sequence = pattern;
                     }
                 }
-<<<<<<< HEAD
-                else if ((string.Equals(prefab, "decision", System.StringComparison.OrdinalIgnoreCase)))
-                {
-                    if (tokens.Length > 1)
-                    {
-                        string jump = tokens[1].ToLower().Trim();
-                        StartCoroutine(skipToMarkerAfterDelayCoroutine(obj, jump, 10));
-=======
                 else if ((string.Equals(prefab, "revealtableaux", System.StringComparison.OrdinalIgnoreCase)))
                 {
                     if (tokens.Length > 1)
@@ -548,7 +512,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         string tableauxName = tokens[1].ToLower().Trim();
 
                         obj.GetComponent<DisplayStrafeTableaux>().tableauxNum = int.Parse(tableauxName);
->>>>>>> origin/feature-tutorial-level
                     }
                 }
                 dialogueStopper = obj;
@@ -563,30 +526,13 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 float ypos = player.transform.position.y + (tokens[1].ToLower()[0] == 'a' || tokens[1].ToLower()[0] == 'f' ? spawnDistance : -spawnDistance);
                 //print(tokens[0].Trim());
                 Quaternion rotation = Quaternion.identity;
-                if((string.Equals(prefab, "incomingcar", System.StringComparison.OrdinalIgnoreCase)))
-                {
-                    rotation = Quaternion.Euler(0f, 0f, 135f); // For some reason this turns cars 180 degrees instead
-                }
+                // if((string.Equals(prefab, "incomingcar", System.StringComparison.OrdinalIgnoreCase)))
+                // {
+                //     rotation = Quaternion.Euler(0f, 0f, 135f); // For some reason this turns cars 180 degrees instead
+                // }
                 spawnedObstacles.Add(Instantiate(Resources.Load<GameObject>("Prefabs/Obstacles/" + prefab),
                     new Vector3(xpos, ypos, 0),
                     rotation), despawnTime);
-            }
-        }
-    }
-
-    private IEnumerator skipToMarkerAfterDelayCoroutine(GameObject obj, string destination, float delay)
-    {
-        print("decision was spawned");
-        yield return new WaitForSeconds(delay);
-        if (obj != null)
-        {
-            foreach (Marker marker in dialogueMarkers)
-            {
-                if (marker.data == destination)
-                {
-                    levelDialogue.time = marker.spawnTime;
-                    Destroy(obj);
-                }
             }
         }
     }

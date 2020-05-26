@@ -5,14 +5,7 @@ using UnityEngine;
 public class TrackErrors : MonoBehaviour
 {
     //set to public so it can be accessed from the end screen
-    private static float errors { get; set; }
-
-    public static void IncrementErrors(float fractionalError)
-    {
-        errors += fractionalError;
-        ScoreStorage.Instance.setScoreErrors(errors);
-        //AudioSource.PlayClipAtPoint(errorSound, player.position);
-    }
+    public static int errors { get; set; }
 
     public static void IncrementErrors()
     {

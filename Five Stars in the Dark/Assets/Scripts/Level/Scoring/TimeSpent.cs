@@ -18,7 +18,7 @@ public class TimeSpent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		remainder = CountdownTimer.levelCompleteTime - CountdownTimer.getCurrentTime();
+		remainder = CountdownTimer.levelCompleteTime - CountdownTimer.currentTime;
         remainder /= 2;
         if((remainder%60) > 9)		
 			time.text = "TIME: 0" + Mathf.Floor(remainder/60) + ":" + Mathf.Floor(remainder%60);
