@@ -26,7 +26,7 @@ public class TutorialCarFailure : ObstacleFailure
             failureDialogues = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure/CrashClips/Scripted");
             if(TrackErrors.getErrors() < failureDialogues.Length)
             {
-                StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[TrackErrors.getErrors()]));
+                StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[TrackErrors.getCollisions()]));
             }
             else
             {
