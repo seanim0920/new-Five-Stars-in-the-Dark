@@ -63,7 +63,7 @@ AudioMixerController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Engine
-  m_OutputGroup: {fileID: 1534573345072827731, guid: 52622cb0ca335e540b9533ee3c0e8469,
+  m_OutputGroup: {fileID: 1534573345072827731, guid: 85a7a5251ebbd4945ac8842a57450a55,
     type: 2}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
@@ -86,7 +86,7 @@ AudioMixerController:
     - b386c63d3786bc2448141972cc803baa
     name: View
   m_CurrentViewIndex: 0
-  m_TargetSnapshot: {fileID: -1268211204583706612}
+  m_TargetSnapshot: {fileID: 24500006}
 --- !u!243 &24300002
 AudioMixerGroupController:
   m_ObjectHideFlags: 0

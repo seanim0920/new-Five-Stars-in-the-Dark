@@ -110,12 +110,16 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         foreach (string line in lines)
         {
             string[] tokens = line.Split(new char[0], System.StringSplitOptions.RemoveEmptyEntries);
-            if (tokens.Length < 3 || !char.IsDigit(tokens[0][0])) continue;
-            float startTime = float.Parse(tokens[0]);
+            if (tokens.Length < 3) continue;
+            float spawnTime = float.Parse(tokens[0].Trim());
+            if (spawnTime < 0) spawnTime = 0;
+            if (spawnTime < levelDialogue.clip.length) spawnTime = levelDialogue.clip.length;
+            float despawnTime = float.Parse(tokens[1].Trim());
+            if (despawnTime < spawnTime) despawnTime = spawnTime;
             //markers will either be obstacles/dialogue, or news/realtime events
             if (tokens.Length == 3)
             {
-                Marker newMarker = new Marker(float.Parse(tokens[0].Trim()), float.Parse(tokens[1].Trim()), tokens[2].Trim());
+                Marker newMarker = new Marker(spawnTime, despawnTime, tokens[2].Trim());
                 if (newMarker.data[0] == '[')
                 {
                     sortedMarkerInsert(commandMarkers, newMarker);
@@ -136,7 +140,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 Debug.Log(newMarker.data);
             } else
             {
-                Marker newMarker = new Marker(float.Parse(tokens[0].Trim()), float.Parse(tokens[1].Trim()), string.Join(" ", tokens, 2, tokens.Length - 2));
+                Marker newMarker = new Marker(spawnTime, despawnTime, string.Join(" ", tokens, 2, tokens.Length - 2));
                 if (newMarker.data[0] == '"' || newMarker.data[0] == '<')
                 {
                     sortedMarkerInsert(subtitleMarkers, newMarker);
@@ -439,11 +443,19 @@ public class ConstructLevelFromMarkers : MonoBehaviour
             }
         }
 
+        print("level ended");
         //This is where the level ends
         ScoreStorage.Instance.setScoreAll();
-        MasterkeyEndScreen.currentLevel = SceneManager.GetActiveScene().name;
+        MasterkeyEndScreen.currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
         ScoreStorage.Instance.setScoreProgress(100);
-        LoadScene.Loader("EndScreen");
+        if (levelDialogue.clip.length <= 180 || SceneManager.GetActiveScene().name == "Level 5") //mini-levels will be less than 3 minutes
+        {
+            LoadScene.LoadNextScene();
+        }
+        else
+        {
+            LoadScene.Loader("EndScreen");
+        }
     }
 
     void spawnObstacles(float despawnTime, string obstacleData)

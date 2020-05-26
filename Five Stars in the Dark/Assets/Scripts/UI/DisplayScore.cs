@@ -53,7 +53,7 @@ public class DisplayScore : MonoBehaviour
         if (score > .6)
         {
             score = .6f;
-            scoreBonus = Mathf.Exp((-CountdownTimer.currentTime) / 6);
+            scoreBonus = Mathf.Exp((-CountdownTimer.getCurrentTime()) / 6);
             if(scoreBonus > .4)
             {
                 scoreBonus = .4f;

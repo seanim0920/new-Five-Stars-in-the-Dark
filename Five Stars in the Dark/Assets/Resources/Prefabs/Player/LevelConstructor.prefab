@@ -190,8 +190,7 @@ AudioSource:
   m_GameObject: {fileID: 412440413062414633}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 528117112507497875, guid: 52622cb0ca335e540b9533ee3c0e8469,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52b62bd776074864587fb44fd343337f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -204,7 +203,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: -0.15694517
+  Pan2D: -0
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -287,8 +286,7 @@ AudioSource:
   m_GameObject: {fileID: 412440413062414633}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 7646820014761324225, guid: f74027338f32e724aaa799301afcc5ad,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -384,7 +382,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 412440413062414633}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12978abd4237f164381be684c2890967, type: 3}
+  m_Script: {fileID: 11500000, guid: 113af974d72d50b4bb4dc313f9b0d0dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   levelDialogue: {fileID: 412440413062414628}

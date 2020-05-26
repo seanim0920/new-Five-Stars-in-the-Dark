@@ -117,7 +117,7 @@ AudioMixerController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Radio
-  m_OutputGroup: {fileID: 5962905616392725301, guid: 52622cb0ca335e540b9533ee3c0e8469,
+  m_OutputGroup: {fileID: 5962905616392725301, guid: 85a7a5251ebbd4945ac8842a57450a55,
     type: 2}
   m_MasterGroup: {fileID: 24300002}
   m_Snapshots:
