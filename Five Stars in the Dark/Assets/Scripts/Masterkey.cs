@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Masterkey : MonoBehaviour
 {
+    public Animator[] titleAnim;
     public Button start;
     public Button play;
     public Button instructionsBack;
@@ -26,6 +27,14 @@ public class Masterkey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        titleAnim = transform.parent.GetComponentsInChildren<Animator>();
+        if (played)
+            foreach (Animator anim in titleAnim)
+            {
+                anim.enabled = false;
+            }
+        played = true;
+
         start.onClick.AddListener(TaskStart);
         level.onClick.AddListener(TaskLvl);
         levelBack.onClick.AddListener(TaskTitle);

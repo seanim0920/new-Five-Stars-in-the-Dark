@@ -28,14 +28,14 @@ public class SkipCutscenes : MonoBehaviour
 
     private IEnumerator skipIntro()
     {
-        if (!CountdownTimer.getTracking() && !PauseMenu.isPaused)
+        if (!CountdownTimer.getTracking())
         {
             OverlayStatic.overlaid = true;
             isSkipping = true;
             skipStartSound.Play();
             skipLoopSound.Play();
             levelDialogue.pitch = 50;
-            while (!CountdownTimer.getTracking() && isSkipping)
+            while (!CountdownTimer.getTracking())
             {
                 yield return new WaitForSeconds(0);
             }

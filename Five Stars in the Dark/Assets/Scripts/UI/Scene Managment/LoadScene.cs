@@ -10,22 +10,4 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
     }
-
-    public static void Loader(int buildIndex)
-    {
-        SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);
-    }
-
-    public static void LoadNextScene()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1, LoadSceneMode.Single);
-    }
-    public static AsyncOperation LoadNextSceneAsync()
-    {
-        return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
-    }
-    public static AsyncOperation LoadNextSceneAdditiveAsync()
-    {
-        return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Additive);
-    }
 }

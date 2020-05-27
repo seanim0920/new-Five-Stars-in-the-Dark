@@ -5,9 +5,9 @@ using UnityEngine;
 public class CountdownTimer : MonoBehaviour
 {
     public static float levelCompleteTime { get; set; }
-    private static float currentTime { get; set; }
+    public static float currentTime { get; set; }
 
-    private static bool isTracking = false;
+    public static bool isTracking = false;
     // Start is called before the first frame update
     void Start()
     {

@@ -17,10 +17,10 @@ public class CheckLosing : MonoBehaviour
 
     private void Update()
     {
-        if (!lost && CountdownTimer.getTracking() && (CountdownTimer.getCurrentTime() <= 0 || TrackErrors.getErrors() >= 5))
+        if (!lost && CountdownTimer.isTracking && (CountdownTimer.getCurrentTime() <= 0 || TrackErrors.getErrors() >= 10))
         {
             lost = true;
-            CountdownTimer.setTracking(false);
+            CountdownTimer.isTracking = false;
             print("lose!");
             ScoreStorage.Instance.setScoreAll();
             MasterkeyFailScreen.currentLevel = SceneManager.GetActiveScene().name;

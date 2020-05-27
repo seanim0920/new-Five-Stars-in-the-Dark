@@ -2,19 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class MasterkeyEndScreen : MonoBehaviour
 {
     public Button retry;
     public Button next;
     public Button menu;
-    public static int currentLevelBuildIndex = 1;
+    public static string currentLevel = "Level 2";
 
     // Start is called before the first frame update
     void Start()
     {
-        retry.onClick.AddListener(() => LoadScene.Loader(currentLevelBuildIndex));
-        next.onClick.AddListener(() => LoadScene.Loader(currentLevelBuildIndex+1));
+        retry.onClick.AddListener(() => LoadScene.Loader(currentLevel));
+        next.onClick.AddListener(() => LoadScene.Loader(getNextSceneName(currentLevel)));
         menu.onClick.AddListener(() => LoadScene.Loader("Menu"));
     }
 
@@ -22,5 +23,13 @@ public class MasterkeyEndScreen : MonoBehaviour
     void Update()
     {
 
+    }
+
+    private string getNextSceneName(string currentLevel)
+    {
+        int currIndex = SceneManager.GetSceneByName(currentLevel).buildIndex;
+        ++currIndex;
+        string nextName = SceneManager.GetSceneByBuildIndex(currIndex).name;
+        return nextName;
     }
 }

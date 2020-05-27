@@ -4,12 +4,10 @@ using UnityEngine;
 
 public class ResolutionHandler : MonoBehaviour
 {
-    private string resolution = "low";
+    private string resolution = "high";
     public GameObject highButton;
     public GameObject medButton;
     public GameObject lowButton;
-    public GameObject fullText;
-    public GameObject windowText;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,17 +20,9 @@ public class ResolutionHandler : MonoBehaviour
 
     public void toggleFullscreen()
     {
+        Debug.Log("fullscreen is " + Screen.fullScreen);
         Screen.fullScreen = !(Screen.fullScreen);
-        if(Screen.fullScreen)
-        {
-            windowText.SetActive(false);
-            fullText.SetActive(true);
-        }
-        else
-        {
-            windowText.SetActive(true);
-            fullText.SetActive(false);
-        }
+        Debug.Log("fullscreen is now " + Screen.fullScreen);
     }
 
     public void cycleResolution()
@@ -41,20 +31,20 @@ public class ResolutionHandler : MonoBehaviour
         {
             Screen.SetResolution(1366, 768, Screen.fullScreen);
             resolution = "med";
-            medButton.SetActive(true);
-            highButton.SetActive(false);
+            medButton.SetActive(false);
+            lowButton.SetActive(true);
         } else if (resolution == "med")
         {
             Screen.SetResolution(1024, 576, Screen.fullScreen);
             resolution = "low";
-            lowButton.SetActive(true);
-            medButton.SetActive(false);
+            lowButton.SetActive(false);
+            highButton.SetActive(true);
         } else
         {
             Screen.SetResolution(1920, 1080, Screen.fullScreen);
             resolution = "high";
-            highButton.SetActive(true);
-            lowButton.SetActive(false);
+            highButton.SetActive(false);
+            medButton.SetActive(true);
         }
     }
 }

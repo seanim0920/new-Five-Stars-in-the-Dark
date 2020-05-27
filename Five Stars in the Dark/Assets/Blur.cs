@@ -46,7 +46,6 @@ public class Blur : MonoBehaviour
     {
         return amount;
     }
-
     public static void setAmount(float newAmount)
     {
         amount = newAmount;
