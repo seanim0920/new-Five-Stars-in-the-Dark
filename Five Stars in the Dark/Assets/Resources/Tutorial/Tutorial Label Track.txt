@@ -1,7 +1,8 @@
-0.000000	0.000000	[HideScreen]
-14.410123	14.410123	[RevealScreen]
-31.048037	31.048037	[StartCar]
+0.000000	0.000000	[StartCar]
+0.000000    0.000000    [ConstructRoad]
+14.410123	14.410123	SlowCar aheadOf player
+31.048037	31.048037	[HideScreen]
 33.597051	33.597051	RevealTableaux 0
-77.853689	77.853689	RevealTableaux 1
-77.977241	81.977241	IncomingCar aheadOf player
+77.977241	77.977241	[RevealScreen]
+77.977241	77.977241	RevealTableaux 1
 88.849497	88.849497	[EndControl]
