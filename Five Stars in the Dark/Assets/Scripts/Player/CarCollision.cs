@@ -48,6 +48,7 @@ public class CarCollision : MonoBehaviour
         {
             yield return new WaitForFixedUpdate();
         }
+        if (NPCbody == null) yield break;
         NPCbody.velocity *= 0;
         if (speed > 0.5f)
         {
@@ -112,9 +113,6 @@ public class CarCollision : MonoBehaviour
                 print("blocked left");
                 controlFunctions.blockDirection(-1);
             }
-
-            //this statement pans the audio depending on which side the guardrail is on
-            hitSoundObject.GetComponent<AudioSource>().panStereo = this.gameObject.transform.position.x > hitSoundObject.transform.position.x ? -1 : 1;
         }
 
         //these pull a random hurtsound to play

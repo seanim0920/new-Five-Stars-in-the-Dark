@@ -273,7 +273,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: -1
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -419,62 +419,62 @@ PrefabInstance:
       propertyPath: focus
       value: 
       objectReference: {fileID: 1478482138}
-    - target: {fileID: 3161044690511559848, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 4573986209584097563, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1635305341}
-    - target: {fileID: 3161044690511559848, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 4573986209584097563, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: toggleWheel
       objectReference: {fileID: 0}
-    - target: {fileID: 3161044690826887573, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 4573986209336382502, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1635305341}
-    - target: {fileID: 3161044690826887573, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 4573986209336382502, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: toggleKeyboard
       objectReference: {fileID: 0}
-    - target: {fileID: 3161044688938466565, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 4573986210151082166, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1635305341}
-    - target: {fileID: 3161044688938466565, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 4573986210151082166, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: toggleGamepad
       objectReference: {fileID: 0}
-    - target: {fileID: 4573986209584097563, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 3161044690511559848, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1635305341}
-    - target: {fileID: 4573986209584097563, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 3161044690511559848, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: toggleWheel
       objectReference: {fileID: 0}
-    - target: {fileID: 4573986209336382502, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 3161044690826887573, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1635305341}
-    - target: {fileID: 4573986209336382502, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 3161044690826887573, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: toggleKeyboard
       objectReference: {fileID: 0}
-    - target: {fileID: 4573986210151082166, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 3161044688938466565, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1635305341}
-    - target: {fileID: 4573986210151082166, guid: 0737ab1198c13c74695686fd9e987b22,
+    - target: {fileID: 3161044688938466565, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: toggleGamepad
@@ -923,7 +923,7 @@ AudioSource:
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
-  Pan2D: 0
+  Pan2D: 1
   rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
@@ -1310,6 +1310,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6775186467697617656, guid: f69b4fae26683fe428909848d1fe1e89,
+        type: 3}
+      propertyPath: strafeSound
+      value: 
+      objectReference: {fileID: 661825272}
     - target: {fileID: 4148996918431534970, guid: f69b4fae26683fe428909848d1fe1e89,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1365,11 +1370,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6775186467697617656, guid: f69b4fae26683fe428909848d1fe1e89,
-        type: 3}
-      propertyPath: strafeSound
-      value: 
-      objectReference: {fileID: 661825272}
     - target: {fileID: 4148996918431534965, guid: f69b4fae26683fe428909848d1fe1e89,
         type: 3}
       propertyPath: cutsceneScript

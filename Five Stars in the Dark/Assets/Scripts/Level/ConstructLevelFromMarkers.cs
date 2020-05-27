@@ -342,12 +342,12 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         secondSource.clip = radioClip;
                         secondSource.Play();
                     }
-                    else if (string.Equals(command, "[RevealScreen]"))
+                    else if (string.Equals(command, "[RevealScreen]") || string.Equals(command, "[ShowUI]"))
                     {
                         enableControllers();
                         blackScreen.enabled = false;
                     }
-                    else if (string.Equals(command, "[HideScreen]"))
+                    else if (string.Equals(command, "[HideScreen]") || string.Equals(command, "[HideUI]"))
                     {
                         disableControllers();
                         blackScreen.enabled = true;
@@ -386,17 +386,14 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 //print("trying to spawn obstacle at time " + spawnTime);
 
                 //if the next obstacle is due or if the obstacle trigger was touched, spawn it
-                if (obstacleMarker.spawnTime < nextDialogueStartTime)
+                if (obstacleMarker.spawnTime < levelDialogue.time)
                 {
-                    if (obstacleMarker.spawnTime < levelDialogue.time)
-                    {
-                        debugMessage += "spawning obstacles: " + obstacleMarker.data;
-                        spawnObstacles(obstacleMarker.despawnTime, obstacleMarker.data);
-                        timedObstacleMarkers.RemoveAt(0);
-                    } else if (!isSpeaking)
-                    {
-                        obstacleMarker.spawnTime -= Time.deltaTime;
-                    }
+                    debugMessage += "spawning obstacles: " + obstacleMarker.data;
+                    spawnObstacles(obstacleMarker.despawnTime, obstacleMarker.data);
+                    timedObstacleMarkers.RemoveAt(0);
+                } else if (!isSpeaking)
+                {
+                    obstacleMarker.spawnTime -= Time.deltaTime;
                 }
             }
 
@@ -572,7 +569,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
     IEnumerator startCar()
     {
-        blackScreen.enabled = false;
         ambience.Play();
         CountdownTimer.setTracking(true); //marks when the level is commanded to start
         yield return new WaitForSeconds(1);

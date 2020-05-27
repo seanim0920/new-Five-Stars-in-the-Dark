@@ -24,7 +24,8 @@ public class GenericObstacleFailure : ObstacleFailure
         System.Random rand = new System.Random();
         numDialogue = rand.Next(0, failureDialogues.Length);
         Debug.Log("error made playing numDialogue: " + numDialogue);
-        StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[numDialogue]));
+        if (failureDialogues.Length > 0)
+            StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[numDialogue]));
         //base.playFailure(point);
     }
 }
