@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CarCollision : MonoBehaviour
 {
+    public AudioSource lightCollisionSound;
+
     private Rigidbody2D body;
     private PlayerControls controlFunctions;
     private SteeringWheelInput wheelFunctions;
@@ -12,7 +14,6 @@ public class CarCollision : MonoBehaviour
     private GameObject hitSoundObject;
     public GameObject situationalDialogues;
     //collision sound
-    public AudioSource charOnCar;
     string[] obstacleTags = { "Car", "Curb", "Guardrail", "Pedestrian", "Stop", "Target" };
 
     // Start is called before the first frame update
@@ -110,6 +111,10 @@ public class CarCollision : MonoBehaviour
                 print("blocked left");
                 controlFunctions.blockDirection(-1);
             }
+            if (!controlFunctions.enabled)
+            {
+                lightCollisionSound.Play();
+            }
         }
 
         //these pull a random hurtsound to play
@@ -130,10 +135,6 @@ public class CarCollision : MonoBehaviour
     }
     void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Car"))
-        {
-            //charOnCar.Play();
-        }
         if (col.gameObject.CompareTag("Guardrail"))
         {
             controlFunctions.blockDirection(0);

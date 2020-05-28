@@ -294,9 +294,9 @@ public class PlayerControls : MonoBehaviour
             movementSpeed = -Mathf.Pow((i - totalIterations), 2) / (totalIterations * (totalIterations / maxVDisplacement)) + maxVDisplacement + origMovementSpeed;
             yield return new WaitForFixedUpdate();
         }
-        while (body.velocity.magnitude > 0.05f)
+        while (body.velocity.magnitude > 0.05f || lastRecordedStrafe > 0.02f)
         {
-            body.velocity *= 0.98f;
+            body.velocity *= 0.975f;
             Blur.setAmount(Blur.getAmount() * 0.97f);
             lastRecordedStrafe *= 0.97f;
             movementSpeed *= 0.95f;
