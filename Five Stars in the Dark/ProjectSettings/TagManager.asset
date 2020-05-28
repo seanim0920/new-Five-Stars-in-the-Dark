@@ -8,7 +8,6 @@ TagManager:
   - Curb
   - Building
   - Car
-  - Stop
   - Go
   - Right
   - Middle
@@ -18,6 +17,7 @@ TagManager:
   - Zone
   - Constructor
   - Target
+  - Stopped
   layers:
   - Default
   - TransparentFX

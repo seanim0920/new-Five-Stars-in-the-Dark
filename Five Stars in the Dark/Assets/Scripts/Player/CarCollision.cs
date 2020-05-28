@@ -98,10 +98,6 @@ public class CarCollision : MonoBehaviour
             if (hitSoundObject.GetComponent<ObstacleFailure>())
                 hitSoundObject.GetComponent<ObstacleFailure>().playFailure(Camera.main.transform.position);
         }
-        if (col.gameObject.CompareTag("Pedestrian") || col.gameObject.CompareTag("Stop"))
-        {
-            hitSoundObject.GetComponent<AudioSource>().Play();
-        }
         if (col.gameObject.CompareTag("Guardrail"))
         {
             if (col.gameObject.transform.position.x > transform.position.x)
@@ -142,10 +138,6 @@ public class CarCollision : MonoBehaviour
         {
             controlFunctions.blockDirection(0);
             col.gameObject.GetComponent<AudioSource>().Stop();
-        }
-        if (col.gameObject.CompareTag("Stop"))
-        {
-            TrackErrors.IncrementErrors();
         }
 
     }
