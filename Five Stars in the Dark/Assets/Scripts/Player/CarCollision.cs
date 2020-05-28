@@ -91,7 +91,7 @@ public class CarCollision : MonoBehaviour
 
             body.bodyType = RigidbodyType2D.Dynamic;
             body.AddForce((transform.position - col.gameObject.transform.position).normalized * speedDifference * 50, ForceMode2D.Impulse);
-            StartCoroutine(controlFunctions.impact(body.velocity));
+            StartCoroutine(controlFunctions.impactCoroutine(body.velocity));
             if (!col.gameObject.CompareTag("Target"))
                 StartCoroutine(disableNPCMomentarily(col.gameObject, speedDifference));
 

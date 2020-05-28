@@ -21,11 +21,11 @@ public class PlayStoplightFailure : ObstacleFailure
     public override void playFailure(Vector3 point)
     {
         // Play failure dialogue sequentially
-        if(numDialogue < failureDialogues.Length)
-        {
-            dialogueSource.clip = failureDialogues[numDialogue];
-            numDialogue++;
-        }
-        base.playFailure(point);
+        System.Random rand = new System.Random();
+        numDialogue = rand.Next(0, failureDialogues.Length);
+        Debug.Log("error made playing numDialogue: " + numDialogue);
+        if (failureDialogues.Length > 0)
+            StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[numDialogue]));
+        //base.playFailure(point);
     }
 }

@@ -276,7 +276,7 @@ public class PlayerControls : MonoBehaviour
         isTurning = false;
     }
 
-    public IEnumerator impact(Vector2 force)
+    public IEnumerator impactCoroutine(Vector2 force)
     {
         this.impacted = true;
         this.enabled = false;
