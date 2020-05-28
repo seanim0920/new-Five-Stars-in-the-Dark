@@ -413,7 +413,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         obj.transform.Rotate(0, 0, -45);
                     else
                         obj.transform.Rotate(0, 0, 45);
-                    if (pair.Key.GetComponent<NPCMovement>().neutralSpeed != 0)
+                    if (!pair.Key.CompareTag("Stopped"))
                     {
                         obj.GetComponent<CapsuleCollider2D>().isTrigger = true;
                         Destroy(pair.Key, 5);

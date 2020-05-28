@@ -60,6 +60,7 @@ public class CarCollision : MonoBehaviour
                 yield return new WaitForSeconds(1);
             }
             NPC.transform.Find("OpenDoorSfx").GetComponent<AudioSource>().Play();
+            NPC.tag = "Stopped";
         }
         else
         {
@@ -80,7 +81,7 @@ public class CarCollision : MonoBehaviour
         Debug.Log(hitSoundObject);
         hitSoundObject.GetComponent<AudioSource>().Play();
 
-        if (col.gameObject.CompareTag("Car") || col.gameObject.CompareTag("Target"))
+        if (col.gameObject.CompareTag("Car") || col.gameObject.CompareTag("Target") || col.gameObject.CompareTag("Stopped"))
         {
             wheelFunctions.PlayFrontCollisionForce();
 

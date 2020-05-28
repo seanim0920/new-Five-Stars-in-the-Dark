@@ -12,7 +12,6 @@ public class PlayerControls : MonoBehaviour
     public AudioSource disabledWheelSound;
     public AudioSource engineSound;
     public AudioSource tireSound;
-    public AudioSource dialogue;
     public AudioSource slidingSound;
     public AudioSource grabWheel;
 
@@ -251,7 +250,7 @@ public class PlayerControls : MonoBehaviour
         {
             child.gameObject.GetComponent<AudioSource>().panStereo = amount * 3;
         }
-        dialogue.panStereo = -amount * 3;
+        ConstructLevelFromMarkers.levelDialogue.panStereo = -amount * 3;
         strafeSound.panStereo = amount * 2;
     }
 

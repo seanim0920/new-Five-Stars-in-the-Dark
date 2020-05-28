@@ -35,19 +35,38 @@ public class SidewaysRumbling : MonoBehaviour
     {
         AudioSource sound = soundObj.GetComponent<AudioSource>();
         AudioLowPassFilter filter = soundObj.GetComponent<AudioLowPassFilter>();
-        if ((back.collider && back.collider.gameObject.tag != "Zone") || (front.collider && front.collider.gameObject.tag != "Zone"))
+        bool backDetected = back.collider != null;
+        bool frontDetected = front.collider != null;
+        if ((backDetected && back.collider.gameObject.tag != "Zone") || (frontDetected && front.collider.gameObject.tag != "Zone"))
         {
-            float distance = Mathf.Min((back.point - (Vector2)transform.position).magnitude, (front.point - (Vector2)transform.position).magnitude);
+            float backDistance = (back.point - (Vector2)transform.position - new Vector2(0,0.5f)).magnitude;
+            float frontDistance = (front.point - (Vector2)transform.position + new Vector2(0,0.5f)).magnitude;
+            float distance = Mathf.Min(backDistance, frontDistance);
             float ratio = (back.point - (Vector2)transform.position).magnitude / (front.point - (Vector2)transform.position).magnitude;
             //print("side ray distance" + distance);
             //leftSource.SetFloat("LowF", (minFrequency + (((maxFrequency - minFrequency) / (Mathf.Pow((hearingDistance - minDistance), sharpness))) * Mathf.Pow((distance - minDistance), sharpness))));
 
-            //sound.volume = 1 + (-1 / Mathf.Pow(2, 2)) * Mathf.Pow(distance, 2);
-
-            sound.pitch = 0.5f + (0.5f * controls.movementSpeed / controls.maxSpeed);
-            sound.volume = 1.1f * (controls.movementSpeed-0.05f) / controls.maxSpeed;
-            float pan = (left ? -1 : 1) * (1 / Mathf.Pow(maxDistance, 2)) * Mathf.Pow(distance, 2);
-            print("pan: " + pan);
+            float speedDifference = controls.movementSpeed;
+            bool backCarExists = (backDetected &&
+                (back.collider.gameObject.CompareTag("Car") || back.collider.gameObject.CompareTag("Target")));
+            bool frontCarExists = (frontDetected &&
+                (front.collider.gameObject.CompareTag("Car") || front.collider.gameObject.CompareTag("Target")));
+            if (backCarExists || frontCarExists)
+            {
+                GameObject npc;
+                if (backCarExists && frontCarExists)
+                {
+                    npc = backDistance < frontDistance ? back.collider.gameObject : front.collider.gameObject;
+                } else
+                {
+                    npc = backCarExists ? back.collider.gameObject : front.collider.gameObject;
+                }
+                speedDifference = Mathf.Abs(controls.movementSpeed - npc.GetComponent<NPCMovement>().movementSpeed) * 1.5f;
+            }
+            sound.pitch = 0.5f + (0.5f * speedDifference);
+            sound.volume = 1.1f * (speedDifference-0.05f) / controls.maxSpeed;
+            float pan = (left ? -1 : 1) * ((-1 / Mathf.Pow(maxDistance, 2)) * Mathf.Pow((distance-maxDistance), 2) + 1);
+            //print("pan: " + pan);
             sound.panStereo = pan;
             filter.cutoffFrequency = Mathf.Exp(-ratio+7.3f);
         }
