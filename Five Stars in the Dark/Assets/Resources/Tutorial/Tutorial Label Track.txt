@@ -8,7 +8,7 @@
 158.738986	158.738986	[EndControl]
 33.597000	33.597000	RevealTableaux 0
 77.794619	77.794619	RevealTableaux 1
-77.977241	78.326245	IncomingCar player
+78.977241	78.326245	IncomingCar player
 81.138023	85.559349	SlowCar aheadOf player
 82.531411	86.952736	SlowCar aheadOf Lane2
 84.112370	88.426512	SlowCar aheadOf player
