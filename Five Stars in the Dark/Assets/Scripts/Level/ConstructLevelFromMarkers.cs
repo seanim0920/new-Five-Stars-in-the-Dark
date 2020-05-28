@@ -230,28 +230,34 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     void constructLevelMap(int curbType)
     {
         float updateRate = 50; //how long fixedupdate runs per second
-        
+
         float length = levelDialogue.clip.length * controls.neutralSpeed * updateRate;
-        if(curbType == 0)
+        GameObject road = Resources.Load<GameObject>("Prefabs/Road"); GameObject map = new GameObject("Map");
+        GameObject roadtile = Instantiate(road, new Vector3(0, 0, 1), Quaternion.identity);
+        roadtile.transform.localScale = new Vector3(roadWidth, length, 1);
+        roadtile.transform.parent = map.transform;
+        if (curbType == 0)
         {
-            GameObject road = Resources.Load<GameObject>("Prefabs/Road");GameObject map = new GameObject("Map");
-            
-            GameObject roadtile = Instantiate(road, new Vector3(0, 0, 1), Quaternion.identity);
-            roadtile.transform.localScale = new Vector3(roadWidth, length, 1);
-            roadtile.transform.parent = map.transform;
+            GameObject curb = Resources.Load<GameObject>("Prefabs/Curb");
+            GameObject leftcurb = Instantiate(curb, new Vector3((-roadWidth / 2 - 0.5f), 0, 1), Quaternion.identity);
+            leftcurb.transform.localScale = new Vector3(20, length, 1);
+            leftcurb.transform.parent = map.transform;
+            GameObject rightcurb = Instantiate(curb, new Vector3((roadWidth / 2 + 0.5f), 0, 1), Quaternion.identity);
+            rightcurb.transform.localScale = new Vector3(20, length, 1);
+            rightcurb.transform.parent = map.transform;
+            player.transform.position = new Vector3(0, -length / 2, 0);
         }
         else
         {
-            GameObject map = GameObject.Find("Map");
-            GameObject curb = Resources.Load<GameObject>("Prefabs/Curb");
-            GameObject leftcurb = Instantiate(curb, new Vector3((-roadWidth/2 - 0.5f), 0, 1), Quaternion.identity);
-            leftcurb.transform.localScale = new Vector3(20,length,1);
+            GameObject curb = Resources.Load<GameObject>("Prefabs/Obstacles/TutorialCurb");
+            GameObject leftcurb = Instantiate(curb, new Vector3((-roadWidth / 2 - 0.5f), 0, 1), Quaternion.identity);
+            leftcurb.transform.localScale = new Vector3(20, length, 1);
             leftcurb.transform.parent = map.transform;
-            GameObject rightcurb = Instantiate(curb, new Vector3((roadWidth/2 + 0.5f), 0, 1), Quaternion.identity);
+            GameObject rightcurb = Instantiate(curb, new Vector3((roadWidth / 2 + 0.5f), 0, 1), Quaternion.identity);
             rightcurb.transform.localScale = new Vector3(20, length, 1);
             rightcurb.transform.parent = map.transform;
+            player.transform.position = new Vector3(0, -length / 2, 0);
         }
-        player.transform.position = new Vector3(0, -length / 2, 0);
     }
 
     void replaceMarker(float resumeTime)
@@ -306,6 +312,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
             if (dialogueStopper != null && !dialogueStopper.CompareTag("Car"))
             {
+                print("dialogue should be stopped here");
                 bool wasPlaying = levelDialogue.isPlaying;
                 levelDialogue.Pause();
                 while (dialogueStopper != null && !dialogueStopper.CompareTag("Car") && !skipSection)
@@ -313,6 +320,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     yield return new WaitForSeconds(0);
                 }
                 if (dialogueStopper != null && !dialogueStopper.CompareTag("Car")) Destroy(dialogueStopper);
+                print("dialogue is good to go");
                 controls.enabled = true;
                 enableControllers();
                 replaceMarker(nextDialogueStartTime);
@@ -364,11 +372,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         print("ending player control");
                         StartCoroutine(parkCar());
                     }
-                    else if (string.Equals(command, "[ConstructRoad]"))
-                    {
-                        StartCoroutine(ConstructMap(0));
-                    }
-                    else if (string.Equals(command, "[ConstructCurbs]"))
+                    else if (string.Equals(command, "[ConstructMap]"))
                     {
                         StartCoroutine(ConstructMap(1));
                     }
@@ -517,6 +521,24 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         string tableauxName = tokens[1].ToLower().Trim();
 
                         obj.GetComponent<DisplayStrafeTableaux>().tableauxNum = int.Parse(tableauxName);
+                    }
+                }
+                else if ((string.Equals(prefab, "incomingcar", System.StringComparison.OrdinalIgnoreCase)))
+                {
+                    if (tokens.Length > 1)
+                    {
+                        float xpos = tokens[1].ToLower()[0] == 'l' ? (-roadWidth + laneWidth) / 2 + (laneWidth * (float.Parse(tokens[1].Substring(4)) - 1)) :
+                        tokens[1].ToLower()[0] == 'r' ? (-roadWidth + laneWidth) / 2 + (laneWidth * Random.Range(0, numberOfLanes)) :
+                        tokens[1].ToLower().Trim() == "playersleft" && player.transform.position.x > (-roadWidth + laneWidth) / 2 ? player.transform.position.x - laneWidth :
+                        tokens[1].ToLower().Trim() == "playersright" && player.transform.position.x < (roadWidth + laneWidth) / 2 ? player.transform.position.x + laneWidth :
+                        player.transform.position.x;
+
+                        obj.transform.position = new Vector3(xpos, player.transform.position.y + spawnDistance, 0);
+
+                        Vector3 startRotation = new Vector3(0, 0, 180);
+                        // Quaternion startQuaternion;
+                        // startQuaternion.eulerAngles = startRotation;
+                        obj.transform.eulerAngles = startRotation;
                     }
                 }
                 dialogueStopper = obj;
