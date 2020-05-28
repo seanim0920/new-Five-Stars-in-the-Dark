@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 8748288786756460907}
   - component: {fileID: 5314253236553276883}
   - component: {fileID: 2766852292570965207}
+  - component: {fileID: 6026803395194053440}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Car
@@ -664,6 +665,19 @@ AudioLowPassFilter:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6026803395194053440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2138646690712720297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: edad672fafec7824b9ba19ccd13682b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  proximity: {fileID: 5989878738224235098}
 --- !u!1 &2693656392706589035
 GameObject:
   m_ObjectHideFlags: 0
