@@ -735,18 +735,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1199343820}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1199343826 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6775186468601671640, guid: f69b4fae26683fe428909848d1fe1e89,
-    type: 3}
-  m_PrefabInstance: {fileID: 1199343820}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1199343827 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6775186468662399730, guid: f69b4fae26683fe428909848d1fe1e89,
-    type: 3}
-  m_PrefabInstance: {fileID: 1199343820}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1199343828 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4148996918431534961, guid: f69b4fae26683fe428909848d1fe1e89,
@@ -888,12 +876,12 @@ PrefabInstance:
         type: 3}
       propertyPath: leftSpeaker
       value: 
-      objectReference: {fileID: 1199343827}
+      objectReference: {fileID: 0}
     - target: {fileID: 412440413062414634, guid: cec60119a7a8c704ea21138b08c6c077,
         type: 3}
       propertyPath: rightSpeaker
       value: 
-      objectReference: {fileID: 1199343826}
+      objectReference: {fileID: 0}
     - target: {fileID: 412440413062414634, guid: cec60119a7a8c704ea21138b08c6c077,
         type: 3}
       propertyPath: playerTransform
