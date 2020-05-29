@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1036129400354908794}
   - component: {fileID: 7851086772985822893}
   - component: {fileID: 1657895660784628487}
+  - component: {fileID: 7517875956359689858}
   m_Layer: 0
   m_Name: 4thimpact
   m_TagString: Zone
@@ -92,7 +93,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -204,6 +205,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7517875956359689858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781279840577912643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7d740552293f541b402eb74e6b3510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3007054832483256359
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +229,7 @@ GameObject:
   - component: {fileID: 3007054832483256363}
   - component: {fileID: 3007054832483256361}
   - component: {fileID: 1264862261716389254}
+  - component: {fileID: 8380174307140032537}
   m_Layer: 0
   m_Name: 3rdimpact
   m_TagString: Zone
@@ -296,7 +310,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -408,6 +422,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8380174307140032537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3007054832483256359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7d740552293f541b402eb74e6b3510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3007054833885765606
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,6 +446,7 @@ GameObject:
   - component: {fileID: 3007054833885765610}
   - component: {fileID: 3007054833885765608}
   - component: {fileID: 3022759082169751719}
+  - component: {fileID: 1303618134692095471}
   m_Layer: 0
   m_Name: 2ndimpact
   m_TagString: Zone
@@ -500,7 +527,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -612,6 +639,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1303618134692095471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3007054833885765606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7d740552293f541b402eb74e6b3510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4388160878887851160
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +663,7 @@ GameObject:
   - component: {fileID: 6387979384935028799}
   - component: {fileID: 5094574330284464927}
   - component: {fileID: 7003409991814012088}
+  - component: {fileID: 8588242135803933012}
   m_Layer: 0
   m_Name: 1stimpact
   m_TagString: Zone
@@ -704,7 +744,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -816,6 +856,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8588242135803933012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388160878887851160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7d740552293f541b402eb74e6b3510, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6859078725265430212
 GameObject:
   m_ObjectHideFlags: 0

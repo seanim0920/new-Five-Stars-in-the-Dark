@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class SpeedBumpSound : MonoBehaviour
 {
-    public AudioSource enterAudio;
-    public AudioSource exitAudio;
     private AudioSource source;
     // Start is called before the first frame update
     void Start()
@@ -19,21 +17,12 @@ public class SpeedBumpSound : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("Played bump sound");
         if (col.gameObject.tag == "Player")
         {
-            enterAudio.Play();
-        }
-    }
-    void OnCollisionExit2D(Collision2D col)
-    {
-        Debug.Log("Played bump sound");
-        if (col.gameObject.tag == "Player")
-        {
-            exitAudio.Play();
-            Debug.Log("Played bump sound");
+            source.Play();
         }
     }
 }
