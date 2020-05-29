@@ -69,7 +69,7 @@ public class GamepadControl : MonoBehaviour
                 strafeVelocity += strafeAcceleration * 1.4f;
             }
             controlFunctions.strafe(strafeVelocity);
-            if (!controlFunctions.enabled) strafeVelocity = 0;
+            // if (!controlFunctions.enabled) strafeVelocity = 0;
 
         }
         else
@@ -95,9 +95,11 @@ public class GamepadControl : MonoBehaviour
         gamepad.Gameplay.Strafe.canceled += CancelStrafe;
         gamepad.Gameplay.Strafe.Enable();
         
+        gamepad.QuickTurns.TurnLeft.started += StartTurningLeft;
         gamepad.QuickTurns.TurnLeft.performed += Turning;
         gamepad.QuickTurns.TurnLeft.canceled += CancelTurning;
 
+        gamepad.QuickTurns.TurnRight.started += StartTurningRight;
         gamepad.QuickTurns.TurnRight.performed += Turning;
         gamepad.QuickTurns.TurnRight.canceled += CancelTurning;
     }
@@ -117,10 +119,12 @@ public class GamepadControl : MonoBehaviour
         gamepad.Gameplay.Strafe.canceled -= CancelStrafe;
         gamepad.Gameplay.Strafe.Disable();
 
+        gamepad.QuickTurns.TurnLeft.started -= StartTurningLeft;
         gamepad.QuickTurns.TurnLeft.performed -= Turning;
         gamepad.QuickTurns.TurnLeft.canceled -= CancelTurning;
         gamepad.QuickTurns.TurnLeft.Disable();
 
+        gamepad.QuickTurns.TurnRight.started -= StartTurningRight;
         gamepad.QuickTurns.TurnRight.performed -= Turning;
         gamepad.QuickTurns.TurnRight.canceled -= CancelTurning;
         gamepad.QuickTurns.TurnRight.Disable();
@@ -165,6 +169,19 @@ public class GamepadControl : MonoBehaviour
         strafeFinal = 0f;
     }
 
+    private void StartTurningLeft(InputAction.CallbackContext context)
+    {
+        strafeFinal = context.ReadValue<float>() * -1;
+        Debug.Log("QuickTurn strafing: " + strafeFinal);
+        isStrafing = Mathf.Abs(strafeFinal) > 0.01f;
+    }
+
+    private void StartTurningRight(InputAction.CallbackContext context)
+    {
+        strafeFinal = context.ReadValue<float>();
+        Debug.Log("QuickTurn strafing: " + strafeFinal);
+        isStrafing = Mathf.Abs(strafeFinal) > 0.01f;
+    }
     private void Turning(InputAction.CallbackContext context)
     {
     }
@@ -173,6 +190,6 @@ public class GamepadControl : MonoBehaviour
     {
         var value = context.ReadValue<float>();
         gamepad.Gameplay.Enable();
-        gamepad.QuickTurns.Disable();
+        // gamepad.QuickTurns.Disable();
     }
 }
