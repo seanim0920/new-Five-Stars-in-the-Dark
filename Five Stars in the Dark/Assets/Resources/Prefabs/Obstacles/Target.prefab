@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 1810698427}
   - component: {fileID: 6535703001516569892}
   - component: {fileID: 3928172151021886829}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ConversationRange
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

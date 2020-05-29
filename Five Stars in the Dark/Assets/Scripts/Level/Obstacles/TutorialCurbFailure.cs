@@ -26,7 +26,7 @@ public class TutorialCurbFailure : ObstacleFailure
         if(numCurbCrashes - 1 < failureDialogues.Length)
         {
             Debug.Log("error made playing numCurbCrashes - 1: " + (numCurbCrashes - 1));
-            StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[numCurbCrashes - 1]));
+            StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[numCurbCrashes - 1]));
         }
         else
         {
@@ -35,7 +35,7 @@ public class TutorialCurbFailure : ObstacleFailure
             System.Random rand = new System.Random();
             numDialogue = rand.Next(0, failureDialogues.Length);
             Debug.Log("error made playing numDialogue: " + numDialogue);
-            StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[numDialogue]));
+            StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[numDialogue]));
         }
     }
 

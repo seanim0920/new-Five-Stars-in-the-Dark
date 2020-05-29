@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TargetMovement : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class TargetMovement : MonoBehaviour
     private IEnumerator fastCoroutine;
     private IEnumerator rightCoroutine;
     private IEnumerator leftCoroutine;
+
+    private bool warned = false;
     void Start()
     {
         makeCoroutines();
@@ -34,11 +37,23 @@ public class TargetMovement : MonoBehaviour
         //if player gets in front of this car, ram into it
         Vector3 playerPosRelativeToThis = transform.InverseTransformPoint(player.transform.position);
         //print(playerPosRelativeToThis.y);
-        if (playerPosRelativeToThis.y > 2 && controls.enabled && !ramming)
+        if (playerPosRelativeToThis.y >= 0.25f && !PlayError.playingHurtSound && !warned)
         {
+            warned = true;
+
+            //change when we have the proper sfx
+            StartCoroutine(PlayError.PlayWarningCoroutine(SceneManager.GetActiveScene().name + "/Failure/GenericCrash"));//change when we have proper sfx
+        }
+        else if (playerPosRelativeToThis.y > 2 && controls.enabled && !ramming)
+        {
+            //PlayError;
             ramming = true;
             StopAllCoroutines();
             StartCoroutine(ramPlayer());
+        }
+        else if (playerPosRelativeToThis.y <= 0)
+        {
+            warned = false;
         }
     }
 

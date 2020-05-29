@@ -60,8 +60,11 @@ public class CarCollision : MonoBehaviour
                 NPC.transform.Find("SmokeSfx").GetComponent<AudioSource>().Play();
                 yield return new WaitForSeconds(1);
             }
-            NPC.transform.Find("OpenDoorSfx").GetComponent<AudioSource>().Play();
-            NPC.tag = "Stopped";
+            if (NPC != null)
+            {
+                NPC.transform.Find("OpenDoorSfx").GetComponent<AudioSource>().Play();
+                NPC.tag = "Stopped";
+            }
         }
         else
         {

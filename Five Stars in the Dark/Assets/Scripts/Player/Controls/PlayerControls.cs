@@ -250,8 +250,8 @@ public class PlayerControls : MonoBehaviour
         {
             child.gameObject.GetComponent<AudioSource>().panStereo = amount * 3;
         }
-        ConstructLevelFromMarkers.levelDialogue.panStereo = -amount * 3;
-        strafeSound.panStereo = amount * 2;
+        ConstructLevelFromMarkers.levelDialogue.panStereo = -amount * 2.75f;
+        strafeSound.panStereo = amount * 2.5f;
     }
 
     public IEnumerator turnFail(bool right)

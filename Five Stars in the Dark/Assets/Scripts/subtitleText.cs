@@ -21,6 +21,10 @@ public class subtitleText : MonoBehaviour
             subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
             subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
         }
+        if (!ConstructLevelFromMarkers.levelDialogue.isPlaying)
+        {
+            subText.text = "";
+        }
     }
 
     string matchColorandTrimQuotes(string message)
