@@ -353,12 +353,12 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     else if (string.Equals(command, "[RevealScreen]") || string.Equals(command, "[ShowUI]"))
                     {
                         enableControllers();
-                        blackScreen.enabled = false;
+                        blackScreen.color = new Color(0,0,0,0);
                     }
                     else if (string.Equals(command, "[HideScreen]") || string.Equals(command, "[HideUI]"))
                     {
                         disableControllers();
-                        blackScreen.enabled = true;
+                        blackScreen.color = new Color(0, 0, 0, 1);
                     }
                     else if (string.Equals(command, "[StartCar]") || string.Equals(command, "[StartControl]"))
                     {
@@ -375,6 +375,10 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     else if (string.Equals(command, "[ConstructMap]"))
                     {
                         StartCoroutine(ConstructMap(1));
+                    }
+                    else if (string.Equals(command, "[FadeOut]"))
+                    {
+                        blackScreen.CrossFadeAlpha(0, 3.0f, false);
                     }
                     commandMarkers.RemoveAt(0);
                 }
@@ -445,7 +449,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         ScoreStorage.Instance.setScoreAll();
         MasterkeyEndScreen.currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
         ScoreStorage.Instance.setScoreProgress(100);
-        if (levelDialogue.clip.length <= 180 || SceneManager.GetActiveScene().name == "Level 5") //mini-levels will be less than 3 minutes
+        if (levelDialogue.clip.length <= 180 || SceneManager.GetActiveScene().name == "Level 5" || SceneManager.GetActiveScene().name == "Tutorial") //mini-levels will be less than 3 minutes
         {
             LoadScene.LoadNextScene();
         }
@@ -529,8 +533,8 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     {
                         float xpos = tokens[1].ToLower()[0] == 'l' ? (-roadWidth + laneWidth) / 2 + (laneWidth * (float.Parse(tokens[1].Substring(4)) - 1)) :
                         tokens[1].ToLower()[0] == 'r' ? (-roadWidth + laneWidth) / 2 + (laneWidth * Random.Range(0, numberOfLanes)) :
-                        tokens[1].ToLower().Trim() == "playersleft" && player.transform.position.x > (-roadWidth + laneWidth) / 2 ? player.transform.position.x - laneWidth :
-                        tokens[1].ToLower().Trim() == "playersright" && player.transform.position.x < (roadWidth + laneWidth) / 2 ? player.transform.position.x + laneWidth :
+                        string.Equals(tokens[1].ToLower().Trim(), "playersleft") && player.transform.position.x > (-roadWidth + laneWidth) / 2 ? player.transform.position.x - laneWidth :
+                        string.Equals(tokens[1].ToLower().Trim(), "playersright") && player.transform.position.x < (roadWidth + laneWidth) / 2 ? player.transform.position.x + laneWidth :
                         player.transform.position.x;
 
                         obj.transform.position = new Vector3(xpos, player.transform.position.y + spawnDistance, 0);

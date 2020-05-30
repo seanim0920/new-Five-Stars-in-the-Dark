@@ -44,11 +44,6 @@ public class TutorialCurbFailure : ObstacleFailure
         if(col.gameObject.CompareTag("Player"))
         {
             numCurbCrashes++;
-            if(numCurbCrashes == 1)
-            {
-                var tableaux = Instantiate(curbTableaux);
-                tableaux.GetComponent<DisplayStrafeTableaux>().tableauxNum = 2;
-            }
         }
     }
 
