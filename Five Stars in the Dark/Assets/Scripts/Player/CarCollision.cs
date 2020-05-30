@@ -90,7 +90,7 @@ public class CarCollision : MonoBehaviour
             wheelFunctions.PlayFrontCollisionForce();
 
             NPCMovement movementScript = col.gameObject.GetComponent<NPCMovement>();
-            float speedDifference = Mathf.Abs(movementScript.movementSpeed - controlFunctions.movementSpeed);
+            float speedDifference = Mathf.Abs(NPCMovement.getRelativeSpeed(col.gameObject));
             TrackErrors.IncrementErrors(speedDifference);
 
             body.bodyType = RigidbodyType2D.Dynamic;

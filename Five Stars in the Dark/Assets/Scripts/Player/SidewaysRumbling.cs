@@ -61,7 +61,8 @@ public class SidewaysRumbling : MonoBehaviour
                 {
                     npc = backCarExists ? back.collider.gameObject : front.collider.gameObject;
                 }
-                speedDifference = Mathf.Abs(controls.movementSpeed - npc.GetComponent<NPCMovement>().movementSpeed) * 1.5f;
+                speedDifference = Mathf.Abs(NPCMovement.getRelativeSpeed(npc)) * 1.5f;
+                //print("detected npc, speeddifference is " + speedDifference);
             }
             sound.pitch = 0.5f + (0.5f * speedDifference);
             sound.volume = 1.1f * (speedDifference-0.05f) / controls.maxSpeed;
