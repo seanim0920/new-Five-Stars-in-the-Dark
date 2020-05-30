@@ -166,7 +166,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         loadedObjects = Resources.LoadAll("Prefabs/Obstacles", typeof(GameObject));
         player = GameObject.Find("Player");
         wheelFunctions = player.GetComponent<SteeringWheelInput>();
-        Debug.Log(wheelFunctions == null);
         controls = player.GetComponent<PlayerControls>();
         keyboard = player.GetComponent<KeyboardControl>();
         gamepad = player.GetComponent<GamepadControl>();
@@ -203,6 +202,8 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     {
         if (SettingsManager.toggles[0])
         {
+            // Idk how else to do all this because apparently these things
+            // become null if you reference them when they're disabled
             if(gamepad != null)
             {
                 gamepad.enabled = false;
@@ -626,7 +627,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         StartCoroutine(wheelRumble());
         yield return new WaitForSeconds(1);
         controls.enabled = true;
-        Debug.Log(controlType);
         CountdownTimer.decrementTime(2); //to make up for the two seconds took to start the engine
     }
     IEnumerator parkCar()
