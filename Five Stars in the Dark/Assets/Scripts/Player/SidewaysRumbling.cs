@@ -6,7 +6,7 @@ public class SidewaysRumbling : MonoBehaviour
 {
     public GameObject leftRumbleSfx;
     public GameObject rightRumbleSfx;
-    private float maxDistance = 15;
+    private float maxDistance = 17;
     private PlayerControls controls;
     // Start is called before the first frame update
     void Start()
