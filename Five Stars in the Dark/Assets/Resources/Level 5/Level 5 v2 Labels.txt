@@ -150,6 +150,7 @@
 353.029877	355.101468	<W> "Matias would have loved this..."
 357.690956	359.261177	<L> "Do it, Isaac! Press the button!"
 359.420954	360.858946	<L> "You're doing the right thing!"
+362.644295	177.644295	[EndControl]
 363.266619	365.068242	<W> "I dunno if I should..."
 365.762445	367.183909	<W> This doesn't feel right..."
 367.619163	369.382219	<L> "Wh- what do you mean!"
@@ -166,6 +167,7 @@
 393.128376	394.329458	<D> "Now's not the time!"
 394.483725	396.373501	<D> "Hurry, Isaac! The police are coming!"
 396.885889	398.434072	<WI> "I've gotta decide now."
+397.644295	177.644295	[StartControl]
 2.179801	2.179801	[HideScreen]
 97.474552	97.474552	[RevealScreen]
 177.644295	177.644295	[StartControl]
@@ -194,4 +196,4 @@
 329.911808	334.187219	SlowCar aheadOf Lane2
 333.768493	338.440591	PoliceCar behind Lane1
 340.886830	340.886830	Target c..a...a..l..a..l...c...s..s...c..r...c...r...c...s...s...r..
-341 341 Decision l
+398	398	Decision l
