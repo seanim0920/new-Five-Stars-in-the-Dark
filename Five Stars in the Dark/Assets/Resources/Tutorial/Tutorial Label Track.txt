@@ -6,7 +6,7 @@
 80.923647	80.923647	[ConstructMap]
 158.015497	188.964776	Dialogue
 158.738986	158.738986	[EndControl]
-185.4	190	[FadeOut]
+185.4	190	[HideScreen]
 78.077241	78.326245	IncomingCar player
 81.138023	85.559349	SlowCar aheadOf playersLeft
 82.531411	86.952736	SlowCar aheadOf Lane2

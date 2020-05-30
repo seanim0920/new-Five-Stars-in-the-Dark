@@ -353,12 +353,12 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     else if (string.Equals(command, "[RevealScreen]") || string.Equals(command, "[ShowUI]"))
                     {
                         enableControllers();
-                        blackScreen.color = new Color(0,0,0,0);
+                        blackScreen.enabled = false;
                     }
                     else if (string.Equals(command, "[HideScreen]") || string.Equals(command, "[HideUI]"))
                     {
                         disableControllers();
-                        blackScreen.color = new Color(0, 0, 0, 1);
+                        blackScreen.enabled = true;
                     }
                     else if (string.Equals(command, "[StartCar]") || string.Equals(command, "[StartControl]"))
                     {
@@ -378,7 +378,35 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     }
                     else if (string.Equals(command, "[FadeOut]"))
                     {
-                        blackScreen.CrossFadeAlpha(0, 3.0f, false);
+                        blackScreen.enabled = true;
+                        blackScreen.color = new Color(0,0,0,0);
+                        StartCoroutine(fadeOut());
+                    }
+                    else if (string.Equals(command, "[ClearObstacles]"))
+                    {
+                        //check all active obstacles to see if any should be despawned
+                        foreach (KeyValuePair<GameObject, float> pair in spawnedObstacles)
+                        {
+                            if (levelDialogue.time >= pair.Value)
+                            {
+                                GameObject obj = pair.Key;
+                                debugMessage += "despawning obstacle: " + obj.name;
+
+                                if (obj.transform.position.x > player.transform.position.x)
+                                    obj.transform.Rotate(0, 0, -45);
+                                else
+                                    obj.transform.Rotate(0, 0, 45);
+                                if (!pair.Key.CompareTag("Stopped"))
+                                {
+                                    obj.GetComponent<CapsuleCollider2D>().isTrigger = true;
+                                    Destroy(pair.Key, 5);
+                                }
+
+                                spawnedObstacles.Remove(obj);
+                                break;
+                            }
+                            //obstacles can spawn prematurely, but not despawn prematurely
+                        }
                     }
                     commandMarkers.RemoveAt(0);
                 }
@@ -456,6 +484,16 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         else
         {
             LoadScene.Loader("EndScreen");
+        }
+    }
+
+    IEnumerator fadeOut()
+    {
+        while (blackScreen.color.a < 1)
+        {
+            yield return new WaitForSeconds(0);
+            print("crossfading...");
+            blackScreen.CrossFadeAlpha(1, 1.0f, false);
         }
     }
 
