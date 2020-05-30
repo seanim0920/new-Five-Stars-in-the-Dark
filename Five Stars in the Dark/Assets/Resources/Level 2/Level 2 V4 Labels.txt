@@ -45,55 +45,57 @@
 106.348850	107.931295	<W> "They're after YOU?!"
 108.051290	109.686233	<Y> "Hey listen, do you want Matias back?"
 109.821228	111.306176	"<Y> "Do exactly as I say."
-120.658348	122.030800	<Y> "Damn, there's cops here too."
-122.360789	123.763240	<Y> "OK, make sure to move out of their way,"
-123.763240	125.548177	<Y> "but when the cops go by, hit the brakes."
-125.885665	127.430611	<Y> "We can't look suspicious."
-148.722365	151.339773	<Y> "Whew, let's hope that's the last of 'em."
-151.549766	153.597194	<W> "What the hell was that?"
-155.067143	155.884614	<Y> "Hey, don't worry."
-156.087107	157.759548	<Y> "Promise I'll fill you in when we get to our stop."
-157.872044	158.637017	<Y> "But until then,"
-158.704515	160.429455	<Y> "cool down, and drive like a normal person."
-160.541951	162.064397	<Y> "You seem to be good at that somehow."
-162.761873	165.514276	<W> "Fine... this better be worth the trouble."
-182.958665	185.448578	<Y> "Oh man, there's too many of them over there."
-185.561074	187.466007	<Y> "There's no way they're not onto us by now."
-200.643045	202.735472	<Y> "OK, here's the place: Delmonico's."
-203.080460	203.905431	<Y> "Wait, hold on..."
-204.377914	205.202885	<Y> "Mother of God..."
-206.050356	208.772760	<Y> "They've barricaded the street -- we're f---ed!"
-209.740226	212.065145	<Y> "Police: We have you surrounded, stop your vehicle."
-212.095144	212.920115	<Y> "Rosales: Quick, hide in the trunk!"
-213.055110	214.382564	<Y> "I'll get in the driver's seat -- GO!"
-214.967543	216.827478	<W>"What the hell? No chance!"
-217.007472	218.319926	<W> "Get out of my car!"
-219.114898	222.099793	<Y> "You're not leaving me many options, Isaac."
-222.167291	222.572277	<W> "[whacks]"
-223.622240	224.447211	<W> "[car door opens]"
-224.964693	226.014656	<W> "[trunk slams]"
-226.584636	228.474570	<Y> "Police: That's our guy, take him!"
-230.544497	232.284436	<Y> "Police: He's trying to shake off his glasses!"
-232.741920	234.001876	<Y> "Don't look in his eyes!"
-234.294366	236.071804	<W> "[explosion]"
-236.206799	237.084268	<Y> "Police: You son of a-"
-237.084268	237.984237	<W> "[explosion]"
-237.984237	240.249157	<Y> "Put this over his head - don't look!"
-241.194124	241.850882	<Y> "Jesus-"
-241.850882	243.884625	<W> "[explosion]"
-245.468974	248.041834	<Y> "Police: They're gonna love you at the lab you sick son of a-"
-248.041834	250.584012	<W> "[explosion]"
-250.584012	252.991604	<W> "[footsteps running away]"
-253.103707	254.303665	<W> "Isaac, monologuing: Yikes,"
-254.461159	256.291095	<W> "he really whacked me hard."
-256.861075	259.238492	<W> "My head... is throbbin'"
-260.100961	262.043393	<W> "He seemed to know who I was,"
-262.440879	263.693336	<W> "But if he did,"
-264.143320	266.618233	<W> "Why did he pretend not to at first?"
-266.970721	269.078147	<W> "How did he know Matias' name?"
-269.873119	271.493062	<W> "What the hell is goin' on?"
-272.108041	274.702950	<W> "Oh man, I can't... move..."
-275.332928	277.665346	<W> "My head is... spinnin'..."
+113.412220	115.889672	Dialogue
+118.560833	120.579497	Dialogue
+123.947027	125.319479	<Y> "Damn, there's cops here too."
+125.649467	127.051918	<Y> "OK, make sure to move out of their way,"
+127.051918	128.836856	<Y> "but when the cops go by, hit the brakes."
+129.174344	130.719290	<Y> "We can't look suspicious."
+152.011043	154.628452	<Y> "Whew, let's hope that's the last of 'em."
+154.838444	156.885873	<W> "What the hell was that?"
+158.355821	159.173292	<Y> "Hey, don't worry."
+159.375785	161.048227	<Y> "Promise I'll fill you in when we get to our stop."
+161.160723	161.925696	<Y> "But until then,"
+161.993194	163.718133	<Y> "cool down, and drive like a normal person."
+163.830629	165.353076	<Y> "You seem to be good at that somehow."
+166.050551	168.802955	<W> "Fine... this better be worth the trouble."
+186.247343	188.737256	<Y> "Oh man, there's too many of them over there."
+188.849752	190.754686	<Y> "There's no way they're not onto us by now."
+206.421743	208.514170	<Y> "OK, here's the place: Delmonico's."
+208.859158	209.684129	<Y> "Wait, hold on..."
+210.156612	210.981583	<Y> "Mother of God..."
+211.829054	214.551458	<Y> "They've barricaded the street -- we're f---ed!"
+215.518924	217.843843	<Y> "Police: We have you surrounded, stop your vehicle."
+217.873842	218.698813	<Y> "Rosales: Quick, hide in the trunk!"
+218.833808	220.161262	<Y> "I'll get in the driver's seat -- GO!"
+220.746241	222.606176	<W>"What the hell? No chance!"
+222.786170	224.098624	<W> "Get out of my car!"
+224.893596	227.878491	<Y> "You're not leaving me many options, Isaac."
+227.945989	228.350975	<W> "[whacks]"
+229.400938	230.225909	<W> "[car door opens]"
+230.743391	231.793354	<W> "[trunk slams]"
+232.363334	234.253268	<Y> "Police: That's our guy, take him!"
+236.323195	238.063134	<Y> "Police: He's trying to shake off his glasses!"
+238.520618	239.780574	<Y> "Don't look in his eyes!"
+240.073064	241.850502	<W> "[explosion]"
+241.985497	242.862966	<Y> "Police: You son of a-"
+242.862966	243.762935	<W> "[explosion]"
+243.762935	246.027855	<Y> "Put this over his head - don't look!"
+246.972822	247.629580	<Y> "Jesus-"
+247.629580	249.663323	<W> "[explosion]"
+251.247672	253.820532	<Y> "Police: They're gonna love you at the lab you sick son of a-"
+253.820532	256.362710	<W> "[explosion]"
+256.362710	258.770303	<W> "[footsteps running away]"
+258.882405	260.082363	<W> "Isaac, monologuing: Yikes,"
+260.239857	262.069793	<W> "he really whacked me hard."
+262.639773	265.017190	<W> "My head... is throbbin'"
+265.879659	267.822091	<W> "He seemed to know who I was,"
+268.219577	269.472034	<W> "But if he did,"
+269.922018	272.396931	<W> "Why did he pretend not to at first?"
+272.749419	274.856845	<W> "How did he know Matias' name?"
+275.651817	277.271760	<W> "What the hell is goin' on?"
+277.886739	280.481648	<W> "Oh man, I can't... move..."
+281.111626	283.444044	<W> "My head is... spinnin'..."
 -0.089724	24.444903	Dialogue
 13.705279	13.705279	[StartControl]
 15.115230	15.115230	[GPSStart]
@@ -103,19 +105,17 @@
 81.472904	93.472484	Dialogue
 97.732334	111.261860	[PoliceSiren-Fast]
 100.912223	111.081866	Dialogue
-113.451783	113.451783	[Rosales-13]
-117.381646	117.381646	[Rosales-14]
-120.321543	126.891312	Dialogue
-148.460556	165.139972	Dialogue
-182.659358	187.159200	Dialogue
-186.619219	190.189094	[PoliceSiren-Fast]
-188.059169	188.059169	[GPSWarn]
-190.849071	190.849071	[Rosales-19]
-196.068888	196.068888	[Rosales-20.w]
-200.298740	283.826732	Dialogue
-202.188673	202.188673	[EndControl]
-202.608659	202.608659	[GPSEnd]
-222.227971	222.227971	[HideScreen]
+123.610221	130.774771	Dialogue
+151.749235	168.428650	Dialogue
+185.948036	190.447879	Dialogue
+189.907897	193.477772	[PoliceSiren-Fast]
+191.347847	191.347847	[GPSWarn]
+195.208898	197.880059	Dialogue
+202.121293	203.038868	Dialogue
+206.077438	289.605430	Dialogue
+207.967371	207.967371	[EndControl]
+208.387357	208.387357	[GPSEnd]
+228.006669	228.006669	[HideScreen]
 16.078198	23.127951	SlowCar aheadOf Lane2
 21.987991	35.187528	SlowCar aheadOf Lane1
 41.937292	50.906977	FastCar behind Lane3
@@ -124,16 +124,16 @@
 61.676600	72.206231	SlowCar aheadOf Lane1
 74.636146	83.455837	SlowCar behind Lane2
 82.225880	91.285562	SlowCar aheadOf Lane1
-114.654743	114.654743	QuickTurn left
-118.434611	118.434611	QuickTurn right
-122.724460	129.264231	PoliceCar behind Lane3
-130.134201	135.504013	PoliceCar behind Lane1
-136.823966	143.123745	PoliceCar behind player
-164.153008	169.342827	SlowCar aheadOf Lane2
-167.602888	174.412649	FastCar behind Lane1
-172.492716	175.942595	SlowCar aheadOf Lane2
-172.612712	177.262549	SlowCar aheadOf Lane3
-179.392474	183.442332	PoliceCar behind Lane1
-181.312407	185.632256	PoliceCar behind Lane3
-192.352020	192.352020	QuickTurn right
-196.641870	196.641870	QuickTurn left
+116.042601	116.042601	QuickTurn left
+120.783403	120.783403	QuickTurn right
+126.013139	132.552910	PoliceCar Lane3
+133.422879	138.792691	PoliceCar Lane1
+140.112645	146.412424	PoliceCar player
+167.441687	172.631505	SlowCar aheadOf Lane2
+170.891566	177.701327	FastCar behind Lane1
+175.781395	179.231274	SlowCar aheadOf Lane2
+175.901390	180.551227	SlowCar aheadOf Lane3
+182.681153	186.731011	PoliceCar Lane 1
+184.601086	188.920934	PoliceCar Lane3
+197.931431	197.931431	QuickTurn right
+203.100830	203.100830	QuickTurn left
