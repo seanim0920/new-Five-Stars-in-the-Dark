@@ -1596,11 +1596,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 412440413062414633, guid: cec60119a7a8c704ea21138b08c6c077,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelConstructor
-      objectReference: {fileID: 0}
     - target: {fileID: 412440413062414634, guid: cec60119a7a8c704ea21138b08c6c077,
         type: 3}
       propertyPath: ambience
@@ -1611,6 +1606,11 @@ PrefabInstance:
       propertyPath: blackScreen
       value: 
       objectReference: {fileID: 170769231}
+    - target: {fileID: 412440413062414633, guid: cec60119a7a8c704ea21138b08c6c077,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelConstructor
+      objectReference: {fileID: 0}
     - target: {fileID: 412440413062414635, guid: cec60119a7a8c704ea21138b08c6c077,
         type: 3}
       propertyPath: m_LocalPosition.x
