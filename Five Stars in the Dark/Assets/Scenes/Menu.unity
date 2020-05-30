@@ -1777,6 +1777,7 @@ GameObject:
   - component: {fileID: 738527297}
   - component: {fileID: 738527299}
   - component: {fileID: 738527300}
+  - component: {fileID: 738527301}
   m_Layer: 5
   m_Name: Instructions Panel
   m_TagString: Untagged
@@ -1878,6 +1879,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyboardControls: {fileID: 0}
   wheelControls: {fileID: 0}
+--- !u!114 &738527301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738527295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2119632ea7e94eb4db78fcc032ac9a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  steeringWheel: {fileID: 1302661003}
+  keyboard: {fileID: 1600748214}
+  gamepad: {fileID: 804881958}
 --- !u!1 &786215634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3602,7 +3618,6 @@ GameObject:
   - component: {fileID: 1302488371}
   - component: {fileID: 1302488370}
   - component: {fileID: 1302488374}
-  - component: {fileID: 1302488375}
   m_Layer: 5
   m_Name: UI Canvas
   m_TagString: Untagged
@@ -3710,21 +3725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503bfc94a174a8241aa20679824e2030, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1302488375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1302488369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2119632ea7e94eb4db78fcc032ac9a0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  steeringWheel: {fileID: 1302661003}
-  keyboard: {fileID: 1600748214}
-  gamepad: {fileID: 804881958}
 --- !u!114 &1302661003 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5108010601553328226, guid: 53fd49319308936468815c9239841cbb,
@@ -12390,7 +12390,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1302488375}
+      objectReference: {fileID: 0}
     - target: {fileID: 5108010602062641615, guid: 53fd49319308936468815c9239841cbb,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -12405,7 +12405,7 @@ PrefabInstance:
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1302488375}
+      objectReference: {fileID: 0}
     - target: {fileID: 5108010601553328226, guid: 53fd49319308936468815c9239841cbb,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target

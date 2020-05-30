@@ -536,7 +536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flag: 1
-  isSubtitle: 1
   Volume: {fileID: 2092945654}
   Resolution: {fileID: 1089771672}
   Controls: {fileID: 1527891271}
@@ -3901,6 +3900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8777473085935729270}
+  - component: {fileID: 6930017929784131603}
   m_Layer: 0
   m_Name: Controls
   m_TagString: Untagged
@@ -3925,6 +3925,21 @@ Transform:
   m_Father: {fileID: 5108010601431292834}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6930017929784131603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3563935213331427634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2119632ea7e94eb4db78fcc032ac9a0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  steeringWheel: {fileID: 5108010601553328226}
+  keyboard: {fileID: 5108010601784771935}
+  gamepad: {fileID: 5108010602062641615}
 --- !u!1 &4605764083381550022
 GameObject:
   m_ObjectHideFlags: 0
@@ -4855,9 +4870,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 412440413062414634, guid: cec60119a7a8c704ea21138b08c6c077,
+      - m_Target: {fileID: 2821964952460001821, guid: ebe6e252920a10f49a1f4e66e200d7d4,
           type: 3}
-        m_MethodName: toggleWheel
+        m_MethodName: ToggleSteeringWheel
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5330,9 +5345,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 412440413062414634, guid: cec60119a7a8c704ea21138b08c6c077,
+      - m_Target: {fileID: 2821964952460001821, guid: ebe6e252920a10f49a1f4e66e200d7d4,
           type: 3}
-        m_MethodName: toggleKeyboard
+        m_MethodName: ToggleKeyboard
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5705,9 +5720,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 412440413062414634, guid: cec60119a7a8c704ea21138b08c6c077,
+      - m_Target: {fileID: 2821964952460001821, guid: ebe6e252920a10f49a1f4e66e200d7d4,
           type: 3}
-        m_MethodName: toggleGamepad
+        m_MethodName: ToggleGamepad
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

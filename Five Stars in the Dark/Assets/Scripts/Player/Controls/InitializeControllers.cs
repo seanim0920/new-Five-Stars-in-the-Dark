@@ -11,7 +11,7 @@ public class InitializeControllers : MonoBehaviour
     [SerializeField] private Toggle gamepad;
     private string warning;
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         SettingsManager.setToggles();
         if (SettingsManager.toggles[0])

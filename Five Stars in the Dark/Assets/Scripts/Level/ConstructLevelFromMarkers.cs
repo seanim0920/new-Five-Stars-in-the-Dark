@@ -166,6 +166,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         loadedObjects = Resources.LoadAll("Prefabs/Obstacles", typeof(GameObject));
         player = GameObject.Find("Player");
         wheelFunctions = player.GetComponent<SteeringWheelInput>();
+        Debug.Log(wheelFunctions == null);
         controls = player.GetComponent<PlayerControls>();
         keyboard = player.GetComponent<KeyboardControl>();
         gamepad = player.GetComponent<GamepadControl>();
@@ -202,21 +203,48 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     {
         if (SettingsManager.toggles[0])
         {
-            gamepad.enabled = false;
-            keyboard.enabled = false;
-            wheelFunctions.enabled = true;
+            if(gamepad != null)
+            {
+                gamepad.enabled = false;
+            }
+            if(keyboard != null)
+            {
+                keyboard.enabled = false;
+            }
+            if(wheelFunctions != null)
+            {
+                wheelFunctions.enabled = true;
+            }
         }
         else if (SettingsManager.toggles[2])
         {
-            wheelFunctions.enabled = false;
-            keyboard.enabled = false;
-            gamepad.enabled = true;
+            if(wheelFunctions != null)
+            {
+                wheelFunctions.enabled = false;
+            }
+            if(keyboard != null)
+            {
+                keyboard.enabled = false;
+            }
+            if(gamepad != null)
+            {
+                gamepad.enabled = true;
+            }
         }
         else
         {
-            wheelFunctions.enabled = false;
-            gamepad.enabled = false;
-            keyboard.enabled = true;
+            if(wheelFunctions != null)
+            {
+                wheelFunctions.enabled = false;
+            }
+            if(gamepad != null)
+            {
+                gamepad.enabled = false;
+            }
+            if(keyboard != null)
+            {
+                keyboard.enabled = true;
+            }
         }
     }
 
@@ -647,51 +675,5 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         {
             skipSection = true;
         }
-    }
-    
-    public void setController(int type)
-    {
-        // Debug.Log("controller type: " + type);
-        // // controlType = type;
-        // Debug.Log(" dialogue? " + (levelDialogue == null));
-        if(levelDialogue != null)
-        {
-            enableControllers();
-        }
-    }
-
-    public void toggleWheel(bool isActive)
-    {
-        SettingsManager.toggles[0] = isActive;
-        SettingsManager.setToggles();
-        if(isActive)
-        {
-            controlType = 0;
-        }
-        setController(controlType);
-    }
-
-    public void toggleKeyboard(bool isActive)
-    {
-        SettingsManager.toggles[1] = isActive;
-        SettingsManager.setToggles();
-
-        if(isActive)
-        {
-            controlType = 1;
-        }
-        setController(controlType);
-    }
-
-    public void toggleGamepad(bool isActive)
-    {
-        SettingsManager.toggles[2] = isActive;
-        SettingsManager.setToggles();
-
-        if(isActive)
-        {
-            controlType = 2;
-        }
-        setController(controlType);
     }
 }
