@@ -8,7 +8,7 @@ public static class SettingsManager
     // Music, SFX, Dialogue, Radio + Audio Cues
     public static float[] volumes = {1f, 1f, 1f, 1f};
     // Steering Wheel, Keyboard, Gamepad
-    public static bool[] toggles = {SteeringWheelInput.checkConnected(), false, Gamepad.current != null};
+    public static bool[] toggles = {SteeringWheelInput.checkConnected(), false, Gamepad.current != null, true};
 
     public static void setToggles()
     {

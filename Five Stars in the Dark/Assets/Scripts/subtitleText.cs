@@ -16,14 +16,25 @@ public class subtitleText : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage))
+        if(SettingsManager.toggles[3])
         {
-            subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
-            subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
+            if(!subText.enabled)
+            {
+                subText.enabled = true;
+            }
+            if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage))
+            {
+                subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
+                subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
+            }
+            if (!ConstructLevelFromMarkers.levelDialogue.isPlaying)
+            {
+                subText.text = "";
+            }
         }
-        if (!ConstructLevelFromMarkers.levelDialogue.isPlaying)
+        else
         {
-            subText.text = "";
+            subText.enabled = false;
         }
     }
 
