@@ -6,39 +6,41 @@ using UnityEngine.EventSystems;
 
 public class Masterkey : MonoBehaviour
 {
-    public Animator[] titleAnim;
     public Button start;
     public Button play;
     public Button level;
     public Button levelBack;
-    public static bool egg = false;
-    public static bool lvl = false;
+	public Button Credits;
+	
+    public static int flag = 0;
     public static string sceneName = "Level 1";
-    public Button tutorial;
     public Button level1;
     public Button level2;
     public Button level3;
     public Button level4;
+	
+	public Button Instruc_Back;
+	public Button Settings;
+	public Button Set_Back;
+    public Button Credits_Back;
+
 
 	public static bool played = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        titleAnim = transform.parent.GetComponentsInChildren<Animator>();
-        if (played)
-            foreach (Animator anim in titleAnim)
-            {
-                anim.enabled = false;
-            }
-        played = true;
-
         start.onClick.AddListener(TaskStart);
         level.onClick.AddListener(TaskLvl);
         levelBack.onClick.AddListener(TaskTitle);
+		Credits.onClick.AddListener(TaskCredits);
 
-        tutorial.onClick.AddListener(() => sceneName = "Tutorial");
-        level1.onClick.AddListener(() => sceneName = "Tutorial");
+        Instruc_Back.onClick.AddListener(TaskTitle);
+		Settings.onClick.AddListener(TaskSettings);
+		Credits_Back.onClick.AddListener(TaskTitle);
+		Set_Back.onClick.AddListener(TaskTitle);
+
+        level1.onClick.AddListener(() => sceneName = "Level 1");
         level2.onClick.AddListener(() => sceneName = "Level 2");
         level3.onClick.AddListener(() => sceneName = "Level 3");
         level4.onClick.AddListener(() => sceneName = "Level 4");
@@ -51,22 +53,36 @@ public class Masterkey : MonoBehaviour
 
     void TaskStart()
     {
-        egg = true;
+        flag = 1;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(play.gameObject);
     }
 
     void TaskLvl()
     {
-        lvl = true;
+        flag = 2;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(level1.gameObject);
     }
 
     public void TaskTitle()
     {
-        lvl = false;
+        flag = 0;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(start.gameObject);
+    }
+	
+	public void TaskSettings()
+    {
+        flag = 3;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(start.gameObject);
+    }
+	
+	void TaskCredits()
+    {
+        flag = 4;		
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(level1.gameObject);
     }
 }
