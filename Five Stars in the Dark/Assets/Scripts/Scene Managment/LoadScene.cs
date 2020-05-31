@@ -20,18 +20,27 @@ public class LoadScene : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1, LoadSceneMode.Single);
     }
+
     public static AsyncOperation LoadLevelAsyncByName(string sceneName)
     {
         return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
     }
+
     public static AsyncOperation LoadLevelAsyncByBuildIndex(int buildIndex)
     {
         return SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
     }
+
     public static AsyncOperation LoadNextSceneAsync()
     {
         return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
     }
+
+    public static AsyncOperation LoadSceneAdditiveAsync(string sceneName)
+    {
+        return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+    }
+
     public static AsyncOperation LoadNextSceneAdditiveAsync()
     {
         return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Additive);
