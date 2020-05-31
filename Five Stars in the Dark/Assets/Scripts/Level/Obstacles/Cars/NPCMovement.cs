@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCMovement : MonoBehaviour
 {
+    private static GameObject player;
     public AudioSource honk;
     public AudioSource engineSound;
     public float movementSpeed = 0f;
@@ -15,6 +16,7 @@ public class NPCMovement : MonoBehaviour
     private Vector3 movementDirection;
     void Start()
     {
+        player = GameObject.Find("Player");
         StartCoroutine(Coast());
     }
 
@@ -120,5 +122,10 @@ public class NPCMovement : MonoBehaviour
     public void setSpeed(float speed)
     {
         movementSpeed = speed;
+    }
+
+    public static float getRelativeSpeed(GameObject npc)
+    {
+        return (player.GetComponent<PlayerControls>().movementSpeed - npc.GetComponent<NPCMovement>().movementSpeed * Vector3.Dot(npc.transform.up, player.transform.up));
     }
 }

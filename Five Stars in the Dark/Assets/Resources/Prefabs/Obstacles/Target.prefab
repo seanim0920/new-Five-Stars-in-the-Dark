@@ -15,9 +15,10 @@ GameObject:
   - component: {fileID: 1810698427}
   - component: {fileID: 6535703001516569892}
   - component: {fileID: 3928172151021886829}
-  m_Layer: 0
+  - component: {fileID: 5593422059804208749}
+  m_Layer: 2
   m_Name: ConversationRange
-  m_TagString: Untagged
+  m_TagString: Zone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,7 +124,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: f6f8740f1aa67f142aeb830f62dd7db8, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.488
   m_Pitch: 0
   Loop: 1
   Mute: 0
@@ -416,6 +417,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5593422059804208749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810698425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fee4f307425d9a54abb0ded578dcfe1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalScramble: {fileID: 6535703001516569892}
+  ding: {fileID: 3928172151021886829}
+  rev: {fileID: 7362050173983025115}
 --- !u!114 &1676143151
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -694,6 +710,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2613658770642829296, guid: 9734698dbdef23049810e4ddda98d195,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 3448974300491712748, guid: 9734698dbdef23049810e4ddda98d195,
         type: 3}
       propertyPath: m_RootOrder
@@ -717,7 +738,7 @@ PrefabInstance:
     - target: {fileID: 7957292689833607896, guid: 9734698dbdef23049810e4ddda98d195,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9734698dbdef23049810e4ddda98d195, type: 3}

@@ -9,7 +9,6 @@ public class PlayStoplightFailure : ObstacleFailure
     protected override void Start()
     {
         base.Start();
-        failureDialogues = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure/Stoplight");
     }
 
     // Update is called once per frame
@@ -20,12 +19,8 @@ public class PlayStoplightFailure : ObstacleFailure
 
     public override void playFailure(Vector3 point)
     {
-        // Play failure dialogue sequentially
-        if(numDialogue < failureDialogues.Length)
-        {
-            dialogueSource.clip = failureDialogues[numDialogue];
-            numDialogue++;
-        }
-        base.playFailure(point);
+        GetComponent<NPCMovement>().enabled = false;
+        StartCoroutine(PlayError.PlayWarningCoroutine(SceneManager.GetActiveScene().name + "/Failure/Stoplight"));
+        //base.playFailure(point);
     }
 }

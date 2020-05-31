@@ -27,23 +27,18 @@ public class TutorialCarFailure : ObstacleFailure
             failureDialogues = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure/ScriptedCrash");
             if (TrackErrors.getErrors() < failureDialogues.Length)
             {
-                StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[TrackErrors.getCollisions()]));
+                StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[TrackErrors.getCollisions()]));
             }
             else
             {
-                StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[0]));
+                StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[0]));
             }
 
         }
         // Play generic crash dialogue for all other crashes
         else
         {
-            failureDialogues = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure/GenericCrash");
-
-            System.Random rand = new System.Random();
-            numDialogue = rand.Next(0, failureDialogues.Length);
-            Debug.Log("error made playing numDialogue: " + numDialogue);
-            StartCoroutine(PlayError.PauseDialogueCoroutine(failureDialogues[numDialogue]));
+            StartCoroutine(PlayError.PlayWarningCoroutine(SceneManager.GetActiveScene().name + "/Failure/GenericCrash"));
             Debug.Log(failureDialogues[numDialogue]);
         }
         hasPlayedFailure = true;

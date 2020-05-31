@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class CarCollision : MonoBehaviour
 {
+    public AudioSource lightCollisionSound;
+
     private Rigidbody2D body;
     private PlayerControls controlFunctions;
     private SteeringWheelInput wheelFunctions;
@@ -12,7 +14,6 @@ public class CarCollision : MonoBehaviour
     private GameObject hitSoundObject;
     public GameObject situationalDialogues;
     //collision sound
-    public AudioSource charOnCar;
     string[] obstacleTags = { "Car", "Curb", "Guardrail", "Pedestrian", "Stop", "Target" };
 
     // Start is called before the first frame update
@@ -59,7 +60,11 @@ public class CarCollision : MonoBehaviour
                 NPC.transform.Find("SmokeSfx").GetComponent<AudioSource>().Play();
                 yield return new WaitForSeconds(1);
             }
-            NPC.transform.Find("OpenDoorSfx").GetComponent<AudioSource>().Play();
+            if (NPC != null)
+            {
+                NPC.transform.Find("OpenDoorSfx").GetComponent<AudioSource>().Play();
+                NPC.tag = "Stopped";
+            }
         }
         else
         {
@@ -80,26 +85,22 @@ public class CarCollision : MonoBehaviour
         Debug.Log(hitSoundObject);
         hitSoundObject.GetComponent<AudioSource>().Play();
 
-        if (col.gameObject.CompareTag("Car") || col.gameObject.CompareTag("Target"))
+        if (col.gameObject.CompareTag("Car") || col.gameObject.CompareTag("Target") || col.gameObject.CompareTag("Stopped"))
         {
             wheelFunctions.PlayFrontCollisionForce();
 
             NPCMovement movementScript = col.gameObject.GetComponent<NPCMovement>();
-            float speedDifference = Mathf.Abs(movementScript.movementSpeed - controlFunctions.movementSpeed);
+            float speedDifference = Mathf.Abs(NPCMovement.getRelativeSpeed(col.gameObject));
             TrackErrors.IncrementErrors(speedDifference);
 
             body.bodyType = RigidbodyType2D.Dynamic;
-            body.AddForce((transform.position - col.gameObject.transform.position).normalized * speedDifference * 40, ForceMode2D.Impulse);
-            StartCoroutine(controlFunctions.impact(body.velocity));
+            body.AddForce((transform.position - col.gameObject.transform.position).normalized * speedDifference * 50, ForceMode2D.Impulse);
+            StartCoroutine(controlFunctions.impactCoroutine(body.velocity));
             if (!col.gameObject.CompareTag("Target"))
                 StartCoroutine(disableNPCMomentarily(col.gameObject, speedDifference));
 
             if (hitSoundObject.GetComponent<ObstacleFailure>())
                 hitSoundObject.GetComponent<ObstacleFailure>().playFailure(Camera.main.transform.position);
-        }
-        if (col.gameObject.CompareTag("Pedestrian") || col.gameObject.CompareTag("Stop"))
-        {
-            hitSoundObject.GetComponent<AudioSource>().Play();
         }
         if (col.gameObject.CompareTag("Guardrail"))
         {
@@ -112,6 +113,10 @@ public class CarCollision : MonoBehaviour
             {
                 print("blocked left");
                 controlFunctions.blockDirection(-1);
+            }
+            if (!controlFunctions.enabled)
+            {
+                lightCollisionSound.Play();
             }
         }
 
@@ -133,18 +138,10 @@ public class CarCollision : MonoBehaviour
     }
     void OnCollisionExit2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Car"))
-        {
-            //charOnCar.Play();
-        }
         if (col.gameObject.CompareTag("Guardrail"))
         {
             controlFunctions.blockDirection(0);
             col.gameObject.GetComponent<AudioSource>().Stop();
-        }
-        if (col.gameObject.CompareTag("Stop"))
-        {
-            TrackErrors.IncrementErrors();
         }
 
     }

@@ -8,7 +8,6 @@ public class TabShifting : MonoBehaviour
 {
 	//1 Volume, 2 Resolution, 3 Controls
 	public int flag = 1;
-	public bool isSubtitle = true;
 	
 	public Button Volume;
 	public Button Resolution;
@@ -46,6 +45,8 @@ public class TabShifting : MonoBehaviour
 		
 		Graphics_Screen.onClick.AddListener(TaskResetHighlight);
 		Graphics_Res.onClick.AddListener(TaskResetHighlight);
+
+		SetOnOffText();
 		
 		Sub.onClick.AddListener(TaskSub);
 		
@@ -105,9 +106,13 @@ public class TabShifting : MonoBehaviour
 	}
 	
 	void TaskSub() {
-		isSubtitle = !isSubtitle;
 		EventSystem.current.SetSelectedGameObject(null);
-		if(isSubtitle)
+		SetOnOffText();
+	}
+
+	void SetOnOffText()
+	{
+		if(SettingsManager.toggles[3])
 			onOff.text = "ON";
 		else
 			onOff.text = "OFF";
