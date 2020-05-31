@@ -8,11 +8,15 @@ public class MasterkeyFailScreen : MonoBehaviour
     public Button retry;
 	public Button menu;
     public static string currentLevel = "Level 1";
+    public GameObject loadPanel;
 	
     // Start is called before the first frame update
      void Start()
     {		
-		retry.onClick.AddListener(() => LoadScene.Loader(currentLevel));
+		retry.onClick.AddListener(() => {
+            loadPanel.SetActive(true);
+            LoadScene.LoadLevelAsyncByName(currentLevel);
+        });
 		menu.onClick.AddListener(() => LoadScene.Loader("Menu"));
     }
 
