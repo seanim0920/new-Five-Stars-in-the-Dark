@@ -20,13 +20,13 @@ public class MouseOver : MonoBehaviour
 
     public void OnSelectDelegate()
     {
-        anims.CrossFade("MenuButton", 0.3f);
+        //anims.CrossFade("MenuButton", 0.3f);
         audio.Play();
     }
 
     public void OnDeselectDelegate()
     {
-        anims.CrossFade("Start", 0.3f);
+        //anims.CrossFade("Start", 0.3f);
     }
 
     // Update is called once per frame
