@@ -11,8 +11,10 @@ public class Masterkey : MonoBehaviour
     public Button play;
     public Button level;
     public Button levelBack;
+    public Button audioTab;
     public static bool egg = false;
     public static bool lvl = false;
+    public static bool settings = false;
     public static string sceneName = "Tutorial";
     public Button tutorial;
     public Button level1;
@@ -34,9 +36,9 @@ public class Masterkey : MonoBehaviour
             }
         played = true;
 
-        start.onClick.AddListener(TaskStart);
-        level.onClick.AddListener(TaskLvl);
-        levelBack.onClick.AddListener(TaskTitle);
+        start.onClick.AddListener(PrepareInstructions);
+        level.onClick.AddListener(PrepareLevelSelect);
+        levelBack.onClick.AddListener(PrepareTitle);
 
         tutorial.onClick.AddListener(() => sceneName = "Tutorial");
         level1.onClick.AddListener(() => sceneName = "Level 1");
@@ -51,24 +53,32 @@ public class Masterkey : MonoBehaviour
     {
     }
 
-    void TaskStart()
+    void PrepareInstructions()
     {
         egg = true;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(play.gameObject);
     }
 
-    void TaskLvl()
+    void PrepareLevelSelect()
     {
         lvl = true;
         EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(level1.gameObject);
+        EventSystem.current.SetSelectedGameObject(tutorial.gameObject);
     }
 
-    public void TaskTitle()
+    public void PrepareSettings()
+    {
+        settings = true;
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(audioTab.gameObject);
+    }
+
+    public void PrepareTitle()
     {
         egg = false;
         lvl = false;
+        settings = false;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(start.gameObject);
     }

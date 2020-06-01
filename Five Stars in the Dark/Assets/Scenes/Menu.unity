@@ -2092,7 +2092,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 852276988}
         m_MethodName: set_volume
         m_Mode: 4
@@ -2721,7 +2721,7 @@ MonoBehaviour:
           m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 0
+        m_CallState: 2
       - m_Target: {fileID: 1782821721}
         m_MethodName: SetActive
         m_Mode: 6
@@ -3365,17 +3365,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 877520630}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 877520630}
         m_MethodName: SetActive
@@ -5508,6 +5497,7 @@ MonoBehaviour:
   play: {fileID: 234589278}
   level: {fileID: 968326904}
   levelBack: {fileID: 3769550323345818651}
+  audioTab: {fileID: 0}
   tutorial: {fileID: 1499765983147570724}
   level1: {fileID: 3769550324447241465}
   level2: {fileID: 3769550324598591543}
@@ -6062,7 +6052,7 @@ RectTransform:
   m_Children:
   - {fileID: 1499765982910645200}
   m_Father: {fileID: 3769550323182051392}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6101,11 +6091,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnDown: {fileID: 3769550323740193623}
+    m_SelectOnLeft: {fileID: 3769550323345818651}
+    m_SelectOnRight: {fileID: 3769550324420716790}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
@@ -6142,14 +6132,48 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 424164815}
+        m_MethodName: Stop
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 852276988}
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1029608890}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1614242102465687664, guid: 9be2010ab7953e346984cac08c55fbc3,
+          type: 2}
+        m_MethodName: TransitionTo
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
@@ -6522,7 +6546,7 @@ RectTransform:
   m_Children:
   - {fileID: 3769550323434246457}
   m_Father: {fileID: 3769550323182051392}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6561,17 +6585,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnDown: {fileID: 3769550323740193623}
+    m_SelectOnLeft: {fileID: 3769550323345818651}
+    m_SelectOnRight: {fileID: 3769550324420716790}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
     m_HighlightedColor: {r: 1, g: 0.87058824, b: 0.34901962, a: 1}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 0.3882353, g: 0.3529412, b: 0.3529412, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -6602,9 +6626,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 424164815}
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6613,14 +6637,37 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 852276988}
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1029608890}
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1614242102465687664, guid: 9be2010ab7953e346984cac08c55fbc3,
+          type: 2}
+        m_MethodName: TransitionTo
+        m_Mode: 4
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
@@ -7798,12 +7845,12 @@ Transform:
   m_LocalPosition: {x: -0.025146484, y: -9.353892, z: -841.85004}
   m_LocalScale: {x: 9.353892, y: 9.353892, z: 9.353892}
   m_Children:
-  - {fileID: 1499765983147570721}
   - {fileID: 3769550324447241471}
   - {fileID: 3769550324598591541}
   - {fileID: 3769550323222581868}
   - {fileID: 3769550323963773887}
   - {fileID: 1499765983808868324}
+  - {fileID: 1499765983147570721}
   m_Father: {fileID: 3769550324081402825}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7949,7 +7996,7 @@ RectTransform:
   m_Children:
   - {fileID: 3769550323563178493}
   m_Father: {fileID: 3769550323182051392}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -7991,9 +8038,9 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 3769550323345818651}
-    m_SelectOnLeft: {fileID: 3769550323963773881}
-    m_SelectOnRight: {fileID: 3769550323963773881}
+    m_SelectOnDown: {fileID: 3769550323740193623}
+    m_SelectOnLeft: {fileID: 3769550323345818651}
+    m_SelectOnRight: {fileID: 3769550324420716790}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
@@ -8030,9 +8077,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 424164815}
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -8041,7 +8088,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 852276988}
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1029608890}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -8052,14 +8110,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Play
-        m_Mode: 1
+      - m_Target: {fileID: 1614242102465687664, guid: 9be2010ab7953e346984cac08c55fbc3,
+          type: 2}
+        m_MethodName: TransitionTo
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
@@ -8520,16 +8579,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 3769550323222581870}
-    m_SelectOnDown: {fileID: 3769550324447241465}
-    m_SelectOnLeft: {fileID: 3769550323222581870}
-    m_SelectOnRight: {fileID: 3769550323963773881}
+    m_SelectOnUp: {fileID: 1499765983147570724}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 3769550324420716790}
+    m_SelectOnRight: {fileID: 3769550323740193623}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
     m_HighlightedColor: {r: 1, g: 0.87058824, b: 0.34901962, a: 1}
     m_PressedColor: {r: 1, g: 0.87058824, b: 0.34901962, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
+    m_SelectedColor: {r: 0.3882353, g: 0.3529412, b: 0.3529412, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -9264,17 +9323,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1499765983147570724}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 3769550323345818651}
+    m_SelectOnRight: {fileID: 3769550324420716790}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
     m_HighlightedColor: {r: 1, g: 0.87058824, b: 0.34901962, a: 1}
     m_PressedColor: {r: 1, g: 0.8705883, b: 0.34901962, a: 1}
-    m_SelectedColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
+    m_SelectedColor: {r: 0.3882353, g: 0.3529412, b: 0.3529412, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -9460,9 +9519,9 @@ MonoBehaviour:
   m_Navigation:
     m_Mode: 4
     m_SelectOnUp: {fileID: 0}
-    m_SelectOnDown: {fileID: 3769550323345818651}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnDown: {fileID: 3769550323740193623}
+    m_SelectOnLeft: {fileID: 3769550323345818651}
+    m_SelectOnRight: {fileID: 3769550324420716790}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
@@ -9499,9 +9558,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 424164815}
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -9510,7 +9569,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 852276988}
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1029608890}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -9521,14 +9591,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Play
-        m_Mode: 1
+      - m_Target: {fileID: 1614242102465687664, guid: 9be2010ab7953e346984cac08c55fbc3,
+          type: 2}
+        m_MethodName: TransitionTo
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
@@ -9592,7 +9663,7 @@ RectTransform:
   m_Children:
   - {fileID: 3769550324831577598}
   m_Father: {fileID: 3769550323182051392}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10361,6 +10432,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f744442e982e5746a7c96d2203415eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  backBtn: {fileID: 3769550323345818651}
   forward: {fileID: 3769550324420716790}
   backward: {fileID: 3769550323740193623}
   Nodes:
@@ -10428,17 +10500,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
-    m_SelectOnUp: {fileID: 0}
+    m_Mode: 4
+    m_SelectOnUp: {fileID: 1499765983147570724}
     m_SelectOnDown: {fileID: 0}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnLeft: {fileID: 3769550323740193623}
+    m_SelectOnRight: {fileID: 3769550323345818651}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
     m_HighlightedColor: {r: 1, g: 0.87058824, b: 0.34901962, a: 1}
     m_PressedColor: {r: 1, g: 0.8705883, b: 0.34901962, a: 1}
-    m_SelectedColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
+    m_SelectedColor: {r: 0.3882353, g: 0.3529412, b: 0.3529412, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -10519,10 +10591,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 3769550323345818651}
-    m_SelectOnDown: {fileID: 3769550323222581870}
-    m_SelectOnLeft: {fileID: 0}
-    m_SelectOnRight: {fileID: 0}
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 3769550323740193623}
+    m_SelectOnLeft: {fileID: 3769550323345818651}
+    m_SelectOnRight: {fileID: 3769550324420716790}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
@@ -10559,9 +10631,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 424164815}
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10570,7 +10642,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 852276988}
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1029608890}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -10581,14 +10664,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Play
-        m_Mode: 1
+      - m_Target: {fileID: 1614242102465687664, guid: 9be2010ab7953e346984cac08c55fbc3,
+          type: 2}
+        m_MethodName: TransitionTo
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
@@ -10652,7 +10736,7 @@ RectTransform:
   m_Children:
   - {fileID: 3769550324885837598}
   m_Father: {fileID: 3769550323182051392}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10822,7 +10906,7 @@ RectTransform:
   m_Children:
   - {fileID: 3769550323215608473}
   m_Father: {fileID: 3769550323182051392}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -10871,10 +10955,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Navigation:
     m_Mode: 4
-    m_SelectOnUp: {fileID: 3769550323345818651}
-    m_SelectOnDown: {fileID: 3769550323963773881}
-    m_SelectOnLeft: {fileID: 3769550324447241465}
-    m_SelectOnRight: {fileID: 3769550324447241465}
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 3769550323740193623}
+    m_SelectOnLeft: {fileID: 3769550323345818651}
+    m_SelectOnRight: {fileID: 3769550324420716790}
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 0.28235295, g: 0.28235295, b: 0.28235295, a: 1}
@@ -10911,9 +10995,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 424164815}
+        m_MethodName: Stop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10922,7 +11006,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 852276988}
+        m_MethodName: Stop
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1029608890}
         m_MethodName: Play
         m_Mode: 1
         m_Arguments:
@@ -10933,14 +11028,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: Play
-        m_Mode: 1
+      - m_Target: {fileID: 1614242102465687664, guid: 9be2010ab7953e346984cac08c55fbc3,
+          type: 2}
+        m_MethodName: TransitionTo
+        m_Mode: 4
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
-          m_FloatArgument: 0
+          m_FloatArgument: 0.1
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
@@ -12502,6 +12598,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 877520630}
+    - target: {fileID: 5108010602439495247, guid: 53fd49319308936468815c9239841cbb,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 458779619, guid: 53fd49319308936468815c9239841cbb, type: 3}
       propertyPath: Volume
       value: 
