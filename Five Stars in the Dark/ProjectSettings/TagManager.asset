@@ -18,6 +18,7 @@ TagManager:
   - Constructor
   - Target
   - Stopped
+  - Selected
   layers:
   - Default
   - TransparentFX
