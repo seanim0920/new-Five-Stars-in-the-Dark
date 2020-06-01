@@ -43,7 +43,7 @@ public class Masterkey : MonoBehaviour
         level2.onClick.AddListener(() => sceneName = "Level 2");
         level3.onClick.AddListener(() => sceneName = "Level 3");
         level4.onClick.AddListener(() => sceneName = "Level 4");
-        level5.onClick.AddListener(() => sceneName = "Level 5");
+        level5.onClick.AddListener(() => sceneName = "Level 4.5");
     }
 
     // Update is called once per frame
