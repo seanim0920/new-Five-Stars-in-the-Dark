@@ -686,7 +686,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("s") || (Gamepad.current != null && Gamepad.current.buttonEast.isPressed))
+        if (Input.GetKeyDown("s") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
         {
             skipSection = true;
         }

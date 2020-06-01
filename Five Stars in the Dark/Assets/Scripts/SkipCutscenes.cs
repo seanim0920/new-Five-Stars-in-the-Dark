@@ -38,7 +38,23 @@ public class SkipCutscenes : MonoBehaviour
     {
         if(PlaythroughManager.hasPlayedLevel(PlaythroughManager.currentLevelIndex))
         {
-            if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
+            if(SettingsManager.toggles[2])
+            {
+                if(Gamepad.current.name.Contains("DualShock"))
+                {
+                    textToDisable.text = "Press Circle to skip";
+                }
+                else
+                {
+                    textToDisable.text = "Press B to skip";
+                }
+            }
+            else
+            {
+                textToDisable.text = "Press L to skip";
+            }
+
+            if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame))
             {
                 StartCoroutine(skipIntro());
                 if(textToDisable != null)
