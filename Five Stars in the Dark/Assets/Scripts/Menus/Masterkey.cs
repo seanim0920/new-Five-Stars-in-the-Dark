@@ -53,14 +53,14 @@ public class Masterkey : MonoBehaviour
     {
     }
 
-    void PrepareInstructions()
+    public void PrepareInstructions()
     {
         egg = true;
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(play.gameObject);
     }
 
-    void PrepareLevelSelect()
+    public void PrepareLevelSelect()
     {
         lvl = true;
         EventSystem.current.SetSelectedGameObject(null);
