@@ -38,6 +38,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     public float maxVol = 0.8f;
 
     //for the start cutscene
+    private GameObject skipText;
     public AudioSource ambience;
     public Image blackScreen;
     public TextAsset markersFile;
@@ -169,6 +170,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         controls = player.GetComponent<PlayerControls>();
         keyboard = player.GetComponent<KeyboardControl>();
         gamepad = player.GetComponent<GamepadControl>();
+        skipText = GameObject.Find("SkipText");
         parseLevelMarkers();
 
         if (!blackScreen.enabled)
@@ -620,6 +622,10 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
     IEnumerator startCar()
     {
+        if(skipText != null)
+        {
+            skipText.SetActive(false);
+        }
         ambience.Play();
         CountdownTimer.setTracking(true); //marks when the level is commanded to start
         yield return new WaitForSeconds(1);

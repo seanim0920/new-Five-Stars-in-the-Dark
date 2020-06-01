@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class SkipCutscenes : MonoBehaviour
 {
+    public Text textToDisable;
     public static bool isSkipping = false;
 
     public AudioSource levelDialogue;
@@ -23,6 +25,7 @@ public class SkipCutscenes : MonoBehaviour
         if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
         {
             StartCoroutine(skipIntro());
+            textToDisable.enabled = false;
         }
     }
 
