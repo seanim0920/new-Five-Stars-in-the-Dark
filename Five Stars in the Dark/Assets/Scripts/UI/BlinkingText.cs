@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BlinkingText : MonoBehaviour
 {
     private Text txt;
-    private bool isTransparent = false;
+    private bool isTransparent = true;
     private float frequency = 1.5f;
     private float startTime;
     // Start is called before the first frame update
@@ -34,6 +34,13 @@ public class BlinkingText : MonoBehaviour
         {
             txt.CrossFadeAlpha(1f, 0.05f, false);
         }
+    }
+
+    void OnEnable()
+    {
+        txt = GetComponent<Text>();
+        startTime = Time.time;
+        txt.color = new Color(1f, 1f, 1f, 1f);
     }
 
     void OnDisable()

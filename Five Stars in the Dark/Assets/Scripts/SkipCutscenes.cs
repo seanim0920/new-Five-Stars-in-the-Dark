@@ -17,15 +17,35 @@ public class SkipCutscenes : MonoBehaviour
     void Start()
     {
         isSkipping = false;
+        if(PlaythroughManager.hasPlayedLevel(PlaythroughManager.currentLevelIndex))
+        {
+            if(textToDisable != null)
+            {
+                textToDisable.enabled = true;
+            }
+        }
+        else
+        {
+            if(textToDisable != null)
+            {
+                textToDisable.enabled = false;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
+        if(PlaythroughManager.hasPlayedLevel(PlaythroughManager.currentLevelIndex))
         {
-            StartCoroutine(skipIntro());
-            textToDisable.enabled = false;
+            if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
+            {
+                StartCoroutine(skipIntro());
+                if(textToDisable != null)
+                {
+                    textToDisable.enabled = false;
+                }
+            }
         }
     }
 

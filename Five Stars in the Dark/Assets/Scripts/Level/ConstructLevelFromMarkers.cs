@@ -161,6 +161,11 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         constructLevelMap(0);
     }
 
+    void Awake()
+    {
+        PlaythroughManager.currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
     void Start()
     {
         ScoreStorage.Instance.resetScore();
@@ -622,9 +627,13 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
     IEnumerator startCar()
     {
+        if(!PlaythroughManager.hasPlayedLevel(SceneManager.GetActiveScene().buildIndex))
+        {
+            PlaythroughManager.playedLevels.Add(SceneManager.GetActiveScene().buildIndex);
+        }
         if(skipText != null)
         {
-            skipText.SetActive(false);
+            skipText.GetComponent<Text>().enabled = false;
         }
         ambience.Play();
         CountdownTimer.setTracking(true); //marks when the level is commanded to start
