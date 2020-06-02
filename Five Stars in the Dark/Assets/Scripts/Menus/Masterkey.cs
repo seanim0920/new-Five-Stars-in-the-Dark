@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class Masterkey : MonoBehaviour
 {
+    public AudioSource transitionSfx;
     public GameObject[] menuButtons;
     public GameObject[] panels;
     public GameObject mainpanel;
@@ -28,6 +29,7 @@ public class Masterkey : MonoBehaviour
         if (preventSpamClick)
         {
             preventSpamClick = false;
+            transitionSfx.Play();
 
             foreach (Button button in panels[lastSelectedPanel].GetComponentsInChildren<Button>())
             {
@@ -48,6 +50,7 @@ public class Masterkey : MonoBehaviour
         {
             preventSpamClick = true;
 
+            transitionSfx.Play();
             wipe.CrossFade("Wipe_Anim_Up", 0.3f);
             mainpanelAnim.CrossFade("PanelOut", 0.3f);
             StopAllCoroutines(); //so the panel isn't disabled if going back immediately after the transition
