@@ -6,67 +6,73 @@ using UnityEngine.EventSystems;
 
 public class Masterkey : MonoBehaviour
 {
-    public Animator[] titleAnim;
-    public Button start;
-    public Button play;
-    public Button level;
-    public Button levelBack;
-    public static bool egg = false;
-    public static bool lvl = false;
-    public static string sceneName = "Level 1";
-    public Button tutorial;
-    public Button level1;
-    public Button level2;
-    public Button level3;
-    public Button level4;
+    public GameObject[] menuButtons;
+    public GameObject[] panels;
+    public GameObject mainpanel;
+    public Animator wipe;
 
-	public static bool played = false;
-
+    private Animator mainpanelAnim;
+    private bool preventSpamClick = false;
+    private int lastSelectedPanel = 0;
     // Start is called before the first frame update
     void Start()
     {
-        titleAnim = transform.parent.GetComponentsInChildren<Animator>();
-        if (played)
-            foreach (Animator anim in titleAnim)
+        menuButtons[lastSelectedPanel].GetComponent<AudioSource>().mute = true;
+        EventSystem.current.SetSelectedGameObject(menuButtons[lastSelectedPanel]);
+        StartCoroutine(deactivatePanelsCoroutine());
+        mainpanelAnim = mainpanel.GetComponent<Animator>();
+    }
+
+    public void ReturnToTitle()
+    {
+        if (preventSpamClick)
+        {
+            preventSpamClick = false;
+
+            foreach (Button button in panels[lastSelectedPanel].GetComponentsInChildren<Button>())
             {
-                anim.enabled = false;
+                button.interactable = false;
             }
-        played = true;
 
-        start.onClick.AddListener(TaskStart);
-        level.onClick.AddListener(TaskLvl);
-        levelBack.onClick.AddListener(TaskTitle);
+            menuButtons[lastSelectedPanel].GetComponent<AudioSource>().mute = true;
+            wipe.CrossFade("Wipe_Anim_Down", 0.6f);
+            mainpanelAnim.CrossFade("PanelIn", 0.6f);
+            GameObject.FindWithTag("Selected").GetComponent<Button>().enabled = false;
+            EventSystem.current.SetSelectedGameObject(menuButtons[lastSelectedPanel]);
+            StartCoroutine(deactivatePanelsCoroutine());
+        }
+    }
+    public void ShowScreen(int panel)
+    {
+        if (!preventSpamClick)
+        {
+            preventSpamClick = true;
 
-        tutorial.onClick.AddListener(() => sceneName = "Tutorial");
-        level1.onClick.AddListener(() => sceneName = "Tutorial");
-        level2.onClick.AddListener(() => sceneName = "Level 2");
-        level3.onClick.AddListener(() => sceneName = "Level 3");
-        level4.onClick.AddListener(() => sceneName = "Level 4");
+            wipe.CrossFade("Wipe_Anim_Up", 0.3f);
+            mainpanelAnim.CrossFade("PanelOut", 0.3f);
+            StopAllCoroutines(); //so the panel isn't disabled if going back immediately after the transition
+            panels[panel].SetActive(true);
+            lastSelectedPanel = panel;
+
+            foreach (Button button in panels[lastSelectedPanel].GetComponentsInChildren<Button>())
+            {
+                button.interactable = true;
+            }
+
+            //changes the selected gameobject to whichever button is tagged "selected" in the currently active screen
+            GameObject.FindWithTag("Selected").GetComponent<Button>().enabled = true;
+            EventSystem.current.SetSelectedGameObject(GameObject.FindWithTag("Selected"));
+        }
+    }
+    private IEnumerator deactivatePanelsCoroutine()
+    {
+        yield return new WaitForSeconds(2);
+        foreach (GameObject panel in panels) panel.SetActive(false);
+        menuButtons[lastSelectedPanel].GetComponent<AudioSource>().mute = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-    }
-
-    void TaskStart()
-    {
-        egg = true;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(play.gameObject);
-    }
-
-    void TaskLvl()
-    {
-        lvl = true;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(level1.gameObject);
-    }
-
-    public void TaskTitle()
-    {
-        lvl = false;
-        EventSystem.current.SetSelectedGameObject(null);
-        EventSystem.current.SetSelectedGameObject(start.gameObject);
     }
 }

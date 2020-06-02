@@ -15,12 +15,5 @@ public class DisplayInstructions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		lvlMode = Masterkey.lvl;
-	    var pos = transform.position;
-		if(transform.position.x <= -100)
-			if(lvlMode)
-				LevelSelect.SetActive(true);
-			else
-				Instructions.SetActive(true);
     }
 }

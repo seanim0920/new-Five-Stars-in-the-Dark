@@ -379,7 +379,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 if (levelDialogue.time >= commandMarker.spawnTime)
                 {
                     debugMessage += "parsing command: " + command;
-                    AudioClip radioClip = Resources.Load<AudioClip>(SceneManager.GetActiveScene().name + "/" + command.Trim('[', ']'));
+                    AudioClip radioClip = Resources.Load<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/" + command.Trim('[', ']'));
                     print("Looking for audiofile" + SceneManager.GetActiveScene().name + "/" + command.Trim('[', ']'));
                     if (radioClip != null)
                     {

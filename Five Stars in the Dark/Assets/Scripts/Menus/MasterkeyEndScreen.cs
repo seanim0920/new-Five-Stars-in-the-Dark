@@ -9,12 +9,19 @@ public class MasterkeyEndScreen : MonoBehaviour
     public Button next;
     public Button menu;
     public static int currentLevelBuildIndex = 1;
+    public GameObject loadPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        retry.onClick.AddListener(() => LoadScene.Loader(currentLevelBuildIndex));
-        next.onClick.AddListener(() => LoadScene.Loader(currentLevelBuildIndex+1));
+        retry.onClick.AddListener(() => {
+            loadPanel.SetActive(true);
+            LoadScene.LoadLevelAsyncByBuildIndex(currentLevelBuildIndex);
+        });
+        next.onClick.AddListener(() => {
+            loadPanel.SetActive(true);
+            LoadScene.LoadLevelAsyncByBuildIndex(currentLevelBuildIndex + 1);
+        });
         menu.onClick.AddListener(() => LoadScene.Loader("Menu"));
     }
 
