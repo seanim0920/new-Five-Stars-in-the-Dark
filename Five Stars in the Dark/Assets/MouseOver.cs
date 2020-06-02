@@ -26,7 +26,19 @@ public class MouseOver : MonoBehaviour
 
     public void OnDeselectDelegate()
     {
+        audio.mute = false;
         //anims.CrossFade("Start", 0.3f);
+    }
+
+    public void printCurrent()
+    {
+        StartCoroutine(printCoroutine());
+    }
+
+    private IEnumerator printCoroutine() //will gray out buttons and slider if back is selected. must wait a bit before currentselectedgameobject changes. a lil dirty but whatevs
+    {
+        yield return new WaitForEndOfFrame();
+        print(EventSystem.current.currentSelectedGameObject.name);
     }
 
     // Update is called once per frame

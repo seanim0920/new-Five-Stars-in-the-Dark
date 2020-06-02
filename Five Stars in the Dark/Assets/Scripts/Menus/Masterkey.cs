@@ -29,10 +29,16 @@ public class Masterkey : MonoBehaviour
         {
             preventSpamClick = false;
 
+            foreach (Button button in panels[lastSelectedPanel].GetComponentsInChildren<Button>())
+            {
+                button.interactable = false;
+            }
+
             menuButtons[lastSelectedPanel].GetComponent<AudioSource>().mute = true;
-            EventSystem.current.SetSelectedGameObject(menuButtons[lastSelectedPanel]);
             wipe.CrossFade("Wipe_Anim_Down", 0.6f);
             mainpanelAnim.CrossFade("PanelIn", 0.6f);
+            GameObject.FindWithTag("Selected").GetComponent<Button>().enabled = false;
+            EventSystem.current.SetSelectedGameObject(menuButtons[lastSelectedPanel]);
             StartCoroutine(deactivatePanelsCoroutine());
         }
     }
@@ -48,7 +54,13 @@ public class Masterkey : MonoBehaviour
             panels[panel].SetActive(true);
             lastSelectedPanel = panel;
 
+            foreach (Button button in panels[lastSelectedPanel].GetComponentsInChildren<Button>())
+            {
+                button.interactable = true;
+            }
+
             //changes the selected gameobject to whichever button is tagged "selected" in the currently active screen
+            GameObject.FindWithTag("Selected").GetComponent<Button>().enabled = true;
             EventSystem.current.SetSelectedGameObject(GameObject.FindWithTag("Selected"));
         }
     }
