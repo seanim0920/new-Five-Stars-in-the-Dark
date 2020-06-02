@@ -8,7 +8,7 @@ public class PrepareCutscene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        asyncOperation = LoadScene.LoadNextSceneAdditiveAsync();
+        //asyncOperation = LoadScene.LoadNextSceneAdditiveAsync();
         //Don't let the Scene activate until you allow it to
         //asyncOperation.allowSceneActivation = false;
     }

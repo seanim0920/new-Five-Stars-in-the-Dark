@@ -6,48 +6,66 @@ using UnityEngine.SceneManagement;
 
 public class LoadScene : MonoBehaviour
 {
+    private GameObject wipe;
+    private void Start()
+    {
+        wipe = Resources.Load<GameObject>("Prefabs/Menus/Wipe");
+    }
     public void LoadLevelFromMenu(string sceneName)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        AsyncOperation load = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        StartCoroutine(loadAfterWipe(load));
     }
 
-    public static void Loader(string sceneName)
+    public void LoadLevelFromMenu(int buildIndex)
     {
-        SceneManager.LoadScene(sceneName, LoadSceneMode.Single);
+        AsyncOperation load = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
+        StartCoroutine(loadAfterWipe(load));
     }
-
-    public static void Loader(int buildIndex)
+    public void LoadLevelFromMenuWithoutWipe(int buildIndex, float wait)
     {
-        SceneManager.LoadScene(buildIndex, LoadSceneMode.Single);
+        AsyncOperation load = SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
+        StartCoroutine(loadAfterWait(load, wait));
     }
-
-    public static void LoadNextScene()
+    public void LoadLevelFromMenuWithoutWipe(string sceneName, float wait)
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1, LoadSceneMode.Single);
+        AsyncOperation load = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        StartCoroutine(loadAfterWait(load, wait));
     }
 
-    public static AsyncOperation LoadLevelAsyncByName(string sceneName)
+    IEnumerator loadAfterWipe(AsyncOperation load)
+    {
+        load.allowSceneActivation = false;
+        GameObject transition = Instantiate(wipe, wipe.transform.position, wipe.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform);
+        transition.GetComponent<Animator>().Play("Wipe_Anim_Down");
+        yield return new WaitForSeconds(0.9f);
+        load.allowSceneActivation = true;
+    }
+
+    IEnumerator loadAfterWait(AsyncOperation load, float wait)
+    {
+        load.allowSceneActivation = false;
+        GetComponent<AudioSource>().Play();
+        yield return new WaitForSeconds(wait);
+        load.allowSceneActivation = true;
+    }
+
+    public static AsyncOperation Loader(string sceneName)
     {
         return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
     }
 
-    public static AsyncOperation LoadLevelAsyncByBuildIndex(int buildIndex)
+    public static AsyncOperation Loader(int buildIndex)
     {
         return SceneManager.LoadSceneAsync(buildIndex, LoadSceneMode.Single);
     }
 
-    public static AsyncOperation LoadNextSceneAsync()
+    public static AsyncOperation LoadNextScene()
     {
         return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
     }
-
-    public static AsyncOperation LoadSceneAdditiveAsync(string sceneName)
+    public static AsyncOperation LoadNextSceneWithoutWipe()
     {
-        return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-    }
-
-    public static AsyncOperation LoadNextSceneAdditiveAsync()
-    {
-        return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Additive);
+        return SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1, LoadSceneMode.Single);
     }
 }

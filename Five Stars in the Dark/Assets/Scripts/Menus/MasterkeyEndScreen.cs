@@ -10,19 +10,33 @@ public class MasterkeyEndScreen : MonoBehaviour
     public Button menu;
     public static int currentLevelBuildIndex = 1;
     public GameObject loadPanel;
+    public GameObject Wipe;
 
     // Start is called before the first frame update
     void Start()
     {
         retry.onClick.AddListener(() => {
-            loadPanel.SetActive(true);
-            LoadScene.LoadLevelAsyncByBuildIndex(currentLevelBuildIndex);
+            disableButtons();
+            GetComponent<LoadScene>().LoadLevelFromMenuWithoutWipe(currentLevelBuildIndex, 3);
+            Wipe.SetActive(true);
         });
         next.onClick.AddListener(() => {
-            loadPanel.SetActive(true);
-            LoadScene.LoadLevelAsyncByBuildIndex(currentLevelBuildIndex + 1);
+            disableButtons();
+            GetComponent<LoadScene>().LoadLevelFromMenuWithoutWipe(currentLevelBuildIndex+1, 3);
+            Wipe.SetActive(true);
         });
-        menu.onClick.AddListener(() => LoadScene.Loader("Menu"));
+        menu.onClick.AddListener(() => {
+            disableButtons();
+            GetComponent<LoadScene>().LoadLevelFromMenuWithoutWipe("Menu", 3);
+            Wipe.SetActive(true);
+        });
+    }
+
+    void disableButtons()
+    {
+        next.interactable = false;
+        retry.interactable = false;
+        menu.interactable = false;
     }
 
     // Update is called once per frame

@@ -483,7 +483,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         ScoreStorage.Instance.setScoreProgress(100);
         if (SceneManager.GetActiveScene().name == "Level 4.5" || SceneManager.GetActiveScene().name == "Tutorial" || SceneManager.GetActiveScene().name == "Level 5") //mini-levels will be less than 3 minutes
         {
-            LoadScene.LoadNextScene();
+            LoadScene.LoadNextSceneWithoutWipe();
         }
         else
         {

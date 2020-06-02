@@ -19,6 +19,7 @@ TagManager:
   - Target
   - Stopped
   - Selected
+  - Canvas
   layers:
   - Default
   - TransparentFX

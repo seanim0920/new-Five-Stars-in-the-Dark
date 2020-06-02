@@ -57,6 +57,6 @@ EditorBuildSettings:
     path: Assets/Scenes/FailScreen.unity
     guid: f0265530cd89361469150aa4ca4520dc
   - enabled: 1
-    path: Assets/Scenes/LoadScreen.unity
-    guid: 98e52f7f62c02904ba18e3e905963637
+    path: Assets/Scenes/Credits.unity
+    guid: 09ac58b619be8a94fa282de69d3f6036
   m_configObjects: {}

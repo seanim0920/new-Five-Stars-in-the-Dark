@@ -15,6 +15,7 @@ public class Masterkey : MonoBehaviour
     public Animator mainpanelAnim;
     private bool preventSpamClick = true; //set to true by default so when returning to menu the wipe animation can play
     private int lastSelectedPanel = 0;
+    private bool panelsDeactivated = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -56,9 +57,10 @@ public class Masterkey : MonoBehaviour
     }
     public void ShowScreen(int panel)
     {
-        if (!preventSpamClick)
+        if (!preventSpamClick && panelsDeactivated)
         {
             preventSpamClick = true;
+            panelsDeactivated = false;
 
             //plays whoosh
             transitionSfx.pitch = 1;
@@ -90,6 +92,7 @@ public class Masterkey : MonoBehaviour
         yield return new WaitForSeconds(2);
         foreach (GameObject panel in panels) panel.SetActive(false);
         menuButtons[lastSelectedPanel].GetComponent<AudioSource>().mute = false;
+        panelsDeactivated = true;
     }
 
     // Update is called once per frame
