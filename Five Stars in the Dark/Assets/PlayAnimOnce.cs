@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayAnimOnce : MonoBehaviour
 {
+    public Masterkey ScreenManager;
     public Animator[] titleAnim;
     public static bool titleAnimPlayed = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        titleAnim = transform.parent.GetComponentsInChildren<Animator>();
+        titleAnim = GetComponentsInChildren<Animator>();
         disableAnims();
         titleAnimPlayed = true;
     }
@@ -18,10 +19,15 @@ public class PlayAnimOnce : MonoBehaviour
     void disableAnims()
     {
         if (titleAnimPlayed)
+        {
+            print("play wipe!");
             foreach (Animator anim in titleAnim)
             {
                 anim.enabled = false;
             }
+            GetComponent<Animator>().enabled = true;
+            ScreenManager.ReturnToTitle();
+        }
     }
 
     private void OnEnable()

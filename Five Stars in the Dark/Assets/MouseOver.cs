@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class MouseOver : MonoBehaviour
@@ -15,7 +16,8 @@ public class MouseOver : MonoBehaviour
 
     public void OnPointerEnterDelegate()
     {
-        EventSystem.current.SetSelectedGameObject(gameObject);
+        if (GetComponent<Selectable>().interactable)
+            EventSystem.current.SetSelectedGameObject(gameObject);
     }
 
     public void OnSelectDelegate()
