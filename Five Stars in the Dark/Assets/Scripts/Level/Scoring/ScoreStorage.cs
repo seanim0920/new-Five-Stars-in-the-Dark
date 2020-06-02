@@ -18,6 +18,8 @@ public class ScoreStorage : Singleton<ScoreStorage>
     //fastest time the player could have achieved
     int par = 0;
 
+    int collisions;
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -54,7 +56,8 @@ public class ScoreStorage : Singleton<ScoreStorage>
         //Par is not set here, becuase its data is not saved.
         //Every error subtracts 8 points, and every 30 seconds over the fastest possible time subtracts 5 points (up to 120 seconds).
         //this line was removed before the merge for some reason
-        points = (int)(100 - (errors * 8) - ((time-par)/600));   //We divide be 600: 6 to split the time into 5 parts of 30 seconds and 100 to round out the miliseconds    
+        points = (int)(100 - (errors * 8) - ((time-par)/600));   //We divide be 600: 6 to split the time into 5 parts of 30 seconds and 100 to round out the miliseconds   
+        collisions = TrackErrors.getCollisions();
     }
 
     //These allow scripts to access the scores
@@ -66,6 +69,11 @@ public class ScoreStorage : Singleton<ScoreStorage>
     public float getScoreErrors()
     {
         return errors;
+    }
+
+    public float getScoreCollisions()
+    {
+        return collisions;
     }
 
     public int getScoreTime()

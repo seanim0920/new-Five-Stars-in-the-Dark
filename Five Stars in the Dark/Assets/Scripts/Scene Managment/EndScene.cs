@@ -10,7 +10,7 @@ public class EndScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        fade.SetActive(true);
+        //fade.SetActive(true);
         // panel.SetActive(false);
         // scoreScript.enabled = true;
     }
