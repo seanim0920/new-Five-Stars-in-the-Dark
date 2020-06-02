@@ -16,7 +16,7 @@ public class PlayError : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (CountdownTimer.getTracking())
+        if (source != null && ConstructLevelFromMarkers.levelDialogue != null && CountdownTimer.getTracking())
             source.panStereo = ConstructLevelFromMarkers.levelDialogue.panStereo;
     }
     public static IEnumerator PlayWarningCoroutine(string directory)

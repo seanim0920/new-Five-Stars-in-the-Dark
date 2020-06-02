@@ -21,7 +21,7 @@ public class nextSceneOnVideoEnd : MonoBehaviour
     void Start()
     {
         //placeholder
-        LoadScene.LoadNextScene();
+        // LoadScene.LoadNextScene();
     }
 
     // Update is called once per frame

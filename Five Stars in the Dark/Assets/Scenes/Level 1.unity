@@ -422,11 +422,20 @@ PrefabInstance:
     - target: {fileID: 4314826276229188209, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -31.347717
+      value: -31.347641
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314826276229188209, guid: 0737ab1198c13c74695686fd9e987b22,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -37.499985
       objectReference: {fileID: 0}
     - target: {fileID: 1798619072, guid: 0737ab1198c13c74695686fd9e987b22, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -31.347717
+      value: -31.347641
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798619072, guid: 0737ab1198c13c74695686fd9e987b22, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -37.5
       objectReference: {fileID: 0}
     - target: {fileID: 4573986209584097563, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
@@ -669,6 +678,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332332946149501532, guid: 0737ab1198c13c74695686fd9e987b22,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -37.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0737ab1198c13c74695686fd9e987b22, type: 3}
@@ -1088,6 +1102,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &576528153 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4090400379577309536, guid: 0737ab1198c13c74695686fd9e987b22,
+    type: 3}
+  m_PrefabInstance: {fileID: 170769229}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &581348872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1666,5 +1692,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 911866134229633682, guid: cec60119a7a8c704ea21138b08c6c077,
+        type: 3}
+      propertyPath: skipText
+      value: 
+      objectReference: {fileID: 576528153}
+    - target: {fileID: 911866134229633682, guid: cec60119a7a8c704ea21138b08c6c077,
+        type: 3}
+      propertyPath: textToDisable
+      value: 
+      objectReference: {fileID: 576528153}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cec60119a7a8c704ea21138b08c6c077, type: 3}

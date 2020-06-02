@@ -38,6 +38,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     public float maxVol = 0.8f;
 
     //for the start cutscene
+    private GameObject skipText;
     public AudioSource ambience;
     public Image blackScreen;
     public TextAsset markersFile;
@@ -160,16 +161,21 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         constructLevelMap(0);
     }
 
+    void Awake()
+    {
+        PlaythroughManager.currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
     void Start()
     {
         ScoreStorage.Instance.resetScore();
         loadedObjects = Resources.LoadAll("Prefabs/Obstacles", typeof(GameObject));
         player = GameObject.Find("Player");
         wheelFunctions = player.GetComponent<SteeringWheelInput>();
-        Debug.Log(wheelFunctions == null);
         controls = player.GetComponent<PlayerControls>();
         keyboard = player.GetComponent<KeyboardControl>();
         gamepad = player.GetComponent<GamepadControl>();
+        skipText = GameObject.Find("SkipText");
         parseLevelMarkers();
 
         if (!blackScreen.enabled)
@@ -203,6 +209,8 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     {
         if (SettingsManager.toggles[0])
         {
+            // Idk how else to do all this because apparently these things
+            // become null if you reference them when they're disabled
             if(gamepad != null)
             {
                 gamepad.enabled = false;
@@ -619,6 +627,14 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
     IEnumerator startCar()
     {
+        if(!PlaythroughManager.hasPlayedLevel(SceneManager.GetActiveScene().buildIndex))
+        {
+            PlaythroughManager.playedLevels.Add(SceneManager.GetActiveScene().buildIndex);
+        }
+        if(skipText != null)
+        {
+            skipText.GetComponent<Text>().enabled = false;
+        }
         ambience.Play();
         CountdownTimer.setTracking(true); //marks when the level is commanded to start
         yield return new WaitForSeconds(1);
@@ -626,7 +642,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         StartCoroutine(wheelRumble());
         yield return new WaitForSeconds(1);
         controls.enabled = true;
-        Debug.Log(controlType);
         CountdownTimer.decrementTime(2); //to make up for the two seconds took to start the engine
     }
     IEnumerator parkCar()
@@ -671,7 +686,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("s") || (Gamepad.current != null && Gamepad.current.buttonEast.isPressed))
+        if (Input.GetKeyDown("s") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
         {
             skipSection = true;
         }
