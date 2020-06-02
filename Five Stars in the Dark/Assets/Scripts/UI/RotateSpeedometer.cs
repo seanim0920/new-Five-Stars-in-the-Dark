@@ -12,6 +12,8 @@ public class RotateSpeedometer : MonoBehaviour
     private const float minAngle = 35f;
     private const float maxAngle = -90f;
     private float angleRange;
+    public bool isQuickTurning = false;
+    public float actualAngle;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,15 +21,20 @@ public class RotateSpeedometer : MonoBehaviour
         leftNeedleAngle = minAngle;
         rightNeedleAngle = minAngle;
         angleRange = Mathf.Abs(maxAngle - minAngle);
+        actualAngle = minAngle;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        float maxSpeedPercentage = controls.movementSpeed / controls.maxSpeed;
-        float deltaAngle = angleRange * maxSpeedPercentage;
-        // Map the needle angle to PlayerControls.movementSpeed
-        leftNeedle.rectTransform.rotation = Quaternion.Euler(0, 0, leftNeedleAngle - deltaAngle);
-        rightNeedle.rectTransform.rotation = Quaternion.Euler(0, 0, rightNeedleAngle - deltaAngle);
+        if(!isQuickTurning)
+        {
+            float maxSpeedPercentage = controls.movementSpeed / controls.maxSpeed;
+            float deltaAngle = angleRange * maxSpeedPercentage;
+            actualAngle = leftNeedleAngle - deltaAngle;
+            // Map the needle angle to PlayerControls.movementSpeed
+            leftNeedle.rectTransform.rotation = Quaternion.Euler(0, 0, actualAngle);
+            rightNeedle.rectTransform.rotation = Quaternion.Euler(0, 0, actualAngle);
+        }
     }
 }

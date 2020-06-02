@@ -11,12 +11,16 @@ public class QuickTurn : MonoBehaviour
     [SerializeField] private PS4Controls gamepad;
     //public int direction;
     private AudioSource turnSound;
+    private string turnDirection;
+    private GameObject player;
+    private float enterSpeed;
+    private float enterSpeedometerAngle;
+    private RotateSpeedometer speedometer;
     public KeyboardControl keyboardCtrl;
     public GamepadControl gamepadCtrl;
     public PlayerControls playerCtrl;
     public bool mustTurnLeft;
-    private string turnDirection;
-
+    
     void Awake()
     {
         gamepad = new PS4Controls();
@@ -35,6 +39,11 @@ public class QuickTurn : MonoBehaviour
         }
 
         turnSound = GetComponent<AudioSource>();
+        player = GameObject.Find("Player");
+        GameObject canvas = GameObject.Find("Main Camera");
+        speedometer = canvas.GetComponentInChildren<RotateSpeedometer>();
+        enterSpeed = 0f;
+        enterSpeedometerAngle = 0f;
     }
 
     // Update is called once per frame
@@ -59,43 +68,49 @@ public class QuickTurn : MonoBehaviour
     }
     IEnumerator QTurn(PS4Controls gp)
     {
-        float startTime = Time.time;
+        float startTime = Time.unscaledTime;
+        player.transform.position = new Vector3(0, player.transform.position.y, player.transform.position.z);
+        enterSpeed = player.GetComponent<PlayerControls>().movementSpeed;
+        enterSpeedometerAngle = speedometer.actualAngle;
         // If player was strafing in wrong direction/holding wrong button in the first place
-        // turnValue = gp.QuickTurns.Get().FindAction("Turn" + turnDirection).ReadValue<float>();
-        // Debug.Log(gp.QuickTurns.Get().FindAction("Turn " + turnDirection).ReadValue<float>());
 
-        keyboardCtrl.enabled = false;
-        playerCtrl.enabled = false;
+        // keyboardCtrl.enabled = false;
+        // playerCtrl.enabled = false;
         while((!Input.GetKey(turnDirection.ToLower()) &&
-              Time.time - startTime < 1f) ||
+              Time.unscaledTime - startTime < 1f) ||
               (gp.QuickTurns.Get().FindAction("Turn " + turnDirection).phase != InputActionPhase.Performed &&
-              Time.time - startTime < 2f)) 
+              Time.unscaledTime - startTime < 2f)) 
         {
-            // Debug.Log(gp.QuickTurns.Get().FindAction("Turn " + turnDirection).ReadValue<float>());
+            Time.timeScale = 0.5f;
+            speedometer.isQuickTurning = true;
+            player.GetComponent<PlayerControls>().movementSpeed *= 0.90f;
             Debug.Log(gp.QuickTurns.Get().FindAction("Turn " + turnDirection).phase);
             // Wait for player to turn in correct direction (Make sure player is not cheating by somehow performing both inputs)
             yield return null;
         }
 
-        startTime = Time.time;
+        startTime = Time.unscaledTime;
         // If turning in correct direction
         if(Input.GetKey(turnDirection.ToLower()))
         {
-            // Wait for a second and make sure player is holding correct direction the whole time
-            while(Time.time - startTime < 1.0f)
-            {
-                yield return null;
-            }
+            // Time.timeScale = 0.5f;
+            // speedometer.isQuickTurning = true;
+            // player.GetComponent<PlayerControls>().movementSpeed *= 0.90f;
+            // // Wait for a second and make sure player is holding correct direction the whole time
+            // while(Time.unscaledTime - startTime < 1.0f)
+            // {
+            //     yield return null;
+            // }
             // Play turnsound
             turnSound.Play();
             // return with no errors
-            keyboardCtrl.enabled = true;
+            // keyboardCtrl.enabled = true;
         }
         else if(gp.QuickTurns.Get().FindAction("Turn " + turnDirection).phase == InputActionPhase.Performed)
         {
             // Play turnsound
             turnSound.Play();
-            // gp.QuickTurns.Get().FindAction("Turn " + turnDirection).Disable();
+            gp.QuickTurns.Get().FindAction("Turn " + turnDirection).Disable();
             gp.Gameplay.Enable();
             // return with no errors
         }
@@ -106,7 +121,7 @@ public class QuickTurn : MonoBehaviour
             Debug.Log("Decrement Score"); // We potentially want to play an error audio clip
             TrackErrors.IncrementErrors();
             GetComponent<ObstacleFailure>().playFailure(Camera.main.transform.position);
-            // gp.QuickTurns.Get().FindAction("Turn " + turnDirection).Disable();
+            gp.QuickTurns.Get().FindAction("Turn " + turnDirection).Disable();
 
             /////////////////////////////////////////////////////////////////////////////////////
             //                                                                                 //
@@ -118,11 +133,20 @@ public class QuickTurn : MonoBehaviour
             //                                                                                 //
             /////////////////////////////////////////////////////////////////////////////////////
             gp.Gameplay.Enable();
-            keyboardCtrl.enabled = true;
+            // keyboardCtrl.enabled = true;
         }
 
-        playerCtrl.enabled = true;
+        // playerCtrl.enabled = true;
+        Time.timeScale = 1f;
         Destroy(gameObject, turnSound.clip.length);
+        player.transform.position = new Vector3(0, player.transform.position.y, player.transform.position.z);
+        speedometer.isQuickTurning = false;
+        speedometer.actualAngle = enterSpeedometerAngle;
+        while(this != null)
+        {
+            player.GetComponent<PlayerControls>().movementSpeed = Mathf.Lerp(player.GetComponent<PlayerControls>().movementSpeed, enterSpeed, 0.1f);
+            yield return new WaitForFixedUpdate();
+        }
         yield break;
     }
 }

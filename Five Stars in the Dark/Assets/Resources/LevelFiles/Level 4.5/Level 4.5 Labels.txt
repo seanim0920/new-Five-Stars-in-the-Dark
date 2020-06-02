@@ -1,0 +1,79 @@
+0.000000	0.863378	<W> "[car doors open]"
+0.863378	2.233523	<Y> "Rosales: Isaac, thank god."
+2.233523	4.567147	<Y> "I didn't trust Goose to get us in the lab in one piece."
+4.829914	5.780882	<Y> "Now let's get movin'!"
+6.081187	7.319948	<W> "[car doors slam]"
+7.488870	9.778699	<W> "[seatbelts buckle]"
+10.373054	11.342791	<W> "[engine starts]"
+12.049760	15.741016	<D> "Goose: So this guy seriously got to drive the big man himself?"
+16.279063	17.492798	<Y> "Yup, he's the one!"
+17.492798	18.912993	<Y> "Helped me get around too."
+19.257093	20.777390	<D> "Ooooooh."
+21.040158	23.461371	<Y> "Really glad you captured that spook for us, Isaac."
+23.542704	25.450895	<Y> "She's been a pain in our ass for weeks."
+25.582279	26.589554	<Y> "Things could have ended really badly"
+26.589554	28.241234	<Y> "if she was left unchecked."
+28.873127	30.224502	<W> "Isaac: You... killed her!"
+30.868908	31.957515	<W> "She's dead!"
+32.727048	34.103449	<D> "Well... yeah..."
+34.316165	35.386004	<D> "But not for long!"
+35.792668	38.326496	<D> "After we bring all of our own loved ones back to life,"
+38.645570	40.810273	<D> we can probably bring her back too!"
+41.191911	43.988507	<D> Maybe, once we're through with our plan,"
+44.188710	46.134440	<D> "heck, we'll probably get medals of honor"
+46.134440	47.817402	<D> "for saving everyone!"
+48.092682	50.451332	<Y> "All of us lost people during the eclipse, Isaac."
+50.801689	52.140551	<Y> "Remember why we're doing this."
+52.209371	53.441875	<Y> "It's our fault they're gone."
+53.679617	55.337554	<Y> "If this is our chance to bring them back,"
+55.544014	57.464718	<Y> "we can't let anyone get in the way."
+57.858869	59.003784	<D> "Exactly!"
+59.141424	61.424997	<D> "Aaaand... I gotta be honest,"
+61.725303	63.445804	<D> "Getting to blow up anyone we want"
+63.452060	65.992144	<D> "with the blink of an eye does have its benefits."
+66.361270	67.305981	<Y> "Whatever, Goose."
+67.875310	68.638587	<Y> "But yeah,"
+68.638587	70.171397	<Y> "Delmonico threw this whole plan together"
+70.171397	72.048306	<Y> "to help us fix what we all broke."
+72.661430	73.775063	<Y> "To bring them back."
+74.263060	75.095156	<Y> "He's the only one who didn't"
+75.095156	76.715555	<Y> "turn a blind eye to us."
+76.990835	79.149281	<D> "Ooooh nice pun there!"
+79.512150	81.364035	<Y> "[...]"
+82.108542	83.916632	<D> "Aaaanyways,"
+84.373346	86.569331	<D> "Delmonico saw what all us eye-mutants"
+86.569331	87.845629	<D> "were capable of."
+88.070859	89.278337	<D> "and was something like:"
+90.110434	92.506622	<D> "'This will make a mean ravioli!'"
+92.806927	95.734906	<D> "And organized us to get this plan in motion."
+96.204134	98.800526	<D> "He even put together the whole contest himself."
+99.582571	100.708717	<W> "Contest?"
+101.090355	102.479269	<Y> "Alright, that's enough, Goose."
+102.623165	104.224795	<Y> "Let Delmonico tell him the rest."
+104.487562	105.989090	<Y> "Isaac, go ahead and pull over after you've"
+105.989090	107.209081	<Y> "passed that stopsign."
+107.209081	108.310201	<Y> "We've reached the lab."
+111.638588	112.989963	<Y> "Alright, this is the place."
+113.014988	113.528010	<W> "[engine shuts off]"
+113.528010	114.873129	<D> "This will be great, Isaac!"
+115.542560	117.844902	<D> "Let's go meet Mr. Delmonico inside."
+0.000000	10.373054	Dialogue
+10.373054	10.373054	[StartControl]
+12.049760	108.097485	Dialogue
+111.588537	118.720794	Dialogue
+113.102577	113.102577	[EndControl]
+16.254038	25.488433	FastCar behind Lane1
+20.195548	28.579078	SlowCar aheadOf player
+29.555071	37.600757	FastCar behind player
+36.437073	42.568312	SlowCar aheadOf Lane3
+41.754984	47.573404	FastCar behind Lane1
+44.520298	51.252147	SlowCar aheadOf Lane2
+50.601485	56.882876	SlowCar aheadOf Lane1
+53.829770	58.471993	FastCar behind player
+64.252875	70.033757	SlowCar aheadOf player
+68.407101	75.013824	FastCar behind Lane2
+76.465300	84.348321	FastCar behind Lane3
+84.936419	91.843447	SlowCar aheadOf Lane1
+88.439984	94.083226	SlowCar aheadOf Lane3
+95.734906	102.316603	FastCar behind player
+108.635532	108.635532	Stoplight wpwwpwwpwpwwp

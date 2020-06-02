@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class SkipCutscenes : MonoBehaviour
 {
+    public Text textToDisable;
     public static bool isSkipping = false;
 
     public AudioSource levelDialogue;
@@ -15,14 +17,51 @@ public class SkipCutscenes : MonoBehaviour
     void Start()
     {
         isSkipping = false;
+        if(PlaythroughManager.hasPlayedLevel(PlaythroughManager.currentLevelIndex))
+        {
+            if(textToDisable != null)
+            {
+                textToDisable.enabled = true;
+            }
+        }
+        else
+        {
+            if(textToDisable != null)
+            {
+                textToDisable.enabled = false;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
+        if(PlaythroughManager.hasPlayedLevel(PlaythroughManager.currentLevelIndex))
         {
-            StartCoroutine(skipIntro());
+            if(SettingsManager.toggles[2])
+            {
+                if(Gamepad.current.name.Contains("DualShock"))
+                {
+                    textToDisable.text = "Press Circle to skip";
+                }
+                else
+                {
+                    textToDisable.text = "Press B to skip";
+                }
+            }
+            else
+            {
+                textToDisable.text = "Press L to skip";
+            }
+
+            if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame))
+            {
+                StartCoroutine(skipIntro());
+                if(textToDisable != null)
+                {
+                    textToDisable.enabled = false;
+                }
+            }
         }
     }
 

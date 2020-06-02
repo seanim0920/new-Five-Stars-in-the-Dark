@@ -38,6 +38,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     public float maxVol = 0.8f;
 
     //for the start cutscene
+    private GameObject skipText;
     public AudioSource ambience;
     public Image blackScreen;
     public TextAsset markersFile;
@@ -160,6 +161,11 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         constructLevelMap(0);
     }
 
+    void Awake()
+    {
+        PlaythroughManager.currentLevelIndex = SceneManager.GetActiveScene().buildIndex;
+    }
+
     void Start()
     {
         ScoreStorage.Instance.resetScore();
@@ -169,6 +175,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         controls = player.GetComponent<PlayerControls>();
         keyboard = player.GetComponent<KeyboardControl>();
         gamepad = player.GetComponent<GamepadControl>();
+        skipText = GameObject.Find("SkipText");
         parseLevelMarkers();
 
         if (!blackScreen.enabled)
@@ -202,21 +209,50 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     {
         if (SettingsManager.toggles[0])
         {
-            gamepad.enabled = false;
-            keyboard.enabled = false;
-            wheelFunctions.enabled = true;
+            // Idk how else to do all this because apparently these things
+            // become null if you reference them when they're disabled
+            if(gamepad != null)
+            {
+                gamepad.enabled = false;
+            }
+            if(keyboard != null)
+            {
+                keyboard.enabled = false;
+            }
+            if(wheelFunctions != null)
+            {
+                wheelFunctions.enabled = true;
+            }
         }
         else if (SettingsManager.toggles[2])
         {
-            wheelFunctions.enabled = false;
-            keyboard.enabled = false;
-            gamepad.enabled = true;
+            if(wheelFunctions != null)
+            {
+                wheelFunctions.enabled = false;
+            }
+            if(keyboard != null)
+            {
+                keyboard.enabled = false;
+            }
+            if(gamepad != null)
+            {
+                gamepad.enabled = true;
+            }
         }
         else
         {
-            wheelFunctions.enabled = false;
-            gamepad.enabled = false;
-            keyboard.enabled = true;
+            if(wheelFunctions != null)
+            {
+                wheelFunctions.enabled = false;
+            }
+            if(gamepad != null)
+            {
+                gamepad.enabled = false;
+            }
+            if(keyboard != null)
+            {
+                keyboard.enabled = true;
+            }
         }
     }
 
@@ -343,7 +379,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 if (levelDialogue.time >= commandMarker.spawnTime)
                 {
                     debugMessage += "parsing command: " + command;
-                    AudioClip radioClip = Resources.Load<AudioClip>(SceneManager.GetActiveScene().name + "/" + command.Trim('[', ']'));
+                    AudioClip radioClip = Resources.Load<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/" + command.Trim('[', ']'));
                     print("Looking for audiofile" + SceneManager.GetActiveScene().name + "/" + command.Trim('[', ']'));
                     if (radioClip != null)
                     {
@@ -413,7 +449,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                         obj.transform.Rotate(0, 0, -45);
                     else
                         obj.transform.Rotate(0, 0, 45);
-                    if (pair.Key.GetComponent<NPCMovement>().neutralSpeed != 0)
+                    if (!pair.Key.CompareTag("Stopped"))
                     {
                         obj.GetComponent<CapsuleCollider2D>().isTrigger = true;
                         Destroy(pair.Key, 5);
@@ -445,7 +481,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         ScoreStorage.Instance.setScoreAll();
         MasterkeyEndScreen.currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
         ScoreStorage.Instance.setScoreProgress(100);
-        if (levelDialogue.clip.length <= 180 || SceneManager.GetActiveScene().name == "Level 5") //mini-levels will be less than 3 minutes
+        if (SceneManager.GetActiveScene().name == "Level 4.5" || SceneManager.GetActiveScene().name == "Tutorial" || SceneManager.GetActiveScene().name == "Level 5") //mini-levels will be less than 3 minutes
         {
             LoadScene.LoadNextScene();
         }
@@ -591,6 +627,14 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
     IEnumerator startCar()
     {
+        if(!PlaythroughManager.hasPlayedLevel(SceneManager.GetActiveScene().buildIndex))
+        {
+            PlaythroughManager.playedLevels.Add(SceneManager.GetActiveScene().buildIndex);
+        }
+        if(skipText != null)
+        {
+            skipText.GetComponent<Text>().enabled = false;
+        }
         ambience.Play();
         CountdownTimer.setTracking(true); //marks when the level is commanded to start
         yield return new WaitForSeconds(1);
@@ -598,7 +642,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         StartCoroutine(wheelRumble());
         yield return new WaitForSeconds(1);
         controls.enabled = true;
-        Debug.Log(controlType);
         CountdownTimer.decrementTime(2); //to make up for the two seconds took to start the engine
     }
     IEnumerator parkCar()
@@ -643,55 +686,9 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("s") || (Gamepad.current != null && Gamepad.current.buttonEast.isPressed))
+        if (Input.GetKeyDown("s") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
         {
             skipSection = true;
         }
-    }
-    
-    public void setController(int type)
-    {
-        // Debug.Log("controller type: " + type);
-        // // controlType = type;
-        // Debug.Log(" dialogue? " + (levelDialogue == null));
-        if(levelDialogue != null)
-        {
-            enableControllers();
-        }
-    }
-
-    public void toggleWheel(bool isActive)
-    {
-        SettingsManager.toggles[0] = isActive;
-        SettingsManager.setToggles();
-        if(isActive)
-        {
-            controlType = 0;
-        }
-        setController(controlType);
-    }
-
-    public void toggleKeyboard(bool isActive)
-    {
-        SettingsManager.toggles[1] = isActive;
-        SettingsManager.setToggles();
-
-        if(isActive)
-        {
-            controlType = 1;
-        }
-        setController(controlType);
-    }
-
-    public void toggleGamepad(bool isActive)
-    {
-        SettingsManager.toggles[2] = isActive;
-        SettingsManager.setToggles();
-
-        if(isActive)
-        {
-            controlType = 2;
-        }
-        setController(controlType);
     }
 }

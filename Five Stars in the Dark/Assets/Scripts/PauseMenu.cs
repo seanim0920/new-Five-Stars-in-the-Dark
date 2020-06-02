@@ -21,8 +21,10 @@ public class PauseMenu : MonoBehaviour
     {
         isPaused = false;
         resumeButton = GetComponentInChildren<Button>();
-        pauseStartSound.ignoreListenerPause = true;
-        pauseMenuSound.ignoreListenerPause = true;
+        foreach (AudioSource audio in transform.parent.GetComponentsInChildren<AudioSource>(true))
+        {
+            audio.ignoreListenerPause = true;
+        }
         if (GetComponent<UnityEngine.Video.VideoPlayer>()) {
             videoPlayer = GetComponent<UnityEngine.Video.VideoPlayer>();
         }
@@ -91,8 +93,6 @@ public class PauseMenu : MonoBehaviour
     public void toMenu()
     {
         resumeGame();
-        Masterkey.flag = 0;
-        Masterkey.sceneName = "Level 1";
         LoadScene.Loader("Menu");
     }
     

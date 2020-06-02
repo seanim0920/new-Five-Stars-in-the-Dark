@@ -15,7 +15,6 @@ public class Stoplight : MonoBehaviour
 
     IEnumerator PlayRepeating()
     {
-        tag = "Stop";
         transform.GetChild(2).GetComponent<SpriteRenderer>().enabled = false;
 
         transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = true;
@@ -43,10 +42,6 @@ public class Stoplight : MonoBehaviour
             }
             yield return new WaitForSeconds(10f);
         }
-        tag = "Go";
-        transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
-
-        transform.GetChild(1).GetComponent<SpriteRenderer>().enabled = true;
     }
     // Update is called once per frame
     void Update()

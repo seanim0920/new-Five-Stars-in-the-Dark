@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class SelectLevel : MonoBehaviour
 {
+	[SerializeField]
+	private Button backBtn;
 	public Button forward;
 	public Button backward;
 	public GameObject[] Nodes;
@@ -48,11 +50,27 @@ public class SelectLevel : MonoBehaviour
 		lvlCount++;
 		if(lvlCount == 6)
 			lvlCount = 0;
+
+		ReassignNavigation(forward);
+		ReassignNavigation(backward);
+		ReassignNavigation(backBtn);
 	}
 	
 	void b(){
 		lvlCount--;
 		if(lvlCount == -1)
 			lvlCount = 5;
+
+		ReassignNavigation(forward);
+		ReassignNavigation(backward);
+		ReassignNavigation(backBtn);
+	}
+
+	void ReassignNavigation(Button btn)
+	{
+		Navigation newNav = btn.navigation;
+		newNav.mode = Navigation.Mode.Explicit;
+		newNav.selectOnUp = Levels[lvlCount].GetComponent<Button>();
+		btn.navigation = newNav;
 	}
 }

@@ -12,7 +12,6 @@ public class PlayerControls : MonoBehaviour
     public AudioSource disabledWheelSound;
     public AudioSource engineSound;
     public AudioSource tireSound;
-    public AudioSource dialogue;
     public AudioSource slidingSound;
     public AudioSource grabWheel;
 
@@ -251,8 +250,8 @@ public class PlayerControls : MonoBehaviour
         {
             child.gameObject.GetComponent<AudioSource>().panStereo = amount * 3;
         }
-        dialogue.panStereo = -amount * 3;
-        strafeSound.panStereo = amount * 2;
+        ConstructLevelFromMarkers.levelDialogue.panStereo = -amount * 2.75f;
+        strafeSound.panStereo = amount * 2.5f;
     }
 
     public IEnumerator turnFail(bool right)
@@ -277,7 +276,7 @@ public class PlayerControls : MonoBehaviour
         isTurning = false;
     }
 
-    public IEnumerator impact(Vector2 force)
+    public IEnumerator impactCoroutine(Vector2 force)
     {
         this.impacted = true;
         this.enabled = false;
@@ -295,10 +294,11 @@ public class PlayerControls : MonoBehaviour
             movementSpeed = -Mathf.Pow((i - totalIterations), 2) / (totalIterations * (totalIterations / maxVDisplacement)) + maxVDisplacement + origMovementSpeed;
             yield return new WaitForFixedUpdate();
         }
-        while (body.velocity.magnitude > 0.1f)
+        while (body.velocity.magnitude > 0.05f || lastRecordedStrafe > 0.02f)
         {
-            Blur.setAmount(Blur.getAmount() * 0.98f);
-            lastRecordedStrafe *= 0.98f;
+            body.velocity *= 0.975f;
+            Blur.setAmount(Blur.getAmount() * 0.97f);
+            lastRecordedStrafe *= 0.97f;
             movementSpeed *= 0.95f;
             yield return new WaitForFixedUpdate();
         }

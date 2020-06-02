@@ -1,0 +1,117 @@
+{
+    "name": "PS4Controls",
+    "maps": [
+        {
+            "name": "Gameplay",
+            "id": "8f0d54da-9790-4361-a2b6-bde4bc8592db",
+            "actions": [
+                {
+                    "name": "Accelerate",
+                    "type": "Value",
+                    "id": "d0a1ef65-8e5b-42ae-bb49-b7b4d1b96d4e",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Brake",
+                    "type": "Value",
+                    "id": "a0fcc37c-2664-4ca8-8623-f544889e3585",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Strafe",
+                    "type": "Value",
+                    "id": "f8d72376-0901-40b7-b4ba-60071d616662",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b967d764-2cc2-408d-83f8-37ce236a3a80",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Accelerate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d2014a8e-b966-4876-84cb-57ffff6d0a86",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Brake",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "12768eed-9ec7-409a-9cf3-0200b4a41071",
+                    "path": "<Gamepad>/leftStick/x",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Strafe",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "QuickTurns",
+            "id": "3d7c47fc-64d2-4cd9-915f-387ab554d90c",
+            "actions": [
+                {
+                    "name": "Turn Left",
+                    "type": "Value",
+                    "id": "6adc9dbd-5f99-432d-8479-49e4602ad915",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "Hold(duration=1,pressPoint=0.1)"
+                },
+                {
+                    "name": "Turn Right",
+                    "type": "Value",
+                    "id": "f02be2c8-d4ef-4e9c-a70d-d46dbf58936a",
+                    "expectedControlType": "Stick",
+                    "processors": "",
+                    "interactions": "Hold(duration=1,pressPoint=0.1)"
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "e23dceb9-a008-411c-83d0-5786d2b7b38c",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "29183ad6-b561-4aca-a1a0-45dd33b0d129",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Turn Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
