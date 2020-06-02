@@ -8,6 +8,7 @@ public class MasterkeyFailScreen : MonoBehaviour
 {
     public Button retry;
 	public Button menu;
+    public Button quit;
     public static string currentLevel = "Level 1";
     public GameObject loadPanel;
     public GameObject Wipe;
@@ -24,6 +25,11 @@ public class MasterkeyFailScreen : MonoBehaviour
             disableButtons();
             Wipe.SetActive(true);
             GetComponent<LoadScene>().LoadLevelFromMenuWithoutWipe("Menu", 3);
+        });
+        quit.onClick.AddListener(() => {
+            disableButtons();
+            Application.Quit();
+            Wipe.SetActive(true);
         });
     }
 

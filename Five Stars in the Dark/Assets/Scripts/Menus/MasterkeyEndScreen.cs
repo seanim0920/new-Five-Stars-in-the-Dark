@@ -8,6 +8,7 @@ public class MasterkeyEndScreen : MonoBehaviour
     public Button retry;
     public Button next;
     public Button menu;
+    public Button quit;
     public static int currentLevelBuildIndex = 1;
     public GameObject loadPanel;
     public GameObject Wipe;
@@ -28,6 +29,11 @@ public class MasterkeyEndScreen : MonoBehaviour
         menu.onClick.AddListener(() => {
             disableButtons();
             GetComponent<LoadScene>().LoadLevelFromMenuWithoutWipe("Menu", 3);
+            Wipe.SetActive(true);
+        });
+        quit.onClick.AddListener(() => {
+            disableButtons();
+            Application.Quit();
             Wipe.SetActive(true);
         });
     }
