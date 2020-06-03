@@ -46,6 +46,9 @@ public class Masterkey : MonoBehaviour
                 button.interactable = true;
             }
 
+            foreach (Image image in mainpanel.GetComponentsInChildren<Image>()) image.enabled = true;
+            StopAllCoroutines(); //so the panel isn't disabled if going back immediately after the transition
+
             menuButtons[lastSelectedPanel].GetComponent<AudioSource>().mute = true;
             wipe.CrossFade("Wipe_Anim_Down", 0.6f);
             mainpanelAnim.CrossFade("PanelIn", 0.6f);
@@ -85,8 +88,11 @@ public class Masterkey : MonoBehaviour
             //changes the selected gameobject to whichever button is tagged "selected" in the currently active screen
             GameObject.FindWithTag("Selected").GetComponent<Button>().enabled = true;
             EventSystem.current.SetSelectedGameObject(GameObject.FindWithTag("Selected"));
+            StartCoroutine(deactivateMainPanelCoroutine());
         }
     }
+
+    ////////////////////////////////////////////////////////////////////////////
     private IEnumerator deactivatePanelsCoroutine()
     {
         yield return new WaitForSeconds(2);
@@ -95,8 +101,9 @@ public class Masterkey : MonoBehaviour
         panelsDeactivated = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator deactivateMainPanelCoroutine()
     {
+        yield return new WaitForSeconds(2);
+        foreach (Image image in mainpanel.GetComponentsInChildren<Image>()) image.enabled = false;
     }
 }
