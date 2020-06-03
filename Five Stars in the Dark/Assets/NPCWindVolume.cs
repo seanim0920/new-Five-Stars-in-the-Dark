@@ -14,7 +14,7 @@ public class NPCWindVolume : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float speedDifference = NPCMovement.getRelativeSpeed(transform.parent.gameObject);
+        float speedDifference = Mathf.Abs(NPCMovement.getRelativeSpeed(transform.parent.gameObject));
         wind.volume = -1/(4*speedDifference+1)+1;
     }
 }

@@ -31,7 +31,7 @@ public class Stoplight : MonoBehaviour
                         npc.GetComponent<NPCMovement>().neutralSpeed = 2;
                         npc.transform.localPosition = transform.GetChild(0).localPosition;
                         npc.transform.Rotate(0, 0, -90);
-                        Destroy(npc, 8);
+                        Destroy(npc, 10);
                         yield return new WaitForSeconds(1f);
                     } else
                     {
