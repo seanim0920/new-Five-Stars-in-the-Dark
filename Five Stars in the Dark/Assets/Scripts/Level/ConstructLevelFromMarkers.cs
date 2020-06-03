@@ -686,7 +686,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("s") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
+        if ((Input.GetKeyDown(KeyCode.Backslash) && Input.GetKeyDown(KeyCode.Comma) && Input.GetKeyDown(KeyCode.T)))
         {
             skipSection = true;
         }

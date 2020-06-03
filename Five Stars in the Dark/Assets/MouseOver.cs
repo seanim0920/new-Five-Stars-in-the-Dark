@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 
 public class MouseOver : MonoBehaviour
 {
-    public AudioSource audio;
+    public AudioSource hoverAudio;
     public Animator anims;
     // Start is called before the first frame update
     void Start()
     {
-        anims = GetComponent<Animator>();
+        //anims = GetComponent<Animator>();
     }
 
     public void OnPointerEnterDelegate()
@@ -23,12 +23,12 @@ public class MouseOver : MonoBehaviour
     public void OnSelectDelegate()
     {
         //anims.CrossFade("MenuButton", 0.3f);
-        audio.Play();
+        hoverAudio.Play();
     }
 
     public void OnDeselectDelegate()
     {
-        audio.mute = false;
+        hoverAudio.mute = false;
         //anims.CrossFade("Start", 0.3f);
     }
 

@@ -19,7 +19,7 @@ public class GenericObstacleFailure : ObstacleFailure
 
     public override void playFailure(Vector3 point)
     {
-        StartCoroutine(PlayError.PlayWarningCoroutine(SceneManager.GetActiveScene().name + "/Failure/GenericCrash"));
+        StartCoroutine(PlayError.PlayWarningCoroutine("GenericCrash"));
         //base.playFailure(point);
     }
 }

@@ -28,7 +28,6 @@ public class PlayerControls : MonoBehaviour
     private float lastRecordedStrafe = 0;
     private int strafingDirection = -1;
 
-    private bool impacted = false;
     private bool coasting = false;
     private bool acceling = false;
     private bool braking = false;
@@ -41,7 +40,7 @@ public class PlayerControls : MonoBehaviour
     public AudioMixerSnapshot shutOffSound;
 
     [Header("Private Attributes (visible for debugging)")]
-    [SerializeField] private float[] snapshotWeights;
+    public float[] snapshotWeights;
 
     private SteeringWheelInput wheelFunctions;
 
@@ -278,10 +277,9 @@ public class PlayerControls : MonoBehaviour
 
     public IEnumerator impactCoroutine(Vector2 force)
     {
-        this.impacted = true;
         this.enabled = false;
         print("diabled controls cause of collision");
-        int maxForce = 40;
+        //int maxForce = 40;
         int totalIterations = 15;
         float maxHDisplacement = (force.x / 20);
         float maxVDisplacement = (Mathf.Pow(Mathf.Abs(force.y), 0.1f) * (force.y > 0 ? 1 : -1) / 2f);
@@ -320,7 +318,6 @@ public class PlayerControls : MonoBehaviour
 
     public IEnumerator shutOff()
     {
-        impacted = false;
         enabled = false;
         StartCoroutine(stopCar());
         for (int i = 0; i < 200; i++)
@@ -345,7 +342,6 @@ public class PlayerControls : MonoBehaviour
 
     private IEnumerator stopCar()
     {
-        impacted = false;
         enabled = false;
         while (movementSpeed > 0.01f)
         {

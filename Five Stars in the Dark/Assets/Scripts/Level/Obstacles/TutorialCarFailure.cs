@@ -38,7 +38,7 @@ public class TutorialCarFailure : ObstacleFailure
         // Play generic crash dialogue for all other crashes
         else
         {
-            StartCoroutine(PlayError.PlayWarningCoroutine(SceneManager.GetActiveScene().name + "/Failure/GenericCrash"));
+            StartCoroutine(PlayError.PlayWarningCoroutine("GenericCrash"));
             Debug.Log(failureDialogues[numDialogue]);
         }
         hasPlayedFailure = true;

@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c04600e97281bd8439a07c59373aa4ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audio: {fileID: 138971775344140171}
+  hoverAudio: {fileID: 138971775344140171}
   anims: {fileID: 0}
 --- !u!114 &6657132800344911837
 MonoBehaviour:

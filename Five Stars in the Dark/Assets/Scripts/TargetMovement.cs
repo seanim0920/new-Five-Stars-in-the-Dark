@@ -13,7 +13,7 @@ public class TargetMovement : MonoBehaviour
     public string sequence = "a.....p....c....r....l....";
     // Start is called before the first frame update
     private enum MoveState { None, Coasting, Ramming, Blocking };
-    private MoveState currentMoveState = MoveState.Coasting;
+    //private MoveState currentMoveState = MoveState.Coasting;
 
     private IEnumerator stopCoroutine;
     private IEnumerator slowCoroutine;
@@ -42,7 +42,7 @@ public class TargetMovement : MonoBehaviour
             warned = true;
 
             //change when we have the proper sfx
-            StartCoroutine(PlayError.PlayWarningCoroutine(SceneManager.GetActiveScene().name + "/Failure/GenericCrash"));//change when we have proper sfx
+            StartCoroutine(PlayError.PlayWarningCoroutine("GenericCrash"));//change when we have proper sfx
         }
         else if (playerPosRelativeToThis.y > 2 && controls.enabled && !ramming)
         {

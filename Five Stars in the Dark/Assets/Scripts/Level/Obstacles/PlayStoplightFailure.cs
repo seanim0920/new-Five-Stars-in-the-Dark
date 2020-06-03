@@ -20,7 +20,7 @@ public class PlayStoplightFailure : ObstacleFailure
     public override void playFailure(Vector3 point)
     {
         GetComponent<NPCMovement>().enabled = false;
-        StartCoroutine(PlayError.PlayWarningCoroutine(SceneManager.GetActiveScene().name + "/Failure/Stoplight"));
+        StartCoroutine(PlayError.PlayWarningCoroutine("Stoplight"));
         //base.playFailure(point);
     }
 }
