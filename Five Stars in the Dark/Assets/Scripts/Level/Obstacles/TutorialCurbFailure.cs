@@ -12,7 +12,7 @@ public class TutorialCurbFailure : ObstacleFailure
     void Start()
     {
         base.Start();
-        failureDialogues = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure/ScriptedCurb");
+        failureDialogues = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Failure/ScriptedCurb");
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class TutorialCurbFailure : ObstacleFailure
         }
         else
         {
-            failureDialogues = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure/GenericCrash");
+            failureDialogues = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Failure/GenericCrash");
 
             System.Random rand = new System.Random();
             numDialogue = rand.Next(0, failureDialogues.Length);

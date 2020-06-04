@@ -34,7 +34,8 @@ public class ScoreStorage : Singleton<ScoreStorage>
 
     public void resetScore()
     {
-        print("resetting score");
+        CountdownTimer.resetTime();
+        TrackErrors.resetErrors();
         progress = 0;
         errors = 0;
         time = 0;

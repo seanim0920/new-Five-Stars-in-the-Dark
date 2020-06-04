@@ -30,6 +30,13 @@ public class TrackErrors : MonoBehaviour
         collisions = 0;
     }
 
+    public static void resetErrors()
+    {
+        //same as Start()
+        errors = 0;
+        collisions = 0;
+    }
+
     //because errors is static, it needs a method to access
     public static float getErrors()
     {

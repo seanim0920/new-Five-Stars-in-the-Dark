@@ -31,6 +31,15 @@ public class CountdownTimer : MonoBehaviour
     {
         return currentTime;
     }
+
+    //because currentTime is static, it needs a method to access
+    public static void resetTime()
+    {
+        //same as Start()
+        isTracking = false;
+        levelCompleteTime = 600.0f;
+        currentTime = levelCompleteTime;
+    }
     public static float decrementTime(float seconds)
     {
         return currentTime + seconds;
