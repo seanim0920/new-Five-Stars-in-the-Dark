@@ -22,14 +22,14 @@ public class PauseButtonMovement : MonoBehaviour
         // Then we check if it has moved to the left.
         if (!anim.IsInTransition(0))
         {
-            if (mouseDelta.y > 75)
+            if (mouseDelta.y > 100)
             {
                 lastTimeMoved = Time.time;
                 anim.CrossFade("PauseUp", 0.6f);
             }
             else
             {
-                if (Time.time - lastTimeMoved > 4.25f)
+                if (Time.time - lastTimeMoved > 4f)
                 {
                     anim.CrossFade("PauseDown", 0.6f);
                 }
