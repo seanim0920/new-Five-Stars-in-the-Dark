@@ -40,7 +40,7 @@ public class DisplayScore : MonoBehaviour
         }
         else
         {
-            progressText.text = "PROGRESS: " + ScoreStorage.Instance.getScoreProgress() + "%";
+            progressText.text = ScoreStorage.Instance.getScoreProgress() + "%";
         }
         //errorText.text = ScoreStorage.Instance.getScoreCollisions() + " MISTAKE" + (ScoreStorage.Instance.getScoreCollisions() != 1 ? "S" : "");
         timeText.text = "TIME: " + ScoreStorage.Instance.getScoreTimeFormatted();
