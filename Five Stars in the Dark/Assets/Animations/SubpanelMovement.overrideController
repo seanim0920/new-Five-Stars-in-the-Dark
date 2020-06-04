@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SubpanelMovement
+  m_Controller: {fileID: 9100000, guid: 8c1192db0993efd4a84646e69e7123f3, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d9896273b6dcdad48a89c7b337f2c8b8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ac6a4ffd5d5e98e4fae8bea25a09d6cd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 81a944e83e696c3418fcade43d5769b8, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0aad6feaa4e12d94f85b9af2252a4ed5, type: 2}

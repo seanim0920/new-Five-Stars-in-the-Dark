@@ -74,6 +74,7 @@ public class Masterkey : MonoBehaviour
             mainpanelAnim.CrossFade("PanelOut", 0.3f);
             StopAllCoroutines(); //so the panel isn't disabled if going back immediately after the transition
             panels[panel].SetActive(true);
+            panels[panel].GetComponent<Animator>().CrossFade("PanelIn", 0.6f);
             lastSelectedPanel = panel;
 
             foreach (Button button in panels[lastSelectedPanel].GetComponentsInChildren<Button>())

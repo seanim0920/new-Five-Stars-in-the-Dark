@@ -58,6 +58,7 @@
 113.528010	114.873129	<D> "This will be great, Isaac!"
 115.542560	117.844902	<D> "Let's go meet Mr. Delmonico inside."
 0.000000	10.373054	Dialogue
+5.373054	10.373054	[RevealScreen]
 10.373054	10.373054	[StartControl]
 12.049760	108.097485	Dialogue
 111.588537	118.720794	Dialogue
