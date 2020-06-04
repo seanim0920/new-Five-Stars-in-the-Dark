@@ -24,7 +24,7 @@ public class MovementShake : MonoBehaviour
         rect.anchoredPosition = modifiedPosition + displacement;
 
         modifiedPosition.x = controls.getStrafeAmount() * 150;
-        modifiedPosition.y = originalPosition.y + 200*(controls.movementSpeed / controls.maxSpeed);
-        rect.localScale = new Vector3(1.0f + (controls.movementSpeed / controls.maxSpeed / 3), 1.0f + (controls.movementSpeed / controls.maxSpeed / 3), 1);
+        modifiedPosition.y = originalPosition.y + 125*(controls.movementSpeed / controls.maxSpeed);
+        rect.localScale = new Vector3(1.0f + (controls.movementSpeed / controls.maxSpeed / 2.25f), 1.0f + (controls.movementSpeed / controls.maxSpeed / 2.25f), 1);
     }
 }

@@ -249,7 +249,7 @@ public class PlayerControls : MonoBehaviour
         {
             child.gameObject.GetComponent<AudioSource>().panStereo = amount * 3;
         }
-        ConstructLevelFromMarkers.levelDialogue.panStereo = -amount * 2.5f;
+        ConstructLevelFromMarkers.levelDialogue.panStereo = -amount * 1.5f;
         strafeSound.panStereo = amount * 2.5f;
     }
 

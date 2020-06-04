@@ -10,7 +10,7 @@ public class TutorialCarFailure : ObstacleFailure
     protected override void Start()
     {
         base.Start();
-        failureDialogues = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure/ScriptedCrash");
+        failureDialogues = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Failure/ScriptedCrash");
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class TutorialCarFailure : ObstacleFailure
         // Play scripted dialogue for crashes 1, 2, and last
         if (TrackErrors.getErrors() < 2 || TrackErrors.getErrors() > 7)
         {
-            failureDialogues = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure/ScriptedCrash");
+            failureDialogues = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Failure/ScriptedCrash");
             if (TrackErrors.getErrors() < failureDialogues.Length)
             {
                 StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[TrackErrors.getCollisions()]));

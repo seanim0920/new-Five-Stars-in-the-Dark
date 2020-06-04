@@ -20,6 +20,12 @@ public class MouseOver : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(gameObject);
     }
 
+    public void OnPointerExitDelegate()
+    {
+        if (GetComponent<Selectable>().interactable)
+            EventSystem.current.SetSelectedGameObject(null);
+    }
+
     public void OnSelectDelegate()
     {
         //anims.CrossFade("MenuButton", 0.3f);

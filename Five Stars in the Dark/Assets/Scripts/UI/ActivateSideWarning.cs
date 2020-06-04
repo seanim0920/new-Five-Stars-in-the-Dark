@@ -12,7 +12,7 @@ public class ActivateSideWarning : MonoBehaviour
     private GameObject left;
     private GameObject right;
 
-    private float maxDistance = 17;
+    private float maxDistance = 9;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,11 +31,11 @@ public class ActivateSideWarning : MonoBehaviour
             if(leftEarBack.collider != null && leftEarBack.collider.gameObject.tag != "Zone" ||
             leftEarFront.collider != null && leftEarFront.collider.gameObject.tag != "Zone")
             {
-                left.GetComponent<Image>().sprite = on;
+                left.SetActive(true);
             }
             else
             {
-                left.GetComponent<Image>().sprite = off;
+                left.SetActive(false);
             }
         }
 
@@ -46,11 +46,11 @@ public class ActivateSideWarning : MonoBehaviour
             if(rightEarBack.collider != null && rightEarBack.collider.gameObject.tag != "Zone" ||
             rightEarFront.collider != null && rightEarFront.collider.gameObject.tag != "Zone")
             {
-                right.GetComponent<Image>().sprite = on;
+                right.SetActive(true);
             }
             else
             {
-                right.GetComponent<Image>().sprite = off;
+                right.SetActive(false);
             }
         }
     }
