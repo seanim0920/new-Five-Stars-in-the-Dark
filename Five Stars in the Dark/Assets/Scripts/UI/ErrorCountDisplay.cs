@@ -15,6 +15,6 @@ public class ErrorCountDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        errorText.text = "Errors: " + TrackErrors.getErrors().ToString();
+        errorText.text = ScoreStorage.Instance.getScoreCollisions().ToString();
     }
 }
