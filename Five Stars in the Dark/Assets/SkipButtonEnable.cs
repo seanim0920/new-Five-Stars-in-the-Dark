@@ -7,8 +7,6 @@ using UnityEngine.UI;
 public class SkipButtonEnable : MonoBehaviour
 {
     GameObject level;
-    Vector3 lastMouseCoordinate = Vector3.zero;
-    float lastTimeMoved = 3;
     Animator anim;
     Text text;
     // Start is called before the first frame update
@@ -17,6 +15,9 @@ public class SkipButtonEnable : MonoBehaviour
         level = GameObject.Find("LevelConstructor");
         anim = GetComponent<Animator>();
         text = GetComponentInChildren<Text>();
+        GetComponent<Button>().onClick.AddListener(() => {
+            StartCoroutine(level.GetComponent<SkipCutscenes>().skipIntroCoroutine());
+        });
 
         if (PlaythroughManager.hasPlayedLevel(PlaythroughManager.currentLevelIndex))
         {
@@ -26,6 +27,8 @@ public class SkipButtonEnable : MonoBehaviour
         {
             gameObject.SetActive(false);
         }
+
+        
     }
 
     // Update is called once per frame

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PauseButtonMovement : MonoBehaviour
 {
     Vector3 lastMouseCoordinate = Vector3.zero;
-    float lastTimeMoved = 3;
+    float lastTimeMoved = 2;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -22,14 +22,14 @@ public class PauseButtonMovement : MonoBehaviour
         // Then we check if it has moved to the left.
         if (!anim.IsInTransition(0))
         {
-            if (mouseDelta.y > 100)
+            if (mouseDelta.y > 75)
             {
                 lastTimeMoved = Time.time;
                 anim.CrossFade("PauseUp", 0.6f);
             }
             else
             {
-                if (Time.time - lastTimeMoved > 4.5f)
+                if (Time.time - lastTimeMoved > 4.25f)
                 {
                     anim.CrossFade("PauseDown", 0.6f);
                 }
