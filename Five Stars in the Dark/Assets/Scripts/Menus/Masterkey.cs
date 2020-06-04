@@ -19,7 +19,10 @@ public class Masterkey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        menuButtons[lastSelectedPanel].GetComponent<AudioSource>().mute = true;
+        foreach (AudioSource audio in mainpanel.GetComponentsInChildren<AudioSource>())
+        {
+            audio.mute = true;
+        }
         EventSystem.current.SetSelectedGameObject(menuButtons[lastSelectedPanel]);
         StartCoroutine(deactivatePanelsCoroutine());
         preventSpamClick = false;
@@ -99,7 +102,10 @@ public class Masterkey : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         foreach (GameObject panel in panels) panel.SetActive(false);
-        menuButtons[lastSelectedPanel].GetComponent<AudioSource>().mute = false;
+        foreach (AudioSource audio in mainpanel.GetComponentsInChildren<AudioSource>())
+        {
+            audio.mute = false;
+        }
         panelsDeactivated = true;
     }
 

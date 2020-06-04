@@ -6,6 +6,9 @@
 80.923647	80.923647	[ConstructMap]
 158.015497	188.964776	Dialogue
 158.738986	158.738986	[EndControl]
+184.55	184.55	[HideScreen]
+34	34	RevealTableaux 0
+77	77	RevealTableaux 1
 78.977241	78.326245	IncomingCar player
 81.138023	85.559349	SlowCar aheadOf player
 82.531411	86.952736	SlowCar aheadOf Lane2
