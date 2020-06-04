@@ -55,6 +55,7 @@ public class Masterkey : MonoBehaviour
             if (GameObject.FindWithTag("Selected"))
                 GameObject.FindWithTag("Selected").GetComponent<Button>().enabled = false;
             EventSystem.current.SetSelectedGameObject(menuButtons[lastSelectedPanel]);
+            panels[lastSelectedPanel].GetComponent<Animator>().CrossFade("PanelOut", 0.6f);
             StartCoroutine(deactivatePanelsCoroutine());
         }
     }
