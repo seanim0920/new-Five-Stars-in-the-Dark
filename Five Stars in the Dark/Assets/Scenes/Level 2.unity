@@ -987,16 +987,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 412440413062414628, guid: cec60119a7a8c704ea21138b08c6c077,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 9799340d2304a00469a8f6ba724192df, type: 3}
     - target: {fileID: 911866134229633682, guid: cec60119a7a8c704ea21138b08c6c077,
         type: 3}
       propertyPath: textToDisable
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 412440413062414628, guid: cec60119a7a8c704ea21138b08c6c077,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9799340d2304a00469a8f6ba724192df, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cec60119a7a8c704ea21138b08c6c077, type: 3}
 --- !u!82 &1331929706 stripped
@@ -1214,20 +1214,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -37.50003
       objectReference: {fileID: 0}
-    - target: {fileID: 5074218850899765269, guid: 0737ab1198c13c74695686fd9e987b22,
-        type: 3}
-      propertyPath: controls
-      value: 
-      objectReference: {fileID: 1199343824}
-    - target: {fileID: 1798619071, guid: 0737ab1198c13c74695686fd9e987b22, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4078468103803472900, guid: 0737ab1198c13c74695686fd9e987b22,
-        type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 988350412001303838, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Target
@@ -1236,7 +1222,7 @@ PrefabInstance:
     - target: {fileID: 988350412001303838, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: enableControllers
+      value: setControls
       objectReference: {fileID: 0}
     - target: {fileID: 988350412001303838, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
@@ -1251,7 +1237,7 @@ PrefabInstance:
     - target: {fileID: 988350413333995918, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: enableControllers
+      value: setControls
       objectReference: {fileID: 0}
     - target: {fileID: 988350413333995918, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
@@ -1266,12 +1252,26 @@ PrefabInstance:
     - target: {fileID: 988350413640981683, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: enableControllers
+      value: setControls
       objectReference: {fileID: 0}
     - target: {fileID: 988350413640981683, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074218850899765269, guid: 0737ab1198c13c74695686fd9e987b22,
+        type: 3}
+      propertyPath: controls
+      value: 
+      objectReference: {fileID: 1199343824}
+    - target: {fileID: 1798619071, guid: 0737ab1198c13c74695686fd9e987b22, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4078468103803472900, guid: 0737ab1198c13c74695686fd9e987b22,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0737ab1198c13c74695686fd9e987b22, type: 3}

@@ -692,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 988350412001303838, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: enableControllers
+      value: setControls
       objectReference: {fileID: 0}
     - target: {fileID: 988350412001303838, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
@@ -707,7 +707,7 @@ PrefabInstance:
     - target: {fileID: 988350413333995918, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: enableControllers
+      value: setControls
       objectReference: {fileID: 0}
     - target: {fileID: 988350413333995918, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
@@ -722,7 +722,7 @@ PrefabInstance:
     - target: {fileID: 988350413640981683, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
-      value: enableControllers
+      value: setControls
       objectReference: {fileID: 0}
     - target: {fileID: 988350413640981683, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
