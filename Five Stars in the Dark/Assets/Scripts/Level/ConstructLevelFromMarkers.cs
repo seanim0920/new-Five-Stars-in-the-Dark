@@ -254,6 +254,13 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 keyboard.enabled = true;
             }
         }
+
+        // This is so that the play can't hear the wheel lockin + etc. after
+        // changing controls while the black screnn is still up
+        if(blackScreen.enabled)
+        {
+            disableControllers();
+        }
     }
 
     void disableControllers()
