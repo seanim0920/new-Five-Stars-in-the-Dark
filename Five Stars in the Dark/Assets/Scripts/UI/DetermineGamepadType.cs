@@ -9,7 +9,7 @@ public class DetermineGamepadType : MonoBehaviour
     private GameObject PS4;
     [SerializeField]
     private GameObject Xbox;
-    public void DisplayType(bool isActive)
+    void OnEnable()
     {
         // Check if gamepad controls are enabled
         if(SettingsManager.toggles[2])
@@ -18,14 +18,14 @@ public class DetermineGamepadType : MonoBehaviour
             if(Gamepad.current.name.Contains("DualShock"))
             {
                 // Display PS4 controller
-                PS4.SetActive(isActive);
-                Xbox.SetActive(!isActive);
+                PS4.SetActive(true);
+                Xbox.SetActive(false);
             }
             else
             {
                 // Display Xbox controller
-                Xbox.SetActive(isActive);
-                PS4.SetActive(!isActive);
+                Xbox.SetActive(true);
+                PS4.SetActive(false);
             }
         }
     }

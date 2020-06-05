@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 // This class keeps track of the settings throughout each scene
@@ -23,6 +24,13 @@ public static class SettingsManager
         {
             toggles[1] = false;
         }
+
+        string stringToggles = "";
+        foreach (bool toggle in toggles)
+        {
+            stringToggles += (toggle) ? "toggled; " : "not toggled; ";
+        }
+        Debug.Log(stringToggles);
         // Otherwise only keyboard controls are
         // toggled and we don't need to do anything
     }
