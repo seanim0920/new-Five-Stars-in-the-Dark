@@ -629,7 +629,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     {
         if(!PlaythroughManager.hasPlayedLevel(SceneManager.GetActiveScene().buildIndex))
         {
-            PlaythroughManager.playedLevels.Add(SceneManager.GetActiveScene().buildIndex);
+            PlaythroughManager.saveLevelHistory(SceneManager.GetActiveScene().buildIndex);
         }
         if(skipText != null)
         {
