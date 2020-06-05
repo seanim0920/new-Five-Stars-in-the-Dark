@@ -7,9 +7,11 @@ public class PlayError : MonoBehaviour
 {
     public static AudioSource source;
     public static bool playingHurtSound = false;
+    private static subtitleText subScript;
     // Start is called before the first frame update
     void Start()
     {
+        subScript = GameObject.Find("SubtitleText").GetComponent<subtitleText>();
         playingHurtSound = false;
         source = GetComponent<AudioSource>();
     }
@@ -39,7 +41,6 @@ public class PlayError : MonoBehaviour
         bool wasPlaying = dialogue.isPlaying;
         int currentTimePosition = CalculatePauseTime(dialogue, passengerHurtSound);
 
-        //cutsceneScript.levelDialogue.time = cutsceneScript.currentDialogueStartTime;
         //wait for... idk 3 seconds?
         yield return new WaitForSeconds(passengerHurtSound.length + 1f);  //note: should play an "oof" first before the angry passenger dialogue
         //resume dialogue
@@ -58,7 +59,6 @@ public class PlayError : MonoBehaviour
         bool wasPlaying = dialogue.isPlaying;
         int currentTimePosition = CalculatePauseTime(dialogue, passengerHurtSound);
 
-        //cutsceneScript.levelDialogue.time = cutsceneScript.currentDialogueStartTime;
         //wait for... idk 3 seconds?
         yield return new WaitForSeconds(passengerHurtSound.length + 1f);  //note: should play an "oof" first before the angry passenger dialogue
         //resume dialogue
@@ -71,6 +71,9 @@ public class PlayError : MonoBehaviour
 
     private static int CalculatePauseTime(AudioSource dialogue, AudioClip passengerHurtSound)
     {
+        //for oofs, just use a random set of subs
+        StartCoroutine(subtitleText.changeSubtitleCoroutine("oof", passengerHurtSound.length));
+
         source.clip = passengerHurtSound;
         source.Play();
 

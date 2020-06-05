@@ -6,36 +6,50 @@ public class subtitleText : MonoBehaviour
 {
     private static Text subText;
     private bool italics = false;
+    private static bool oride = false;
     // Start is called before the first frame update
     void Start()
     {
         ConstructLevelFromMarkers.subtitleMessage = "";
         subText = GetComponent<Text>();
+        oride = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(SettingsManager.toggles[3])
+        if (!oride)
         {
-            if(!subText.enabled)
+            if (SettingsManager.toggles[3])
             {
-                subText.enabled = true;
+                if (!subText.enabled)
+                {
+                    subText.enabled = true;
+                }
+                if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage))
+                {
+                    subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
+                    subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
+                }
+                if (!ConstructLevelFromMarkers.levelDialogue.isPlaying)
+                {
+                    subText.text = "";
+                }
             }
-            if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage))
+            else
             {
-                subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
-                subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
-            }
-            if (!ConstructLevelFromMarkers.levelDialogue.isPlaying)
-            {
-                subText.text = "";
+                subText.enabled = false;
             }
         }
-        else
-        {
-            subText.enabled = false;
-        }
+    }
+
+    public static IEnumerator changeSubtitleCoroutine(string data, float duration)
+    {
+        oride = true;
+        subText.text = data;
+        yield return new WaitForSeconds(duration);
+        subText.text = "";
+        oride = false;
     }
 
     string matchColorandTrimQuotes(string message)
