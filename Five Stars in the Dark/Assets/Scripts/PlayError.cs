@@ -72,7 +72,7 @@ public class PlayError : MonoBehaviour
     private static int CalculatePauseTime(AudioSource dialogue, AudioClip passengerHurtSound)
     {
         //for oofs, just use a random set of subs
-        StartCoroutine(subtitleText.changeSubtitleCoroutine("oof", passengerHurtSound.length));
+        //StartCoroutine(subtitleText.changeSubtitleCoroutine("oof", passengerHurtSound.length));
 
         source.clip = passengerHurtSound;
         source.Play();
