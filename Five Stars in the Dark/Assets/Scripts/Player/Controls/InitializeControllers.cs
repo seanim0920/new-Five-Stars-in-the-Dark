@@ -10,10 +10,21 @@ public class InitializeControllers : MonoBehaviour
     [SerializeField] private Toggle keyboard;
     [SerializeField] private Toggle gamepad;
     private string warning;
+    private static bool controlsInitialized = false;
     // Start is called before the first frame update
     void OnEnable()
     {
-        SettingsManager.setToggles();
+        if(!controlsInitialized)
+        {
+            SettingsManager.setToggles();
+            controlsInitialized = true;
+        }
+
+        if(controlsInitialized)
+        {
+            Debug.Log("Controllers have been initialized");
+        }
+
         if (SettingsManager.toggles[0])
         {
             // Toggle Steering Wheel Controls

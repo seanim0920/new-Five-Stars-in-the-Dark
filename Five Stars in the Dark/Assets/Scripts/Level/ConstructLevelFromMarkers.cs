@@ -205,6 +205,14 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         StartCoroutine(playLevel());
     }
 
+    public void setControls()
+    {
+        if(!blackScreen.enabled)
+        {
+            enableControllers();
+        }
+    }
+
     public void enableControllers()
     {
         if (SettingsManager.toggles[0])
