@@ -1,0 +1,8 @@
+0.856596	2.897447	<WI> "We sat on the hood of my car."
+3.267234	5.879149	<WI> "I reached for the eclipse glasses I packed."
+6.454894	8.640851	<WI> "'I swear I packed two pairs.'"
+8.949787	10.321277	<WI> "'That's okay, take them.'"
+10.868936	13.771064	<WI> "'I'll be fine, I'll just squint.'"
+14.318723	16.968085	<WI> "As the celestial bodies moved into place,"
+17.380000	20.076170	<WI> "the moon gave off a huge burst of light;"
+20.076170	22.018723	<WI> "like nothin' I'd ever seen."

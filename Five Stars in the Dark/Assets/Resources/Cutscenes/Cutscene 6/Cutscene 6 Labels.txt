@@ -1,0 +1,8 @@
+0.290000	1.950000	<WI> "Two weeks, later,"
+1.950000	4.000000	<WI> "I got a strange letter in the mail." 
+4.290000	7.290000	<WI> "'Want to go back to the way it was?' it read."
+7.920000	10.700000	<WI> "Inside was a pair of blackout sunglasses"
+10.700000	13.860000	<WI> "and instructions to sign up for a rideshare service."
+14.480000	16.360000	<WI> "It feels like a dream,"
+17.250000	19.270000	<WI> "but after so long..."
+19.980000	22.510000	<WI> "I finally had hope..."

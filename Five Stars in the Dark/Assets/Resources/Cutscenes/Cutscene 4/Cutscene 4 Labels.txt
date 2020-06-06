@@ -1,0 +1,3 @@
+0.540435	1.984783	<WI> "On my way home,"
+2.109130	3.735217	<WI> "I killed eight more."
+3.888261	5.533478	<WI> "Just my lookin' at them..."

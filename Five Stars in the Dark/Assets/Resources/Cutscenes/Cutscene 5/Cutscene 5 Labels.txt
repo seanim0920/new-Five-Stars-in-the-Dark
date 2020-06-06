@@ -1,0 +1,8 @@
+0.818462	2.087912	<WI> "When I got home,"
+2.087912	3.908571	<WI> "I boarded up my windows."
+4.334505	6.973626	<WI> "I stayed in my room for weeks."
+7.825495	9.880000	<WI> "Matias was all I had."
+10.406154	12.836484	<WI> "My life had been reduced to nothin'."
+13.755165	15.408791	<WI> "I quit my job."
+15.726154	17.463297	<WI> "I called no one else,"
+17.463297	19.050110	<WI> "Not even the cops."

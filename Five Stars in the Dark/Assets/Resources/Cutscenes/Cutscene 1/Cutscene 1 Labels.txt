@@ -1,0 +1,6 @@
+0.000000	1.777321	<WI> "March 15th."
+1.777321	3.245675	<WI> "The day of the eclipse."
+3.833017	6.387342	<WI> "Today I would propose to Matias."
+7.210232	9.504536	<WI> "I drove us out to our favorite spot,"
+9.932806	12.517722	<WI> "a turnout on a long stretch of desert highway"
+12.517722	14.515295	<WI> "with a big fuzzy cactus."
