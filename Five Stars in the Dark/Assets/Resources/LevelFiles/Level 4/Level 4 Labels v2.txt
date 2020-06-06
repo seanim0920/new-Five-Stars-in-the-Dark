@@ -153,6 +153,7 @@
 329.858887	330.996730	<Y> "We'll just hop in yours!"
 331.467868	332.659048	<Y> "Nice shades, by the way."
 0.000000	59.274505	Dialogue
+13.236311	13.236311	[RevealScreen]
 59.772311	59.772311	[StartControl]
 69.977340	128.007330	Dialogue
 130.567476	160.009162	Dialogue
