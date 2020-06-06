@@ -24,19 +24,16 @@ public class PoliceMovementDefault : MonoBehaviour
     void Start()
     {
         moveFunctions = GetComponent<NPCMovement>();
-        Debug.Log("Spawned a Police Car");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("State: " + currentMoveState);
-        Debug.Log("Speed: " + moveFunctions.movementSpeed);
         // Determine which state to be in
         if(!seesPlayer)
         {
             direction = transform.up;
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 80);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 120);
             if(hit.collider != null)
             {
                 obstacle = hit.collider.gameObject;
@@ -82,7 +79,6 @@ public class PoliceMovementDefault : MonoBehaviour
             {
                 if(!coroutineRunning)
                 {
-                    Debug.Log("Beginning blockPlayer");
                     StartCoroutine(blockPlayer(obstacle, direction));
                 }
             }
@@ -95,7 +91,6 @@ public class PoliceMovementDefault : MonoBehaviour
             {
                 if(!coroutineRunning)
                 {
-                    Debug.Log("Beginning warnPlayer");
                     StartCoroutine(warnPlayer(obstacle));
                 }
             }
@@ -121,7 +116,6 @@ public class PoliceMovementDefault : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
-        // Debug.Log("I c u");
         StartCoroutine(moveFunctions.SwitchLaneRight(direction == transform.right, 0.5f));
         drift.Play();
         currentMoveState = MoveState.Coasting;
@@ -130,26 +124,31 @@ public class PoliceMovementDefault : MonoBehaviour
     IEnumerator warnPlayer(GameObject player)
     {
         coroutineRunning = true;
-        print("waiting for player to give way");
         float startTime = Time.time;
         Vector3 posRelativeToPlayer = player.transform.InverseTransformPoint(transform.position);
 
         // Stalk the player for a second
         float originalSpeed = moveFunctions.movementSpeed;
-        Debug.Log("Warn player speed: " + moveFunctions.movementSpeed);
-        Debug.Log("Stalking player");
-        if(posRelativeToPlayer.x < transform.position.x + 5 && 
-           posRelativeToPlayer.x > transform.position.x - 5)
+        if(posRelativeToPlayer.x < 5 && 
+           posRelativeToPlayer.x > -5)
         {
             moveFunctions.movementSpeed = player.GetComponent<PlayerControls>().movementSpeed;
             yield return new WaitForSeconds(1f);
         }
+        else
+        {
+            Debug.Log("Saw the player, but not really");
+        }
 
         // If they ain't givin' way, tell em to pull over, duh
-        if(posRelativeToPlayer.x < transform.position.x + 5 && 
-              posRelativeToPlayer.x > transform.position.x - 5)
+        if(posRelativeToPlayer.x < 5 && 
+              posRelativeToPlayer.x > -5)
         {
             pullOver.Play();
+        }
+        else
+        {
+            Debug.Log("Player moved out of the way");
         }
 
         if(pullOver.isPlaying)
@@ -159,11 +158,9 @@ public class PoliceMovementDefault : MonoBehaviour
                 moveFunctions.movementSpeed = player.GetComponent<PlayerControls>().movementSpeed;
                 yield return new WaitForFixedUpdate();
             }
-            Debug.Log("Finished waiting for player to pull over");
             yield return new WaitForSeconds(1f);
         }
 
-        Debug.Log("Gotta go fast");
         // However the player breaks out of that loop, be on your merry way
         moveFunctions.movementSpeed = originalSpeed;
         currentMoveState = MoveState.Coasting;
