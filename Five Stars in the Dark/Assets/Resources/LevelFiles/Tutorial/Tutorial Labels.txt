@@ -1,0 +1,72 @@
+0.418915	2.491441	<W> "Isaac: Matias? Matias!"
+2.535537	5.368724	<W> "Oh my god, we'll get you to a hospital!"
+5.964024	7.286913	<W> "[passenger door opens]"
+7.375105	9.216126	<Y> "[Matias groans]"
+9.216126	10.649255	<W> "[door slams]"
+10.649255	13.041479	<W> "Help! Somebody, help!"
+13.041479	14.772259	<W> "I need an ambulance!"
+14.772259	15.731353	<W> "Please!"
+15.731353	17.914120	<W> "[explosion]"
+17.914120	20.306344	<W> "[people scream]"
+20.306344	21.915859	<W> "[explosion]"
+21.915859	24.252962	<W> "What in Sam Hill is goin' on here?"
+24.572661	26.193199	<W> "I could drive, but..."
+26.193199	28.861025	<W> "Ugh, my eyes are burning."
+28.861025	31.043792	<W> "There's gotta be someone who can help."
+31.672164	35.784144	<Y> "[Matias coughs, gasps]"
+35.784144	37.536971	<W> "[Isaac groans indecisively]
+37.536971	41.395397	<W> "[explosions]"
+41.505638	47.370445	<Y> "[Matias continues gasping]"
+47.370445	48.968936	<W> "Ugh, dang it!"
+48.968936	50.148512	<W> "We gotta go!"
+50.148512	52.772241	<W> "[car door opens, slams]"
+53.257301	54.381756	<W> "[engine starts]"
+73.056537	80.519835	<W> "[explosions, glass shattering]"
+80.971822	82.349832	<W> "Calm down, Isaac."
+82.349832	83.738865	<W> "Like the radio said,"
+83.738865	85.392476	<W> "no reason to panic."
+85.392476	87.564218	<W> "You've done this a thousand times before."
+87.564218	90.397405	<W> "[sobs] Remember what he taught you in driver's ed."
+159.518348	161.932621	<> "Shoot, shoot, SHOOT!"
+163.134245	164.192556	<W> "Oh no!"
+164.269724	166.551707	<W> "[car door opens, slams]"
+166.551707	167.676163	<W> "[passenger door opens]"
+167.676163	169.495135	<W> "Matias, c'mon bud."
+169.495135	170.807000	<W> "We have to get out of here."
+170.807000	171.942480	<Y> "[Matias gasps]"
+171.942480	174.389824	<W> "Don't worry, we'll get you someplace safe!"
+174.389824	178.138009	<Y> "[weakly] Go, Isaac."
+178.138009	179.516018	<W> "I'm not leavin' you here!"
+179.516018	183.771311	<Y> "[gasping] Go on."
+183.771311	185.446970	<W> "You're gonna be fine, alright?"
+185.446970	186.527329	<W> "I'm here."
+186.527329	187.387207	<W> "I won't let you die --"
+187.387207	188.820337	<W> "I promise!"
+188.930577	189.944792	<Y> "I..."
+189.944792	190.837742	<W> "[explosion]"
+190.837742	194.122916	<W> "NOOOOO!!!"
+194.122916	198.697907	<W>"[fire crackles]"
+198.697907	200.748385	<WI> "This was all my fault..."
+201.288564	203.471331	<WI> "I shouldn't have brought you here."
+203.471331	205.973796	<WI> "I wish I could make it up to you."
+207.043131	209.016440	<W> "I'm sorry..."
+0.000000	0.000000	[HideScreen]
+0.418915	53.147060	Dialogue
+51.724954	51.724954	[RevealScreen]
+53.257301	53.257301	[StartCar]
+72.891176	90.397405	Dialogue
+93.440050	93.440050	[ConstructMap]
+159.154554	159.154554	[EndControl]
+159.297867	209.038488	Dialogue
+58.085845	58.085845	RevealTableaux 0
+91.993626	91.993626	RevealTableaux 1
+92.176248	92.525252	IncomingCar player
+93.959021	98.380347	SlowCar aheadOf player
+95.352409	99.773734	SlowCar aheadOf Lane2
+96.933368	101.247509	SlowCar aheadOf player
+101.542265	101.542265	IncomingCar player
+101.676244	101.676244	IncomingCar player
+101.810224	101.810224	IncomingCar Lane1
+102.051387	102.051387	IncomingCar Lane3
+102.694489	107.035427	SlowCar aheadOf Lane1, SlowCar aheadOf Lane3
+103.498366	107.973284	SlowCar aheadOf Lane2
