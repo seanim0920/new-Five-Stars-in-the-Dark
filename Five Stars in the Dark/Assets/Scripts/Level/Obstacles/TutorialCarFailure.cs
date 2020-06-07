@@ -21,17 +21,17 @@ public class TutorialCarFailure : ObstacleFailure
 
     public override void playFailure(Vector3 point)
     {
-        // Play scripted dialogue for crashes 1, 2, and last
-        if (TrackErrors.getErrors() < 2 || TrackErrors.getErrors() > 7)
+        // Play scripted dialogue for crashes 1, 2, 3, and last
+        if (TrackErrors.getCollisions() < 5)
         {
             failureDialogues = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Failure/ScriptedCrash");
-            if (TrackErrors.getErrors() < failureDialogues.Length)
+            if (TrackErrors.getCollisions() < failureDialogues.Length)
             {
-                StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[TrackErrors.getCollisions()]));
+                StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[TrackErrors.getCollisions() - 1]));
             }
             else
             {
-                StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[0]));
+                StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[failureDialogues.Length - 1]));
             }
 
         }

@@ -329,9 +329,12 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 currentDialogueEndTime = dialogueMarkers[0].despawnTime;
 
                 //start playing the dialogue from wherever it left off
+                Debug.Log("Is this what gets called after the tableaux?");
+                // Debug.Break();
                 levelDialogue.time = currentDialogueStartTime;
                 levelDialogue.Play();
                 isSpeaking = true;
+                Debug.Log("Setting speaking to true" + isSpeaking);
 
                 if (dialogueMarkers.Count > 1)
                 {
@@ -377,6 +380,15 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     print("target car finished, playing current dialogue at " + dialogueMarkers.Count);
                     levelDialogue.Play();
                 }
+                else
+                {
+                    while (PlayError.playingHurtSound == true)
+                    {
+                        yield return new WaitForSeconds(0);
+                    }
+                    print("This part gets run after activating the guardrail tableaux in tutorial " + dialogueMarkers.Count);
+                    levelDialogue.Play();
+                }
             }
 
             //check list of markers to see if the next command is due
@@ -413,11 +425,15 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     }
                     else if (string.Equals(command, "[EndControl]"))
                     {
+                        Debug.Log("dialogue time: " + levelDialogue.time);
+                        Debug.Log("end control time: " + commandMarker.spawnTime);
                         print("ending player control");
+                        // Debug.Break();
                         StartCoroutine(parkCar());
                     }
                     else if (string.Equals(command, "[ConstructMap]"))
                     {
+                        // Debug.Break();
                         StartCoroutine(ConstructMap(1));
                     }
                     commandMarkers.RemoveAt(0);
@@ -464,6 +480,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     }
 
                     spawnedObstacles.Remove(obj);
+                    // Debug.Break();
                     break;
                 }
                 //obstacles can spawn prematurely, but not despawn prematurely

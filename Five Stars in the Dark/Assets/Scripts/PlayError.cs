@@ -46,7 +46,7 @@ public class PlayError : MonoBehaviour
         //resume dialogue
         playingHurtSound = false;
         dialogue.timeSamples = currentTimePosition;
-        if (wasPlaying)
+        // if (wasPlaying)
             dialogue.Play();
         Debug.Log("Resuming Dialogue");
     }

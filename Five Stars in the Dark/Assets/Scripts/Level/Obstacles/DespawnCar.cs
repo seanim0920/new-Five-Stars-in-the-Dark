@@ -45,7 +45,7 @@ public class DespawnCar : MonoBehaviour
         // exitQuaternion.eulerAngles = exitRotation;
         transform.eulerAngles = exitRotation;
         yield return new WaitForSeconds(3f);
-        transform.tag = "Car";
-        // Destroy(gameObject);
+        // transform.tag = "Car";
+        Destroy(gameObject, 8f);
     }
 }

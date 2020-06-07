@@ -26,11 +26,36 @@ public class subtitleText : MonoBehaviour
                 {
                     subText.enabled = true;
                 }
-                if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage))
+                if(ConstructLevelFromMarkers.subtitleMessage.Length > 0)
                 {
-                    subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
-                    subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
+                    if (char.ToLower(ConstructLevelFromMarkers.subtitleMessage[2]) == 'i')
+                    {
+                        if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage.Substring(5).Trim('"')))
+                        {
+                            
+                            // Debug.Break();
+                            subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
+                            subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
+                            Debug.Log("subtitle time: " + ConstructLevelFromMarkers.levelDialogue.time);
+                            // Debug.Log("subText: " + subText.text);
+                            // Debug.Log("markers text: " + ConstructLevelFromMarkers.subtitleMessage.Substring(5).Trim('"'));
+                        }
+                    }
+                    else
+                    {
+                        if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage.Substring(4).Trim('"')))
+                        {
+                            
+                            // Debug.Break();
+                            subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
+                            subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
+                            Debug.Log("subtitle time: " + ConstructLevelFromMarkers.levelDialogue.time);
+                            // Debug.Log("subText: " + subText.text);
+                            // Debug.Log("markers text: " + ConstructLevelFromMarkers.subtitleMessage.Substring(4).Trim('"'));
+                        }
+                    }
                 }
+                
                 if (!ConstructLevelFromMarkers.levelDialogue.isPlaying)
                 {
                     subText.text = "";
