@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class PlaythroughManager
 {
@@ -42,6 +43,19 @@ public static class PlaythroughManager
         playedLevels = tempList;
         Debug.Log("Played this level? " + (playedLevels.Contains(levelBuildIndex) ? "y" : "n"));
         return playedLevels.Contains(levelBuildIndex);
+    }
+
+    public static bool hasPlayedLevel(string sceneName)
+    {
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            var scene = SceneManager.GetSceneByBuildIndex(i);
+            string testedScreen = scene.name;
+            //print("sceneIndexFromName: i: " + i + " sceneName = " + testedScreen);
+            if (testedScreen == sceneName)
+                return hasPlayedLevel(i);
+        }
+        return false;
     }
 
     // Check if player hasPlayedLevel before saving level history

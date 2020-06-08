@@ -38,7 +38,7 @@ public class CheckLosing : MonoBehaviour
         ConstructLevelFromMarkers.levelDialogue.volume = 0;
         yield return new WaitForSeconds(4);
         //pick a random soundsource from the set of failure dialogues for this level.
-        AudioClip[] failClips = Resources.LoadAll<AudioClip>(SceneManager.GetActiveScene().name + "/Failure");
+        AudioClip[] failClips = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Failure");
         if (failClips.Length > 0)
         {
             soundSource.clip = failClips[Random.Range(0, failClips.Length)];
