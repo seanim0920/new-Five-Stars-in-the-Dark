@@ -665,7 +665,11 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
     IEnumerator startCar()
     {
-        if(skipText != null)
+        if (!PlaythroughManager.hasPlayedLevel(SceneManager.GetActiveScene().buildIndex))
+        {
+            PlaythroughManager.saveLevelHistory(SceneManager.GetActiveScene().buildIndex);
+        }
+        if (skipText != null)
         {
             skipText.GetComponent<Text>().enabled = false;
         }

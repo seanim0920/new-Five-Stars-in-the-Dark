@@ -7,7 +7,7 @@ public class ShowIfGameComplete : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (!PlaythroughManager.hasPlayedLevel("Level 5"))
+        if (!PlaythroughManager.hasPlayedLevel("Credits"))
         {
             gameObject.SetActive(false);
         }
