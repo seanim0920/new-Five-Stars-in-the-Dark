@@ -11,6 +11,7 @@ public class WaitForCreditsToEnd : MonoBehaviour
     public GameObject ending1;
     public GameObject ending2;
     public GameObject endText;
+    public GameObject wipe;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,8 +39,6 @@ public class WaitForCreditsToEnd : MonoBehaviour
         endText.SetActive(true);
         blackOverlay.GetComponent<Image>().CrossFadeAlpha(0.0f, 3, true);
         yield return new WaitForSeconds(8);
-        blackOverlay.GetComponent<Image>().CrossFadeAlpha(1.0f, 3, true);
-        yield return new WaitForSeconds(3);
-        LoadScene.Loader("Menu");
+        wipe.SetActive(true);
     }
 }

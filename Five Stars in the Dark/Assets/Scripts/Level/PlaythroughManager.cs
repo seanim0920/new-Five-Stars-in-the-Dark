@@ -47,12 +47,13 @@ public static class PlaythroughManager
 
     public static bool hasPlayedLevel(string sceneName)
     {
-        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        int sceneCount = SceneManager.sceneCountInBuildSettings;
+        string[] scenes = new string[sceneCount];
+        for (int i = 0; i < sceneCount; i++)
         {
-            var scene = SceneManager.GetSceneByBuildIndex(i);
-            string testedScreen = scene.name;
-            //print("sceneIndexFromName: i: " + i + " sceneName = " + testedScreen);
-            if (testedScreen == sceneName)
+            scenes[i] = Path.GetFileNameWithoutExtension(UnityEngine.SceneManagement.SceneUtility.GetScenePathByBuildIndex(i));
+            Debug.Log("checking scene " + scenes[i]);
+            if (scenes[i] == sceneName)
                 return hasPlayedLevel(i);
         }
         return false;
