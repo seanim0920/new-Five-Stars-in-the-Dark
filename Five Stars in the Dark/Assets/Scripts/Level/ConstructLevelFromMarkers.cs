@@ -506,12 +506,22 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         ScoreStorage.Instance.setScoreAll();
         MasterkeyEndScreen.currentLevelBuildIndex = SceneManager.GetActiveScene().buildIndex;
         ScoreStorage.Instance.setScoreProgress(100);
+
+        if (!PlaythroughManager.hasPlayedLevel(SceneManager.GetActiveScene().buildIndex))
+        {
+            PlaythroughManager.saveLevelHistory(SceneManager.GetActiveScene().buildIndex);
+        }
+
         if (SceneManager.GetActiveScene().name == "Level 4.5" ||
             SceneManager.GetActiveScene().name == "Tutorial" ||
             SceneManager.GetActiveScene().name == "Level 5" ||
             SceneManager.GetActiveScene().name.Contains("Cutscene")) //mini-levels will be less than 3 minutes
         {
             LoadScene.LoadNextSceneWithoutWipe();
+        }
+        else if (SceneManager.GetActiveScene().name.Contains("Ending"))
+        {
+            LoadScene.Loader("Credits");
         }
         else
         {
@@ -655,10 +665,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
     IEnumerator startCar()
     {
-        if(!PlaythroughManager.hasPlayedLevel(SceneManager.GetActiveScene().buildIndex))
-        {
-            PlaythroughManager.saveLevelHistory(SceneManager.GetActiveScene().buildIndex);
-        }
         if(skipText != null)
         {
             skipText.GetComponent<Text>().enabled = false;

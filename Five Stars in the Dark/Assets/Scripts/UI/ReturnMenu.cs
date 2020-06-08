@@ -18,12 +18,11 @@ public class ReturnMenu : MonoBehaviour
     {
         var pos = transform.position;
 		if(transform.position.x <= -3000) {
-			SceneManager.LoadScene("Menu");
-			
+			LoadScene.Loader("Menu");
 		}
     }
 	
 	void TaskSkip(){
-		SceneManager.LoadScene("Menu");
+		LoadScene.Loader("Menu");
 	}
 }
