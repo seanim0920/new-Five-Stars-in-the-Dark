@@ -15,7 +15,7 @@ public class Proximity : MonoBehaviour
         foreach (AudioSource NPCAudio in NPCAudios.ToArray())
         {
             
-            if (NPCAudio == null)
+            if (NPCAudio == null || NPCAudio.gameObject == null)
                 NPCAudios.Remove(NPCAudio);
             else
             {
