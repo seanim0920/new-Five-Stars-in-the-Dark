@@ -28,13 +28,14 @@ public class LevelHighlight : MonoBehaviour
 
         if (!PlaythroughManager.hasPlayedLevel(levels[childIndex]))
         {
-            if (childIndex == 0 || PlaythroughManager.hasPlayedLevel(levels[childIndex-1]))
+            button.enabled = false;
+            transform.GetChild(1).gameObject.SetActive(true); //black overlay
+        } else
+        {
+            //since playedlevel is set at the beginning rather than end of a level
+            if ((childIndex != childrenAmount-1 && !PlaythroughManager.hasPlayedLevel(levels[childIndex + 1])) || (childIndex == childrenAmount - 1 && (!PlaythroughManager.hasPlayedLevel("SabotageEnding") || !PlaythroughManager.hasPlayedLevel("ExplosionEnding"))))
             {
                 GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/locationincomplete"); //image for incomplete level, make sure this doesnt change
-            } else
-            {
-                button.enabled = false;
-                transform.GetChild(1).gameObject.SetActive(true); //black overlay
             }
         }
     }

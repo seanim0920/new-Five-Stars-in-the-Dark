@@ -8,6 +8,7 @@ public class CheckLosing : MonoBehaviour
     private bool lost = false;
     AudioSource soundSource;
     public AudioSource secondSoundSource;
+    public AudioSource airbagsfx;
 
     private void Start()
     {
@@ -24,6 +25,8 @@ public class CheckLosing : MonoBehaviour
             print("lose!");
             ScoreStorage.Instance.setScoreAll();
             MasterkeyFailScreen.currentLevel = SceneManager.GetActiveScene().name;
+            if (TrackErrors.getErrors() >= 5)
+                airbagsfx.Play();
             StartCoroutine(failScreenSwitch());
         }
     }
@@ -46,7 +49,7 @@ public class CheckLosing : MonoBehaviour
             yield return new WaitWhile(() => soundSource.isPlaying);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         secondSoundSource.Play();
 
         LoadScene.Loader("FailScreen");
