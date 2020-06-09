@@ -36,6 +36,7 @@ public class ScoreStorage : Singleton<ScoreStorage>
     {
         CountdownTimer.resetTime();
         TrackErrors.resetErrors();
+        PlayError.resetCompletedDialogues();
         progress = 0;
         errors = 0;
         time = 0;

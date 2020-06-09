@@ -8,12 +8,18 @@ public class PlayError : MonoBehaviour
     public static AudioSource source;
     public static bool playingHurtSound = false;
     private static subtitleText subScript;
+    private static List<string> CompletedDialogues = new List<string>();
     // Start is called before the first frame update
     void Start()
     {
         subScript = GameObject.Find("SubtitleText").GetComponent<subtitleText>();
         playingHurtSound = false;
         source = GetComponent<AudioSource>();
+    }
+
+    public static void resetCompletedDialogues()
+    {
+        CompletedDialogues = new List<string>();
     }
 
     // Update is called once per frame
@@ -24,17 +30,47 @@ public class PlayError : MonoBehaviour
     }
     public static IEnumerator PlayWarningCoroutine(string obstacleType)
     {
-        AudioClip passengerHurtSound = Resources.Load<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Failure/" + obstacleType);
+        AudioClip[] defaultHurtSounds = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Situational/Default");
+        AudioClip defaultHurtSound = defaultHurtSounds[Random.Range(0, defaultHurtSounds.Length)];
+        // ^ incase no sounds are found in the directory
+
+        AudioClip passengerHurtSound = Resources.Load<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Situational/" + obstacleType);
 
         if (passengerHurtSound == null)
         {
-            AudioClip[] failureDialogues = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Failure/" + obstacleType);
+            //save a local copy of situational dialogues
+            List<AudioClip> situationalDialogues = new List<AudioClip>(Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Situational/" + obstacleType));
+            if (situationalDialogues.Count <= 0)
+            {
+                Debug.Log("no hurt sounds found, empty or nonexistent directory!");
+                passengerHurtSound = defaultHurtSound;
+            }
+            else
+            {
+                // Pick random failure dialogue
+                System.Random rand = new System.Random();
+                passengerHurtSound = situationalDialogues[Random.Range(0, situationalDialogues.Count)];
 
-            // Play random failure dialogue
-            System.Random rand = new System.Random();
-            int numDialogue = rand.Next(0, failureDialogues.Length);
-            if (failureDialogues.Length <= 0) yield break;
-            passengerHurtSound = failureDialogues[numDialogue];
+                // Re-pick if this sound was played before and remove this sound from local copy
+                bool allUsed = false;
+                while (CompletedDialogues.Contains(passengerHurtSound.name))
+                {
+                    situationalDialogues.Remove(passengerHurtSound);
+                    if (situationalDialogues.Count <= 0)
+                    {
+                        Debug.Log("all dialogues in this folder were played!");
+                        passengerHurtSound = defaultHurtSound;
+                        allUsed = true;
+                        break;
+                    }
+                    else
+                    {
+                        passengerHurtSound = situationalDialogues[Random.Range(0, situationalDialogues.Count)];
+                    }
+                }
+                if (!allUsed)
+                    CompletedDialogues.Add(passengerHurtSound.name);
+            }
         }
 
         AudioSource dialogue = ConstructLevelFromMarkers.levelDialogue;
