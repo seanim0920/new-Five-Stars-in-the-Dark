@@ -36,7 +36,7 @@ public class subtitleText : MonoBehaviour
                             // Debug.Break();
                             subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
                             subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
-                            Debug.Log("subtitle time: " + ConstructLevelFromMarkers.levelDialogue.time);
+                            //Debug.Log("subtitle time: " + ConstructLevelFromMarkers.levelDialogue.time);
                             // Debug.Log("subText: " + subText.text);
                             // Debug.Log("markers text: " + ConstructLevelFromMarkers.subtitleMessage.Substring(5).Trim('"'));
                         }
@@ -49,7 +49,7 @@ public class subtitleText : MonoBehaviour
                             // Debug.Break();
                             subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
                             subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
-                            Debug.Log("subtitle time: " + ConstructLevelFromMarkers.levelDialogue.time);
+                            //Debug.Log("subtitle time: " + ConstructLevelFromMarkers.levelDialogue.time);
                             // Debug.Log("subText: " + subText.text);
                             // Debug.Log("markers text: " + ConstructLevelFromMarkers.subtitleMessage.Substring(4).Trim('"'));
                         }

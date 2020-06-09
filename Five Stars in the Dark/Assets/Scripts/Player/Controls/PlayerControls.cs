@@ -62,7 +62,8 @@ public class PlayerControls : MonoBehaviour
     {
         engineSound.volume = -Mathf.Pow((movementSpeed / maxSpeed), 2) + 1;
         tireSound.volume = Mathf.Pow((movementSpeed / maxSpeed), 2);
-        strafeSound.volume = tireSound.volume / 2;
+        if (strafeSound != null)
+            strafeSound.volume = tireSound.volume / 2;
         //wheelFunctions.PlayDirtRoadForce((int)(Mathf.Pow((1-(movementSpeed/maxSpeed)),1) * 25));
         // Discrete turn l/r 
         transform.position += movementDirection * movementSpeed;
@@ -250,7 +251,8 @@ public class PlayerControls : MonoBehaviour
             child.gameObject.GetComponent<AudioSource>().panStereo = amount * 3;
         }
         ConstructLevelFromMarkers.levelDialogue.panStereo = -amount * 1.5f;
-        strafeSound.panStereo = amount * 2.5f;
+        if (strafeSound != null)
+            strafeSound.panStereo = amount * 2.5f;
     }
 
     public IEnumerator turnFail(bool right)
@@ -394,48 +396,51 @@ public class PlayerControls : MonoBehaviour
         // 2: Coasting
         // 3: MaxSpeed
         // 4: MaxSpeed to Coasting
-        switch (transitionNum)
+        if (engineMixer != null)
         {
-            case 0: // Rest -> Coasting
-                snapshotWeights[0] = 0.0f;
-                snapshotWeights[1] = 1.0f;
-                snapshotWeights[2] = 0.0f;
-                snapshotWeights[3] = 0.0f;
-                snapshotWeights[4] = 0.0f;
-                engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
-                break;
-            case 1: // Just Coasting
-                snapshotWeights[0] = 0.0f;
-                snapshotWeights[1] = 0.0f;
-                snapshotWeights[2] = 1.0f;
-                snapshotWeights[3] = 0.0f;
-                snapshotWeights[4] = 0.0f;
-                engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
-                break;
-            case 2: // Coast -> Max Speed
-                snapshotWeights[0] = 0.0f;
-                snapshotWeights[1] = 0.0f;
-                snapshotWeights[2] = 0.0f;
-                snapshotWeights[3] = 1.0f;
-                snapshotWeights[4] = 0.0f;
-                engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
-                break;
-            case 3: // Max Speed -> Coast
-                snapshotWeights[0] = 0.0f;
-                snapshotWeights[1] = 0.0f;
-                snapshotWeights[2] = 0.0f;
-                snapshotWeights[3] = 0.0f;
-                snapshotWeights[4] = 1.0f;
-                engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
-                break;
-            case 4: // Coast -> Rest
-                snapshotWeights[0] = 1.0f;
-                snapshotWeights[1] = 0.0f;
-                snapshotWeights[2] = 0.0f;
-                snapshotWeights[3] = 0.0f;
-                snapshotWeights[4] = 0.0f;
-                engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
-                break;
+            switch (transitionNum)
+            {
+                case 0: // Rest -> Coasting
+                    snapshotWeights[0] = 0.0f;
+                    snapshotWeights[1] = 1.0f;
+                    snapshotWeights[2] = 0.0f;
+                    snapshotWeights[3] = 0.0f;
+                    snapshotWeights[4] = 0.0f;
+                    engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
+                    break;
+                case 1: // Just Coasting
+                    snapshotWeights[0] = 0.0f;
+                    snapshotWeights[1] = 0.0f;
+                    snapshotWeights[2] = 1.0f;
+                    snapshotWeights[3] = 0.0f;
+                    snapshotWeights[4] = 0.0f;
+                    engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
+                    break;
+                case 2: // Coast -> Max Speed
+                    snapshotWeights[0] = 0.0f;
+                    snapshotWeights[1] = 0.0f;
+                    snapshotWeights[2] = 0.0f;
+                    snapshotWeights[3] = 1.0f;
+                    snapshotWeights[4] = 0.0f;
+                    engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
+                    break;
+                case 3: // Max Speed -> Coast
+                    snapshotWeights[0] = 0.0f;
+                    snapshotWeights[1] = 0.0f;
+                    snapshotWeights[2] = 0.0f;
+                    snapshotWeights[3] = 0.0f;
+                    snapshotWeights[4] = 1.0f;
+                    engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
+                    break;
+                case 4: // Coast -> Rest
+                    snapshotWeights[0] = 1.0f;
+                    snapshotWeights[1] = 0.0f;
+                    snapshotWeights[2] = 0.0f;
+                    snapshotWeights[3] = 0.0f;
+                    snapshotWeights[4] = 0.0f;
+                    engineMixer.TransitionToSnapshots(engineSounds, snapshotWeights, blendTime);
+                    break;
+            }
         }
     }
 }

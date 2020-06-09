@@ -42,7 +42,7 @@ public class TargetMovement : MonoBehaviour
             warned = true;
 
             //change when we have the proper sfx
-            StartCoroutine(PlayError.PlayWarningCoroutine("GenericCrash"));//change when we have proper sfx
+            StartCoroutine(PlayError.PlayWarningCoroutine("FlewPast"));//change when we have proper sfx
         }
         else if (playerPosRelativeToThis.y > 2 && controls.enabled && !ramming)
         {
