@@ -1217,6 +1217,36 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6775186467697617656, guid: f69b4fae26683fe428909848d1fe1e89,
+        type: 3}
+      propertyPath: engineMixer
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775186467697617656, guid: f69b4fae26683fe428909848d1fe1e89,
+        type: 3}
+      propertyPath: shutOffSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775186467697617656, guid: f69b4fae26683fe428909848d1fe1e89,
+        type: 3}
+      propertyPath: strafeSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775186467697617656, guid: f69b4fae26683fe428909848d1fe1e89,
+        type: 3}
+      propertyPath: grabWheel
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775186467697617656, guid: f69b4fae26683fe428909848d1fe1e89,
+        type: 3}
+      propertyPath: slidingSound
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 6775186467697617656, guid: f69b4fae26683fe428909848d1fe1e89,
+        type: 3}
+      propertyPath: disabledWheelSound
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f69b4fae26683fe428909848d1fe1e89, type: 3}
 --- !u!114 &1335969727 stripped
@@ -1298,20 +1328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rect: {fileID: 4314826276132074111}
---- !u!114 &1463025685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314826277688031793}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2daa01f64900ec4fa3e2babfd623692, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controls: {fileID: 0}
-  wheelImage: {fileID: 4314826276910789294}
 --- !u!1 &1811094858
 GameObject:
   m_ObjectHideFlags: 0
@@ -4249,7 +4265,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d38b964eebd89a44bca118f7e1f556e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  focus: {fileID: 0}
+  focus: {fileID: 1335969731}
   Zoffset: 0
 --- !u!222 &4314826276132074105
 CanvasRenderer:
@@ -4598,12 +4614,12 @@ GameObject:
   - component: {fileID: 4314826277688031794}
   - component: {fileID: 4314826277688031795}
   - component: {fileID: 4314826277688031792}
-  - component: {fileID: 1463025685}
   - component: {fileID: 1463025682}
   - component: {fileID: 5074218850993475611}
   - component: {fileID: 7918029412700619834}
   - component: {fileID: 7609094677374256518}
   - component: {fileID: 8343316677115365166}
+  - component: {fileID: 4314826277688031796}
   m_Layer: 5
   m_Name: MainCanvas
   m_TagString: Untagged
@@ -4654,6 +4670,19 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &4314826277688031796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4314826277688031793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6453991da860904a859b74a9d732fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheelImage: {fileID: 4314826276910789295}
 --- !u!224 &4314826277688031805
 RectTransform:
   m_ObjectHideFlags: 0
