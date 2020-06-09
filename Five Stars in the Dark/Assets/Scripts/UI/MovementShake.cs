@@ -31,6 +31,6 @@ public class MovementShake : MonoBehaviour
 
         modifiedPosition.x = originalx + controls.getStrafeAmount() * 150;
         modifiedPosition.y = originaly + 125*(controls.movementSpeed / controls.maxSpeed);
-        //rect.localScale = new Vector3(1.0f + (controls.movementSpeed / controls.maxSpeed / 2.25f), 1.0f + (controls.movementSpeed / controls.maxSpeed / 2.25f), 1);
+        rect.localScale = new Vector3(1.0f + (controls.movementSpeed / controls.maxSpeed / 2.25f), 1.0f + (controls.movementSpeed / controls.maxSpeed / 2.25f), 1);
     }
 }
