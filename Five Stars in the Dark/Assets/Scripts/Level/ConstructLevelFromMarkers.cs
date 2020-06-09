@@ -664,6 +664,11 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     }
                     subtitleMarkers.RemoveAt(0);
                 }
+                if (!levelDialogue.isPlaying && levelDialogue.time - subtitleMarker.despawnTime < 1)
+                {
+                    subtitleMessage = "";
+                    subtitleMarkers.RemoveAt(0);
+                }
             }
         }
     }
