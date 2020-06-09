@@ -13,6 +13,7 @@ public class LevelHighlight : MonoBehaviour
     Text subtitle;
     int childrenAmount;
     int childIndex;
+    string[] levels = {"Tutorial", "Level 1", "Level 2", "Level 3", "Level 4", "Level 4.5"};
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +25,18 @@ public class LevelHighlight : MonoBehaviour
         colorsPassed = button.colors;
         colorsPassed.normalColor = button.colors.pressedColor;
         colorsPassed.highlightedColor = button.colors.pressedColor;
+
+        if (!PlaythroughManager.hasPlayedLevel(levels[childIndex]))
+        {
+            if (childIndex == 0 || PlaythroughManager.hasPlayedLevel(levels[childIndex-1]))
+            {
+                GetComponent<Image>().sprite = Resources.Load<Sprite>("Images/locationincomplete"); //image for incomplete level, make sure this doesnt change
+            } else
+            {
+                button.enabled = false;
+                transform.GetChild(1).gameObject.SetActive(true); //black overlay
+            }
+        }
     }
 
     // Update is called once per frame
@@ -34,19 +47,22 @@ public class LevelHighlight : MonoBehaviour
 
     public void OnSelectDelegate()
     {
-        print("selected");
-        //anims.CrossFade("MenuButton", 0.3f);
-        subtitle.enabled = true;
-        for (int i = 0; i < childIndex; ++i)
+        if (button.enabled)
         {
-            transform.parent.GetChild(i).GetComponent<Button>().colors = colorsPassed;
+            print("selected");
+            //anims.CrossFade("MenuButton", 0.3f);
+            subtitle.enabled = true;
+            for (int i = 0; i < childIndex; ++i)
+            {
+                transform.parent.GetChild(i).GetComponent<Button>().colors = colorsPassed;
+            }
+            for (int i = childIndex; i < childrenAmount; ++i)
+            {
+                transform.parent.GetChild(i).GetComponent<Button>().colors = colorsDefault;
+            }
+            if (childrenAmount <= 0) return;
+            slider.value = (float)childIndex / (childrenAmount - 1);
         }
-        for (int i = childIndex; i < childrenAmount; ++i)
-        {
-            transform.parent.GetChild(i).GetComponent<Button>().colors = colorsDefault;
-        }
-        if (childrenAmount <= 0) return;
-        slider.value = (float)childIndex / (childrenAmount - 1);
     }
 
     public void OnDeselectDelegate()
