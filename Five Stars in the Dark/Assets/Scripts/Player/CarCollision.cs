@@ -118,6 +118,7 @@ public class CarCollision : MonoBehaviour
             {
                 lightCollisionSound.Play();
             }
+            TrackErrors.IncrementErrors(0.01f * controlFunctions.movementSpeed / controlFunctions.maxSpeed);
         }
 
         //these pull a random hurtsound to play
@@ -132,7 +133,7 @@ public class CarCollision : MonoBehaviour
         {
             hitSoundObject.GetComponent<AudioSource>().volume = controlFunctions.movementSpeed / controlFunctions.maxSpeed;
             hitSoundObject.GetComponent<AudioSource>().pitch = 0.5f * controlFunctions.movementSpeed / controlFunctions.maxSpeed + 0.5f;
-            TrackErrors.IncrementErrors(0.01f * controlFunctions.movementSpeed / controlFunctions.maxSpeed);
+            TrackErrors.IncrementErrorsWithoutCollisions(0.01f * controlFunctions.movementSpeed / controlFunctions.maxSpeed);
             controlFunctions.movementSpeed *= 0.995f;
         }
     }

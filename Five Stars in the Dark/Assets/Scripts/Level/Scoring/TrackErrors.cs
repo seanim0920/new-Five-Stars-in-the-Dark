@@ -15,6 +15,12 @@ public class TrackErrors : MonoBehaviour
         ScoreStorage.Instance.setScoreErrors(errors);
         //AudioSource.PlayClipAtPoint(errorSound, player.position);
     }
+    public static void IncrementErrorsWithoutCollisions(float fractionalError)
+    {
+        errors += fractionalError;
+        ScoreStorage.Instance.setScoreErrors(errors);
+        //AudioSource.PlayClipAtPoint(errorSound, player.position);
+    }
 
     public static void IncrementErrors()
     {
