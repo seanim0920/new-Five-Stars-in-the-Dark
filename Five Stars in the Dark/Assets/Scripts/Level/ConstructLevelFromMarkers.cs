@@ -320,6 +320,10 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         //perform these checks every frame for as long as the dialogue plays
         while (dialogueMarkers.Count > 0 || timedObstacleMarkers.Count > 0 || commandMarkers.Count > 0 || levelDialogue.isPlaying)
         {
+            print("More dialogue markers? " + (dialogueMarkers.Count > 0));
+            print("More time obstacle markers? " + (timedObstacleMarkers.Count > 0));
+            print("More command markers" + (commandMarkers.Count > 0));
+            print("Playing level dialogue? " + levelDialogue.isPlaying);
             yield return new WaitForSeconds(0);
 
             if (dialogueMarkers.Count > 0 && !isSpeaking && nextDialogueTrigger == null)
@@ -329,12 +333,12 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 currentDialogueEndTime = dialogueMarkers[0].despawnTime;
 
                 //start playing the dialogue from wherever it left off
-                Debug.Log("Is this what gets called after the tableaux?");
+                // Debug.Log("Is this what gets called after the tableaux?");
                 // Debug.Break();
                 levelDialogue.time = currentDialogueStartTime;
                 levelDialogue.Play();
                 isSpeaking = true;
-                Debug.Log("Setting speaking to true" + isSpeaking);
+                // Debug.Log("Setting speaking to true" + isSpeaking);
 
                 if (dialogueMarkers.Count > 1)
                 {
@@ -352,7 +356,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     //the next dialogue could start at the same moment the current dialogue ends, so a <= is needed.
                     if (nextDialogueStartTime >= currentDialogueEndTime && levelDialogue.time >= nextDialogueStartTime) //fixes the level ending bug since nextdialoguestarttime isn't changed on the last item of dialogueMarkers
                     {
-                        levelDialogue.Pause();
+                        // levelDialogue.Pause();
                     }
                 }
             }
@@ -425,8 +429,8 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     }
                     else if (string.Equals(command, "[EndControl]"))
                     {
-                        Debug.Log("dialogue time: " + levelDialogue.time);
-                        Debug.Log("end control time: " + commandMarker.spawnTime);
+                        // Debug.Log("dialogue time: " + levelDialogue.time);
+                        // Debug.Log("end control time: " + commandMarker.spawnTime);
                         print("ending player control");
                         // Debug.Break();
                         StartCoroutine(parkCar());
@@ -447,7 +451,8 @@ public class ConstructLevelFromMarkers : MonoBehaviour
             if (timedObstacleMarkers.Count > 0)
             {
                 Marker obstacleMarker = timedObstacleMarkers[0];
-                //print("trying to spawn obstacle at time " + spawnTime);
+                print("trying to spawn obstacle at time " + obstacleMarker.spawnTime);
+                print("level dialogue playing? " + levelDialogue.isPlaying);
 
                 //if the next obstacle is due or if the obstacle trigger was touched, spawn it
                 if (obstacleMarker.spawnTime < levelDialogue.time)
@@ -534,7 +539,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
             {
                 if (string.Equals(obj.name, tokens[0].Trim(), System.StringComparison.OrdinalIgnoreCase))
                 {
-                    //Debug.Log("found obstacle");
+                    // Debug.Log("found obstacle");
                     prefab = obj.name;
                 }
             }
