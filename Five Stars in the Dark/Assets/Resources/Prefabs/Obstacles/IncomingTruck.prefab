@@ -85,7 +85,7 @@ PrefabInstance:
     - target: {fileID: 7798444560812318047, guid: 9734698dbdef23049810e4ddda98d195,
         type: 3}
       propertyPath: neutralSpeed
-      value: -0.1
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: 7798444560812318047, guid: 9734698dbdef23049810e4ddda98d195,
         type: 3}
@@ -96,6 +96,11 @@ PrefabInstance:
         type: 3}
       propertyPath: minSpeed
       value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 7798444560812318047, guid: 9734698dbdef23049810e4ddda98d195,
+        type: 3}
+      propertyPath: movementSpeed
+      value: -1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9734698dbdef23049810e4ddda98d195, type: 3}

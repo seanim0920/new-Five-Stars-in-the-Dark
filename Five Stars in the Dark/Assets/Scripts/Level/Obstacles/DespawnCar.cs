@@ -44,8 +44,12 @@ public class DespawnCar : MonoBehaviour
         // Quaternion exitQuaternion;
         // exitQuaternion.eulerAngles = exitRotation;
         transform.eulerAngles = exitRotation;
-        yield return new WaitForSeconds(3f);
+        // yield return new WaitForSeconds(3f);
         // transform.tag = "Car";
-        Destroy(gameObject, 8f);
+        while(Mathf.Abs(player.transform.position.y - transform.position.y) < transform.GetChild(0).GetComponent<AudioSource>().maxDistance)
+        {
+            yield return new WaitForEndOfFrame();
+        }
+        Destroy(gameObject);
     }
 }

@@ -23,13 +23,14 @@ public class DisplayStrafeTableaux : MonoBehaviour
         Time.timeScale = 0f;
         // AudioListener.pause = true;
         startTime = Time.unscaledTime;
+        ConstructLevelFromMarkers.levelDialogue.Pause();
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Check if 3 seconds have elapsed && Accelerate to continue text is not enabled
-        if(Time.unscaledTime - startTime > 3f && !proceed.enabled)
+        // Check if 1 seconds have elapsed && Accelerate to continue text is not enabled
+        if(Time.unscaledTime - startTime > 1f && !proceed.enabled)
         {
             // if so, enable "Accelerate to continue" text
             proceed.enabled = true;
@@ -42,6 +43,8 @@ public class DisplayStrafeTableaux : MonoBehaviour
             proceed.enabled = false;
             Time.timeScale = 1f;
             // AudioListener.pause = false;
+            ConstructLevelFromMarkers.levelDialogue.Play();
+            // Debug.Break();
             Destroy(gameObject);
         }
     }

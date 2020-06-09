@@ -27,59 +27,52 @@
 83.738865	85.392476	<W> "no reason to panic."
 85.392476	87.564218	<W> "You've done this a thousand times before."
 87.564218	90.397405	<W> "[sobs] Remember what he taught you in driver's ed."
-125.191242	127.605515	<> "Shoot, shoot, SHOOT!"
-128.807139	129.865450	<W> "Oh no!"
-129.942618	132.224601	<W> "[car door opens, slams]"
-132.224601	133.349057	<W> "[passenger door opens]"
-133.349057	135.168029	<W> "Matias, c'mon bud."
-135.168029	136.479894	<W> "We have to get out of here."
-136.479894	137.615374	<Y> "[Matias gasps]"
-137.615374	140.062718	<W> "Don't worry, we'll get you someplace safe!"
-140.062718	143.810903	<Y> "[weakly] Go, Isaac."
-143.810903	145.188912	<W> "I'm not leavin' you here!"
-145.188912	149.444205	<Y> "[gasping] Go on."
-149.444205	151.119864	<W> "You're gonna be fine, alright?"
-151.119864	152.200223	<W> "I'm here."
-152.200223	153.060101	<W> "I won't let you die --"
-153.060101	154.493231	<W> "I promise!"
-154.603471	155.617686	<Y> "I..."
-155.617686	156.510636	<W> "[explosion]"
-156.510636	159.795810	<W> "NOOOOO!!!"
-159.795810	164.370801	<W>"[fire crackles]"
-164.370801	166.421279	<WI> "This was all my fault..."
-166.961458	169.144225	<WI> "I shouldn't have brought you here."
-169.144225	171.646690	<WI> "I wish I could make it up to you."
-172.716025	174.689334	<W> "I'm sorry..."
+131.405982	133.820254	<> "Shoot, shoot, SHOOT!"
+135.021878	136.080189	<W> "Oh no!"
+136.157357	138.439341	<W> "[car door opens, slams]"
+138.439341	139.563796	<W> "[passenger door opens]"
+139.563796	141.382768	<W> "Matias, c'mon bud."
+141.382768	142.694633	<W> "We have to get out of here."
+142.694633	143.830113	<Y> "[Matias gasps]"
+143.830113	146.277457	<W> "Don't worry, we'll get you someplace safe!"
+146.277457	150.025642	<Y> "[weakly] Go, Isaac."
+150.025642	151.403652	<W> "I'm not leavin' you here!"
+151.403652	155.658944	<Y> "[gasping] Go on."
+155.658944	157.334603	<W> "You're gonna be fine, alright?"
+157.334603	158.414962	<W> "I'm here."
+158.414962	159.274840	<W> "I won't let you die --"
+159.274840	160.707970	<W> "I promise!"
+160.818211	161.832425	<Y> "I..."
+161.832425	162.725375	<W> "[explosion]"
+162.725375	166.010549	<W> "NOOOOO!!!"
+166.010549	170.585540	<W>"[fire crackles]"
+170.585540	172.636018	<WI> "This was all my fault..."
+173.176197	175.358964	<WI> "I shouldn't have brought you here."
+175.358964	177.861429	<WI> "I wish I could make it up to you."
+178.930764	180.904073	<W> "I'm sorry..."
 56.500117	56.500117	RevealTableaux 0
 91.993626	91.993626	RevealTableaux 1
 92.176248	92.525252	IncomingCar player
 93.959021	94.358480	IncomingCar player
 95.352409	95.776956	IncomingCar player
-96.008391	101.331407	SlowCar aheadOf Lane1, SlowCar aheadOf Lane2
-101.585240	106.400590	SlowCar aheadOf Lane2, SlowCar aheadOf Lane3
-107.589449	107.589449	IncomingCar player
-107.723429	107.723429	IncomingCar player
-107.857408	107.857408	IncomingCar Lane1
-108.098572	108.098572	IncomingCar Lane3
-128.595706	130.798699	IncomingTruck aheadOf player
+96.008391	111.148750	SlowCar aheadOf Lane1, SlowCar aheadOf Lane2
+101.585240	116.733064	SlowCar aheadOf Lane2, SlowCar aheadOf Lane3
+106.684286	121.809713	SlowCar aheadOf Lane1
+109.133022	126.184590	SlowCar aheadOf Lane2
+112.552294	127.647860	SlowCar aheadOf Lane2
+119.719328	129.230580	SlowCar aheadOf Lane1, SlowCar aheadOf Lane3
+129.468368	130.185071	IncomingCar player
+131.042187	156.841901	IncomingTruck aheadOf player
 0.000000	0.000000	[HideScreen]
 0.418915	53.147060	Dialogue
 51.724954	51.724954	[RevealScreen]
 53.257301	53.257301	[StartCar]
 72.891176	90.397405	Dialogue
 92.032927	92.126248	Dialogue
-92.577920	93.806022	Dialogue
+92.592852	93.806022	Dialogue
 94.455534	95.224497	Dialogue
 95.956132	96.725095	Dialogue
 95.993460	95.993460	[ConstructMap]
-98.311547	98.651235	Dialogue
-100.778948	101.182094	Dialogue
-103.003715	103.391929	Dialogue
-105.228482	105.601765	Dialogue
-107.621226	107.688417	Dialogue
-107.770539	107.822799	Dialogue
-107.934784	108.039303	Dialogue
-123.944892	174.711382	Dialogue
-124.827448	124.827448	[EndControl]
-127.986182	127.986182	[EndControl]
-130.877066	130.877066	[HideScreen]
+130.259728	130.946569	Dialogue
+131.042187	131.042187	[EndControl]
+137.091806	137.091806	[HideScreen]
