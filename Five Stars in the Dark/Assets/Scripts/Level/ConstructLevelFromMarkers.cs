@@ -320,10 +320,10 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         //perform these checks every frame for as long as the dialogue plays
         while (dialogueMarkers.Count > 0 || timedObstacleMarkers.Count > 0 || commandMarkers.Count > 0 || levelDialogue.isPlaying)
         {
-            print("More dialogue markers? " + (dialogueMarkers.Count > 0));
-            print("More time obstacle markers? " + (timedObstacleMarkers.Count > 0));
-            print("More command markers" + (commandMarkers.Count > 0));
-            print("Playing level dialogue? " + levelDialogue.isPlaying);
+            //print("More dialogue markers? " + (dialogueMarkers.Count > 0));
+            //print("More time obstacle markers? " + (timedObstacleMarkers.Count > 0));
+            //print("More command markers" + (commandMarkers.Count > 0));
+            //print("Playing level dialogue? " + levelDialogue.isPlaying);
             yield return new WaitForSeconds(0);
 
             if (dialogueMarkers.Count > 0 && !isSpeaking && nextDialogueTrigger == null)
@@ -356,7 +356,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     //the next dialogue could start at the same moment the current dialogue ends, so a <= is needed.
                     if (nextDialogueStartTime >= currentDialogueEndTime && levelDialogue.time >= nextDialogueStartTime) //fixes the level ending bug since nextdialoguestarttime isn't changed on the last item of dialogueMarkers
                     {
-                        // levelDialogue.Pause();
+                        levelDialogue.Pause();
                     }
                 }
             }
