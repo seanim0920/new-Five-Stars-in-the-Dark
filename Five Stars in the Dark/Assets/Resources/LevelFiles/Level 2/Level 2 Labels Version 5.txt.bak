@@ -1,5 +1,5 @@
 -0.141791	45.643325	Dialogue
-0.000000	2.215433	<Y> "Nearby pedestrian: "I can't believe I'm stuck watching the newbie."
+0.000000	2.215433	<Y> "(outside) I can't believe I'm stuck watching the newbie."
 2.215433	4.453943	<Y> "Dunno what the boss sees in him."
 5.561659	7.223233	<Y> "Yeah, I know."
 7.500162	9.992524	<Y> "You know how hard I've worked for this organization. "
@@ -7,17 +7,16 @@
 12.415653	13.777221	<Y> "I was so ready to-"
 15.923422	17.238835	<Y> "Yeah, of course."
 17.631151	19.223493	<Y> "I trust that he made the right call."
-19.223493	20.308132	<Y> "[nearby car door opens]"
-20.331209	21.185074	<Y> "Nice shad-"
-21.185074	22.292790	<Y> "Nearby driver: [screams]"
-23.562048	25.154391	<Y> "Nearby pedestrian: Dang it, maybe this one."
-25.309394	26.550575	<W> "[car door opens]"
-25.309394	26.550575	[RevealScreen]
-26.573652	27.612136	<Y> "Nice shades."
-27.612136	29.592067	<W> "Ah, thanks."
-29.631411	30.618374	<W> "[car door slams]"
-31.431450	32.263920	<W> "Isaac: Where ya headed?"
-32.850711	35.265626	<Y> "Rosales: Delmonico's Italian Bistro. 5th and King."
+22.457703	23.311568	<Y> "Nice shad-"
+23.382597	24.490313	<Y> "AH!"
+25.242704	26.835047	<Y> "Dang it, maybe this one."
+26.550575	27.229394	[RevealScreen]
+27.223999	27.838451	<W> "[car door opens]"
+27.963850	29.002334	<Y> "Nice shades."
+30.358960	32.338891	<W> "Ah, thanks."
+32.578512	33.565475	<W> "[car door slams]"
+34.421869	35.254339	<W> "Isaac: Where ya headed?"
+35.813792	38.228707	<Y> "Delmonico's Italian Bistro. 5th and King."
 35.908470	35.908470	[StartControl]
 39.958330	41.573750	<WI> "Delmonico's..."
 41.896834	43.996879	<WI> "Matias hated that place."
@@ -59,7 +58,7 @@
 110.421700	113.039108	<WI> "Matias would have loved that if he was here."
 113.279100	116.361492	<WI> "When he comes back, I'll tell him all about it."
 113.331870	123.628516	SlowCar behind Lane2
-116.428052	117.178963	<Y> "Rosales: Say again?"
+116.428052	117.178963	<Y> "Say again?"
 118.303923	119.751373	<Y> "Rendezvous at Delmonico's."
 120.208857	122.472444	<Y> "Charter leaves at eight, 62 hours out."
 121.861299	134.191309	SlowCar aheadOf Lane1
@@ -75,8 +74,10 @@
 145.686926	147.269370	<W> "They're after YOU?!"
 147.389366	149.024309	<Y> "Hey listen, do you want Matias back?"
 149.159304	150.644252	"<Y> "Do exactly as I say."
+151.054949	158.403297	SlowCar aheadOf Lane3
 156.283783	167.260857	Dialogue
 157.391499	159.468467	<Y> "Hold onto your sunglasses,"
+157.901703	171.093618	FastCar behind Lane3
 159.468467	161.499280	<Y> "We're gonna be needing to make a couple of sharp turns."
 161.499280	162.953158	<Y> "When I say the word,"
 162.953158	164.407035	<Y> "Turn and hold the wheel in whatever"
@@ -86,13 +87,16 @@
 173.906603	173.906603	QuickTurn left
 176.822689	176.822689	[Rosales-14]
 178.345799	178.345799	QuickTurn right
+179.319755	184.285532	FastCar behind Player
+180.097225	189.100832	SlowCar behind Player
 182.984360	192.307639	Dialogue
 183.166157	184.538608	<Y> "Damn, there's cops here too."
 184.868597	186.271048	<Y> "OK, make sure to move out of their way,"
 186.261354	187.806300	<Y> "We can't look suspicious."
-190.076496	196.616266	Police Lane3
-197.486236	202.856048	Police Lane1
-204.176002	210.475781	Police player
+187.806300	188.724637	<W> "Suspicious?"
+190.076496	196.616266	PoliceCar aheadOf Lane3
+197.486236	202.856048	PoliceCar aheadOf Lane1
+204.176002	210.475781	PoliceCar aheadOf player
 210.723422	228.216109	Dialogue
 211.230173	213.847581	<Y> "Whew, let's hope that's the last of 'em."
 214.057574	216.105002	<W> "What the hell was that?"
@@ -109,9 +113,9 @@
 244.139530	247.709405	[PoliceSiren-Fast]
 244.901085	251.962777	Dialogue
 245.466473	247.956386	<Y> "Oh man, there's too many of them over there."
-245.593408	249.913257	Police Lane3
+245.593408	249.913257	PoliceCar aheadOf Lane3
 248.068882	249.973815	<Y> "There's no way they're not onto us by now."
-249.193486	253.243344	Police Lane 1
+249.193486	253.243344	PoliceCar aheadOf Lane1
 253.070493	253.070493	[Rosales-19]
 255.701319	255.701319	QuickTurn right
 260.178339	260.178339	[Rosales-20]
@@ -123,7 +127,7 @@
 268.178058	269.003029	<Y> "Mother of God..."
 269.850499	272.572904	<Y> "They've barricaded the street -- we're f---ed!"
 273.540370	275.865289	<Y> "Police: We have you surrounded, stop your vehicle."
-275.895288	276.720259	<Y> "Rosales: Quick, hide in the trunk!"
+275.895288	276.720259	<Y> "Quick, hide in the trunk!"
 276.855254	278.182707	<Y> "I'll get in the driver's seat -- GO!"
 278.767687	280.627622	<W>"What the hell? No chance!"
 280.807615	282.120069	<W> "Get out of my car!"

@@ -10,8 +10,8 @@
 22.457703	23.311568	<Y> "Nice shad-"
 23.382597	24.490313	<Y> "AH!"
 25.242704	26.835047	<Y> "Dang it, maybe this one."
+26.550575	27.229394	[RevealScreen]
 27.223999	27.838451	<W> "[car door opens]"
-27.229394	26.550575	[RevealScreen]
 27.963850	29.002334	<Y> "Nice shades."
 30.358960	32.338891	<W> "Ah, thanks."
 32.578512	33.565475	<W> "[car door slams]"
@@ -65,17 +65,19 @@
 124.694166	125.510976	<Y> "Don't worry about that;
 125.608993	127.454983	<Y> "If we pull this off, we can reverse everything."
 129.333645	131.231078	<Y> "C'mon J.T., think about your kids."
+139.819249	151.451411	Dialogue
 140.078009	143.257897	<W> "[police siren wails]"
 140.323052	151.987094	[PoliceSiren-Fast]
 140.617103	142.409541	<W> "Hey, are they followin' us?"
-141.281768	151.451411	Dialogue
 142.582035	143.804492	<Y> "Oh, f--- me,
 144.029484	145.176944	<Y> "You can't let them get us!"
 145.686926	147.269370	<W> "They're after YOU?!"
 147.389366	149.024309	<Y> "Hey listen, do you want Matias back?"
 149.159304	150.644252	"<Y> "Do exactly as I say."
+151.054949	158.403297	SlowCar aheadOf Lane3
 156.283783	167.260857	Dialogue
 157.391499	159.468467	<Y> "Hold onto your sunglasses,"
+157.901703	171.093618	FastCar behind Lane3
 159.468467	161.499280	<Y> "We're gonna be needing to make a couple of sharp turns."
 161.499280	162.953158	<Y> "When I say the word,"
 162.953158	164.407035	<Y> "Turn and hold the wheel in whatever"
@@ -85,10 +87,13 @@
 173.906603	173.906603	QuickTurn left
 176.822689	176.822689	[Rosales-14]
 178.345799	178.345799	QuickTurn right
+179.319755	184.285532	FastCar behind Player
+180.097225	189.100832	SlowCar behind Player
 182.984360	192.307639	Dialogue
 183.166157	184.538608	<Y> "Damn, there's cops here too."
 184.868597	186.271048	<Y> "OK, make sure to move out of their way,"
 186.261354	187.806300	<Y> "We can't look suspicious."
+187.806300	188.724637	<W> "Suspicious?"
 190.076496	196.616266	PoliceCar aheadOf Lane3
 197.486236	202.856048	PoliceCar aheadOf Lane1
 204.176002	210.475781	PoliceCar aheadOf player

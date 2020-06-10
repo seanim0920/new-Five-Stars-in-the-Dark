@@ -56,7 +56,7 @@ public class subtitleText : MonoBehaviour
                     }
                 }
 
-                if (!ConstructLevelFromMarkers.levelDialogue.isPlaying)
+                if (ConstructLevelFromMarkers.levelDialogue != null && !ConstructLevelFromMarkers.levelDialogue.isPlaying)
                 {
                     subText.text = "";
                 }

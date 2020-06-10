@@ -32,7 +32,8 @@ public class DisplayScore : MonoBehaviour
         progressText = GetGrandchild(this.gameObject, 3, 0).GetComponent<Text>();   //0 is Stat0 [progress]
         errorText = GetGrandchild(this.gameObject, 3, 2).GetComponent<Text>();      //2 is ERRORS
         timeText = GetGrandchild(this.gameObject, 3, 4).GetComponent<Text>();       //4 is TIME
-        
+
+        Debug.Log("Completion time is " + timeText);
         //Set text field texts to score
         if(ScoreStorage.Instance.getScoreProgress() >= 100)
         {

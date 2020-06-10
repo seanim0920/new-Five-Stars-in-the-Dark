@@ -517,20 +517,23 @@ public class ConstructLevelFromMarkers : MonoBehaviour
             PlaythroughManager.saveLevelHistory(SceneManager.GetActiveScene().buildIndex);
         }
 
-        if (SceneManager.GetActiveScene().name == "Level 4.5" ||
-            SceneManager.GetActiveScene().name == "Tutorial" ||
-            SceneManager.GetActiveScene().name == "Level 5" ||
-            SceneManager.GetActiveScene().name.Contains("Cutscene")) //mini-levels will be less than 3 minutes
+        if (!GameObject.Find("Cutscene Camera"))
         {
-            LoadScene.LoadNextSceneWithoutWipe();
-        }
-        else if (SceneManager.GetActiveScene().name.Contains("Ending"))
-        {
-            LoadScene.Loader("Credits");
-        }
-        else
-        {
-            LoadScene.Loader("EndScreen");
+            if (SceneManager.GetActiveScene().name == "Level 4.5" ||
+                SceneManager.GetActiveScene().name == "Tutorial" ||
+                SceneManager.GetActiveScene().name == "Level 5" ||
+                SceneManager.GetActiveScene().name.Contains("Cutscene")) //mini-levels will be less than 3 minutes
+            {
+                LoadScene.LoadNextSceneWithoutWipe();
+            }
+            else if (SceneManager.GetActiveScene().name.Contains("Ending"))
+            {
+                LoadScene.Loader("Credits");
+            }
+            else
+            {
+                LoadScene.Loader("EndScreen");
+            }
         }
     }
 
