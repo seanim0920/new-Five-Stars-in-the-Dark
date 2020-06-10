@@ -581,7 +581,7 @@ PrefabInstance:
     - target: {fileID: 4314826276229188209, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -31.347656
+      value: -31.347717
       objectReference: {fileID: 0}
     - target: {fileID: 4314826276229188209, guid: 0737ab1198c13c74695686fd9e987b22,
         type: 3}
@@ -1536,6 +1536,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 412440413062414633, guid: cec60119a7a8c704ea21138b08c6c077,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelConstructor
+      objectReference: {fileID: 0}
     - target: {fileID: 412440413062414634, guid: cec60119a7a8c704ea21138b08c6c077,
         type: 3}
       propertyPath: leftSpeaker
@@ -1570,12 +1575,7 @@ PrefabInstance:
         type: 3}
       propertyPath: markersFile
       value: 
-      objectReference: {fileID: 4900000, guid: 763c91f2285cca94a90184c70c2ba7fd, type: 3}
-    - target: {fileID: 412440413062414633, guid: cec60119a7a8c704ea21138b08c6c077,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelConstructor
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 4900000, guid: 3ef248d0fd573b84aa291239c1e5a0bd, type: 3}
     - target: {fileID: 412440413062414635, guid: cec60119a7a8c704ea21138b08c6c077,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1640,7 +1640,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 34b570f7929ab8f44b41d498c706cef1, type: 3}
+      objectReference: {fileID: 8300000, guid: 1a8bb1d02777e9c45876a31dc436c736, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cec60119a7a8c704ea21138b08c6c077, type: 3}
 --- !u!114 &2082718667 stripped
