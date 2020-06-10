@@ -32,6 +32,7 @@ public class PlayError : MonoBehaviour
         if (playingError != "")
         {
             StartCoroutine(PlayOofThenWarningCoroutine(playingError));
+            playingError = "";
         }
         if (source != null && ConstructLevelFromMarkers.levelDialogue != null && CountdownTimer.getTracking())
             source.panStereo = ConstructLevelFromMarkers.levelDialogue.panStereo;
