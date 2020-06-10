@@ -11,7 +11,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 2675066774269485028, guid: 52622cb0ca335e540b9533ee3c0e8469,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 0a757d56563755642b88f0e194a9a612, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 428810602bf3e3e48a633beead43be23, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -349,17 +349,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2138646690712720301, guid: 9734698dbdef23049810e4ddda98d195,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 87d656c8ba580b840b4ea4cf2b6ad3d5,
-        type: 3}
-    - target: {fileID: 9050258354356607982, guid: 9734698dbdef23049810e4ddda98d195,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7798444560812318047, guid: 9734698dbdef23049810e4ddda98d195,
         type: 3}
       propertyPath: maxSpeed
@@ -373,6 +362,17 @@ PrefabInstance:
     - target: {fileID: 7798444560812318047, guid: 9734698dbdef23049810e4ddda98d195,
         type: 3}
       propertyPath: movementSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2138646690712720301, guid: 9734698dbdef23049810e4ddda98d195,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 87d656c8ba580b840b4ea4cf2b6ad3d5,
+        type: 3}
+    - target: {fileID: 9050258354356607982, guid: 9734698dbdef23049810e4ddda98d195,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7802962881870846087, guid: 9734698dbdef23049810e4ddda98d195,
