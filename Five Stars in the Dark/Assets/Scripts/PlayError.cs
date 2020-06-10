@@ -7,28 +7,50 @@ public class PlayError : MonoBehaviour
 {
     public static AudioSource source;
     public static bool playingHurtSound = false;
-    private static subtitleText subScript;
     private static List<string> CompletedDialogues = new List<string>();
+    private static string[] oofs = {"Ah!", "Urgh!", "Ooh!", "Argh!", "Hrngh!", "Ahh!", "Aah!", "Oof!", "Oogh!", "Ugh!", "Egh!", "Mmh!" };
+
+    private static string playingError = "";
+    private static bool isPlaying = false;
     // Start is called before the first frame update
     void Start()
     {
-        subScript = GameObject.Find("SubtitleText").GetComponent<subtitleText>();
-        playingHurtSound = false;
+        resetCompletedDialogues();
         source = GetComponent<AudioSource>();
     }
 
     public static void resetCompletedDialogues()
     {
         CompletedDialogues = new List<string>();
+        playingHurtSound = false;
+        playingError = "";
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (playingError != "")
+        {
+            StartCoroutine(PlayOofThenWarningCoroutine(playingError));
+        }
         if (source != null && ConstructLevelFromMarkers.levelDialogue != null && CountdownTimer.getTracking())
             source.panStereo = ConstructLevelFromMarkers.levelDialogue.panStereo;
     }
-    public static IEnumerator PlayWarningCoroutine(string obstacleType)
+
+    public static void PlayOofThenWarning(string obstacleType)
+    {
+        playingError = obstacleType;
+    }
+
+    private IEnumerator PlayOofThenWarningCoroutine(string obstacleType)
+    {
+        StartCoroutine(PlayWarningCoroutine("Oofs", false));
+        yield return new WaitForSeconds(2);
+        StartCoroutine(PlayWarningCoroutine(obstacleType, true));
+        playingError = "";
+    }
+
+    public static IEnumerator PlayWarningCoroutine(string obstacleType, bool markPlayed)
     {
         AudioClip[] defaultHurtSounds = Resources.LoadAll<AudioClip>("LevelFiles/" + SceneManager.GetActiveScene().name + "/Situational/Default");
         AudioClip defaultHurtSound = defaultHurtSounds[Random.Range(0, defaultHurtSounds.Length)];
@@ -47,6 +69,7 @@ public class PlayError : MonoBehaviour
             }
             else
             {
+                Debug.Log("Looking for oofs.");
                 // Pick random failure dialogue
                 System.Random rand = new System.Random();
                 passengerHurtSound = situationalDialogues[Random.Range(0, situationalDialogues.Count)];
@@ -60,6 +83,12 @@ public class PlayError : MonoBehaviour
                     {
                         Debug.Log("all dialogues in this folder were played!");
                         passengerHurtSound = defaultHurtSound;
+                        
+                        if (CompletedDialogues.Contains(passengerHurtSound.name))
+                        {
+                            yield break; //teeeeemppppppppp
+                        }
+
                         allUsed = true;
                         break;
                     }
@@ -68,8 +97,11 @@ public class PlayError : MonoBehaviour
                         passengerHurtSound = situationalDialogues[Random.Range(0, situationalDialogues.Count)];
                     }
                 }
-                if (!allUsed)
+                if (markPlayed) //without checking allused, it will also mark the default oofs as completed
+                {
+                    Debug.Log("will not play this again!");
                     CompletedDialogues.Add(passengerHurtSound.name);
+                }
             }
         }
 
@@ -77,9 +109,16 @@ public class PlayError : MonoBehaviour
         bool wasPlaying = dialogue.isPlaying;
         int currentTimePosition = CalculatePauseTime(dialogue, passengerHurtSound);
 
-        //wait for... idk 3 seconds?
-        yield return new WaitForSeconds(passengerHurtSound.length + 1f);  //note: should play an "oof" first before the angry passenger dialogue
-        //resume dialogue
+        if (string.Equals(obstacleType, "Oofs"))
+        {
+            subtitleText.changeSubtitle(oofs[Random.Range(0, oofs.Length)], passengerHurtSound.length + 1);
+        }
+        else
+        {
+            subtitleText.changeSubtitle("[Passenger Disappointment]", passengerHurtSound.length + 1);
+        }
+
+        yield return new WaitForSeconds(passengerHurtSound.length + 1f);
         playingHurtSound = false;
         dialogue.timeSamples = currentTimePosition;
         if (wasPlaying)
@@ -91,6 +130,7 @@ public class PlayError : MonoBehaviour
     //hazard though, the two should be identical cause they almost do the same thing.
     public static IEnumerator PlayWarningClipCoroutine(AudioClip passengerHurtSound)
     {
+        isPlaying = true;
         AudioSource dialogue = ConstructLevelFromMarkers.levelDialogue;
         bool wasPlaying = dialogue.isPlaying;
         int currentTimePosition = CalculatePauseTime(dialogue, passengerHurtSound);
@@ -100,7 +140,7 @@ public class PlayError : MonoBehaviour
         //resume dialogue
         playingHurtSound = false;
         dialogue.timeSamples = currentTimePosition;
-        if (wasPlaying)
+        if (wasPlaying) //also check isplaying
             dialogue.Play();
         Debug.Log("Resuming Dialogue");
     }

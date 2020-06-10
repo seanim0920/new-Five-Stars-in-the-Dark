@@ -6,19 +6,19 @@ public class subtitleText : MonoBehaviour
 {
     private static Text subText;
     private bool italics = false;
-    private static bool oride = false;
+    private static float changeDuration = 0;
     // Start is called before the first frame update
     void Start()
     {
         ConstructLevelFromMarkers.subtitleMessage = "";
         subText = GetComponent<Text>();
-        oride = false;
+        changeDuration = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!oride)
+        if (changeDuration <= 0)
         {
             if (SettingsManager.toggles[3])
             {
@@ -26,13 +26,13 @@ public class subtitleText : MonoBehaviour
                 {
                     subText.enabled = true;
                 }
-                if(ConstructLevelFromMarkers.subtitleMessage.Length > 0)
+                if (ConstructLevelFromMarkers.subtitleMessage.Length > 0)
                 {
                     if (char.ToLower(ConstructLevelFromMarkers.subtitleMessage[2]) == 'i')
                     {
                         if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage.Substring(5).Trim('"')))
                         {
-                            
+
                             // Debug.Break();
                             subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
                             subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
@@ -45,7 +45,7 @@ public class subtitleText : MonoBehaviour
                     {
                         if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage.Substring(4).Trim('"')))
                         {
-                            
+
                             // Debug.Break();
                             subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
                             subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
@@ -55,7 +55,7 @@ public class subtitleText : MonoBehaviour
                         }
                     }
                 }
-                
+
                 if (!ConstructLevelFromMarkers.levelDialogue.isPlaying)
                 {
                     subText.text = "";
@@ -65,16 +65,16 @@ public class subtitleText : MonoBehaviour
             {
                 subText.enabled = false;
             }
+        } else
+        {
+            changeDuration -= Time.deltaTime;
         }
     }
 
-    public static IEnumerator changeSubtitleCoroutine(string data, float duration)
+    public static void changeSubtitle(string data, float duration)
     {
-        oride = true;
         subText.text = data;
-        yield return new WaitForSeconds(duration);
-        subText.text = "";
-        oride = false;
+        changeDuration = duration;
     }
 
     string matchColorandTrimQuotes(string message)

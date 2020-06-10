@@ -119,6 +119,7 @@ public class CarCollision : MonoBehaviour
                 lightCollisionSound.Play();
             }
             TrackErrors.IncrementErrors(0.01f * controlFunctions.movementSpeed / controlFunctions.maxSpeed);
+            StartCoroutine(PlayError.PlayWarningCoroutine("Oofs", false));//change when we have proper sfx
         }
 
         //these pull a random hurtsound to play

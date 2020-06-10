@@ -22,17 +22,6 @@ public class QuickTurnFailure : ObstacleFailure
 
     public override void playFailure(Vector3 point)
     {
-        // Play failure dialogue sequentially
-        if(numFaliures >= failureDialogues.Length)
-        {
-            // dialogueSource.clip = failureDialogues[numFaliures];
-            // numFaliures++;
-            numFaliures = 0;
-        }
-        Debug.Log("What # dialogue? " + numFaliures);
-        // StartCoroutine(PlayError.PlayWarningClipCoroutine(failureDialogues[numFaliures]));
-        dialogueSource.clip = failureDialogues[numFaliures];
-        base.playFailure(point);
-        numFaliures++;
+        PlayError.PlayOofThenWarning("QuickTurn");
     }
 }
