@@ -17,10 +17,10 @@
 32.578512	33.565475	<W> "[car door slams]"
 34.421869	35.254339	<W> "Isaac: Where ya headed?"
 35.813792	38.228707	<Y> "Delmonico's Italian Bistro. 5th and King."
-35.908470	35.908470	[StartControl]
 39.958330	41.573750	<WI> "Delmonico's..."
 41.896834	43.996879	<WI> "Matias hated that place."
 44.135344	46.512318	<WI> "Always got his order wrong."
+47.108470	35.908470	[StartControl]
 52.621070	59.670823	SlowCar aheadOf Lane2
 54.197100	69.815958	Dialogue
 54.246504	57.568888	<W> "[cellphone buzzes]"

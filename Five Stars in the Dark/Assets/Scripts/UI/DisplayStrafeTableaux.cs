@@ -11,6 +11,9 @@ public class DisplayStrafeTableaux : MonoBehaviour
     private Text proceed;
     private float startTime = 0f;
     public int tableauxNum;
+    public PauseMenu pauseScript;
+    public GameObject pauseButtons;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,31 +23,38 @@ public class DisplayStrafeTableaux : MonoBehaviour
         Debug.Log(tableauxType);
         tableauxType.gameObject.SetActive(true);
         proceed = tableaux.GetComponentInChildren<Text>();
-        Time.timeScale = 0f;
-        // AudioListener.pause = true;
-        startTime = Time.unscaledTime;
-        ConstructLevelFromMarkers.levelDialogue.Pause();
+
+        player = GameObject.Find("Player");
+        pauseScript = GameObject.Find("Main Camera").GetComponentInChildren<PauseMenu>();
+        Debug.Log("Attempting to pause the game");
+        pauseScript.pauseGame();
+        pauseButtons = pauseScript.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject;
+        for (int i = 1; i < pauseButtons.transform.childCount; i++)
+        {
+            pauseButtons.transform.GetChild(i).gameObject.SetActive(false);
+        }
+        foreach (AudioSource audio in player.GetComponentsInChildren<AudioSource>(true))
+        {
+            audio.ignoreListenerPause = true;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         // Check if 1 seconds have elapsed && Accelerate to continue text is not enabled
-        if(Time.unscaledTime - startTime > 1f && !proceed.enabled)
+        if (!OverlayStatic.overlaid)
         {
-            // if so, enable "Accelerate to continue" text
-            proceed.enabled = true;
-        }
-        // Check if "Accelerate to continue" is being displayed, and player presses the button
-        if(proceed.enabled && (Input.GetKeyDown("up") || (Gamepad.current != null && Gamepad.current.rightTrigger.wasPressedThisFrame)))
-        {
-            // if so, unpause the game and destroy this object
+            pauseScript.resumeGame();
+            for (int i = 1; i < pauseButtons.transform.childCount; i++)
+            {
+                pauseButtons.transform.GetChild(i).gameObject.SetActive(true);
+            }
+            foreach (AudioSource audio in player.GetComponentsInChildren<AudioSource>(true))
+            {
+                audio.ignoreListenerPause = false;
+            }
             tableauxType.gameObject.SetActive(false);
-            proceed.enabled = false;
-            Time.timeScale = 1f;
-            // AudioListener.pause = false;
-            ConstructLevelFromMarkers.levelDialogue.Play();
-            // Debug.Break();
             Destroy(gameObject);
         }
     }

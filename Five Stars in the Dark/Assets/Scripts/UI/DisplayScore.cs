@@ -33,7 +33,6 @@ public class DisplayScore : MonoBehaviour
         errorText = GetGrandchild(this.gameObject, 3, 2).GetComponent<Text>();      //2 is ERRORS
         timeText = GetGrandchild(this.gameObject, 3, 4).GetComponent<Text>();       //4 is TIME
 
-        Debug.Log("Completion time is " + timeText);
         //Set text field texts to score
         if(ScoreStorage.Instance.getScoreProgress() >= 100)
         {
@@ -45,6 +44,7 @@ public class DisplayScore : MonoBehaviour
         }
         //errorText.text = ScoreStorage.Instance.getScoreCollisions() + " MISTAKE" + (ScoreStorage.Instance.getScoreCollisions() != 1 ? "S" : "");
         timeText.text = "TIME: " + ScoreStorage.Instance.getScoreTimeFormatted();
+        Debug.Log("Completion time is " + timeText);
 
         int prog = 0;
 

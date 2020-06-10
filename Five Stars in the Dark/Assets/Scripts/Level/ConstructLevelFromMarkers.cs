@@ -318,7 +318,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         nextDialogueStartTime = levelDialogue.clip.length;
         print("current level time is " + levelDialogue.time);
         //perform these checks every frame for as long as the dialogue plays
-        while (dialogueMarkers.Count > 0 || timedObstacleMarkers.Count > 0 || commandMarkers.Count > 0 || levelDialogue.isPlaying)
+        while (dialogueMarkers.Count > 0 || timedObstacleMarkers.Count > 0 || commandMarkers.Count > 0 || levelDialogue.isPlaying || levelDialogue.time != 0)
         {
             //print("More dialogue markers? " + (dialogueMarkers.Count > 0));
             //print("More time obstacle markers? " + (timedObstacleMarkers.Count > 0));
@@ -667,7 +667,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     }
                     subtitleMarkers.RemoveAt(0);
                 }
-                if (!levelDialogue.isPlaying && levelDialogue.time - subtitleMarker.despawnTime < 1)
+                else if (!levelDialogue.isPlaying && levelDialogue.time - subtitleMarker.despawnTime < 1)
                 {
                     subtitleMessage = "";
                     subtitleMarkers.RemoveAt(0);
