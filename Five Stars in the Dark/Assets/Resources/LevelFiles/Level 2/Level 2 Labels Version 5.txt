@@ -1,0 +1,155 @@
+-0.141791	45.643325	Dialogue
+0.000000	2.215433	<Y> "(outside) I can't believe I'm stuck watching the newbie."
+2.215433	4.453943	<Y> "Dunno what the boss sees in him."
+5.561659	7.223233	<Y> "Yeah, I know."
+7.500162	9.992524	<Y> "You know how hard I've worked for this organization. "
+10.130989	12.300266	<Y> "I should've been the one in the control chamber."
+12.415653	13.777221	<Y> "I was so ready to-"
+15.923422	17.238835	<Y> "Yeah, of course."
+17.631151	19.223493	<Y> "I trust that he made the right call."
+22.457703	23.311568	<Y> "Nice shad-"
+23.382597	24.490313	<Y> "AH!"
+25.242704	26.835047	<Y> "Dang it, maybe this one."
+27.223999	27.838451	<W> "[car door opens]"
+27.229394	26.550575	[RevealScreen]
+27.963850	29.002334	<Y> "Nice shades."
+30.358960	32.338891	<W> "Ah, thanks."
+32.578512	33.565475	<W> "[car door slams]"
+34.421869	35.254339	<W> "Isaac: Where ya headed?"
+35.813792	38.228707	<Y> "Delmonico's Italian Bistro. 5th and King."
+35.908470	35.908470	[StartControl]
+39.958330	41.573750	<WI> "Delmonico's..."
+41.896834	43.996879	<WI> "Matias hated that place."
+44.135344	46.512318	<WI> "Always got his order wrong."
+52.621070	59.670823	SlowCar aheadOf Lane2
+54.197100	69.815958	Dialogue
+54.246504	57.568888	<W> "[cellphone buzzes]"
+57.921375	58.821344	<Y> "Mind if I take this?"
+58.530863	69.815958	SlowCar aheadOf Lane1
+59.511320	60.403788	<W> "No problem."
+60.546283	61.348755	<W> "[cellphone buzz cuts off]"
+61.903736	63.103694	<Y> "Hey, nice shades."
+63.531179	64.213655	<W> "What?"
+64.588642	66.028591	<Y> "Sorry, I'm on the phone."
+66.328581	68.106018	<W> "Oh, uh, my mistake."
+71.062442	134.405266	Dialogue
+71.062442	72.976884	SlowCar aheadOf Lane1
+71.062442	72.667386	<Y> "Thanks, new burner?"
+73.679851	74.549820	<Y> "Great."
+75.014804	77.302224	<Y> "Yeah, I lost them, but they're still on my tail."
+79.263212	80.406745	<Y> "Yeah, she's onto us."
+79.726648	87.487455	FastCar behind Lane3
+80.521098	81.533942	<Y> "If we don't do something soon,"
+81.615623	82.563123	<Y> "our whole plan's kaput."
+85.777515	95.737166	FastCar behind Lane2
+86.820027	87.914989	<Y> "No, but they got Bobby."
+88.252477	90.290142	<Y> "They're running experiments; I don't know what else."
+91.904849	94.402261	<Y> "Exactly, they can't get all of us"
+94.724750	96.524687	<WI> "Who the hell is this guy?"
+96.685625	98.441903	<WI> "Is he some kinda glasses thief?"
+98.257078	106.086803	SlowCar aheadOf Lane3
+98.257078	108.786709	SlowCar aheadOf Lane1
+98.339623	100.072062	<Y> "Yeah, we finally cracked the door code,"
+100.334553	102.359482	<Y> "[snorts] it's 1-2-3-4"
+103.191953	104.541906	<Y> "Radio: Scientists at NASA report that a"
+104.541906	106.979320	<Y> "near-lunar eclipse will take place in three days,"
+107.196813	109.019249	<Y> "Given the solar eclipse that happened this week,"
+109.124245	110.346702	<Y> "Scientists say these two events both occur-"
+110.421700	113.039108	<WI> "Matias would have loved that if he was here."
+113.279100	116.361492	<WI> "When he comes back, I'll tell him all about it."
+113.331870	123.628516	SlowCar behind Lane2
+116.428052	117.178963	<Y> "Say again?"
+118.303923	119.751373	<Y> "Rendezvous at Delmonico's."
+120.208857	122.472444	<Y> "Charter leaves at eight, 62 hours out."
+121.861299	134.191309	SlowCar aheadOf Lane1
+124.694166	125.510976	<Y> "Don't worry about that;
+125.608993	127.454983	<Y> "If we pull this off, we can reverse everything."
+129.333645	131.231078	<Y> "C'mon J.T., think about your kids."
+140.078009	143.257897	<W> "[police siren wails]"
+140.323052	151.987094	[PoliceSiren-Fast]
+140.617103	142.409541	<W> "Hey, are they followin' us?"
+141.281768	151.451411	Dialogue
+142.582035	143.804492	<Y> "Oh, f--- me,
+144.029484	145.176944	<Y> "You can't let them get us!"
+145.686926	147.269370	<W> "They're after YOU?!"
+147.389366	149.024309	<Y> "Hey listen, do you want Matias back?"
+149.159304	150.644252	"<Y> "Do exactly as I say."
+156.283783	167.260857	Dialogue
+157.391499	159.468467	<Y> "Hold onto your sunglasses,"
+159.468467	161.499280	<Y> "We're gonna be needing to make a couple of sharp turns."
+161.499280	162.953158	<Y> "When I say the word,"
+162.953158	164.407035	<Y> "Turn and hold the wheel in whatever"
+164.453190	165.722448	<Y> "direction I tell you to go."
+165.722448	166.714778	<Y> "Got it?"
+170.291778	170.291778	[Rosales-13]
+173.906603	173.906603	QuickTurn left
+176.822689	176.822689	[Rosales-14]
+178.345799	178.345799	QuickTurn right
+182.984360	192.307639	Dialogue
+183.166157	184.538608	<Y> "Damn, there's cops here too."
+184.868597	186.271048	<Y> "OK, make sure to move out of their way,"
+186.261354	187.806300	<Y> "We can't look suspicious."
+190.076496	196.616266	PoliceCar aheadOf Lane3
+197.486236	202.856048	PoliceCar aheadOf Lane1
+204.176002	210.475781	PoliceCar aheadOf player
+210.723422	228.216109	Dialogue
+211.230173	213.847581	<Y> "Whew, let's hope that's the last of 'em."
+214.057574	216.105002	<W> "What the hell was that?"
+217.574951	218.392422	<Y> "Hey, don't worry."
+218.594915	220.267356	<Y> "Promise I'll fill you in when we get to our stop."
+220.379852	221.144825	<Y> "But until then,"
+221.212323	222.937263	<Y> "cool down, and drive like a normal person."
+223.049759	224.572205	<Y> "You seem to be good at that somehow."
+225.269681	228.022084	<W> "Fine... this better be worth the trouble."
+230.259816	235.449634	SlowCar aheadOf Lane2
+233.709695	240.519456	FastCar behind Lane1
+238.599523	242.049402	SlowCar aheadOf Lane2
+238.719519	243.369356	SlowCar aheadOf Lane3
+244.139530	247.709405	[PoliceSiren-Fast]
+244.901085	251.962777	Dialogue
+245.466473	247.956386	<Y> "Oh man, there's too many of them over there."
+245.593408	249.913257	PoliceCar aheadOf Lane3
+248.068882	249.973815	<Y> "There's no way they're not onto us by now."
+249.193486	253.243344	PoliceCar aheadOf Lane1
+253.070493	253.070493	[Rosales-19]
+255.701319	255.701319	QuickTurn right
+260.178339	260.178339	[Rosales-20]
+262.486081	262.486081	QuickTurn left
+264.239965	352.118791	Dialogue
+264.443189	266.535616	<Y> "OK, here's the place: Delmonico's."
+266.880604	267.705575	<Y> "Wait, hold on..."
+267.240030	267.240030	[EndControl]
+268.178058	269.003029	<Y> "Mother of God..."
+269.850499	272.572904	<Y> "They've barricaded the street -- we're f---ed!"
+273.540370	275.865289	<Y> "Police: We have you surrounded, stop your vehicle."
+275.895288	276.720259	<Y> "Quick, hide in the trunk!"
+276.855254	278.182707	<Y> "I'll get in the driver's seat -- GO!"
+278.767687	280.627622	<W>"What the hell? No chance!"
+280.807615	282.120069	<W> "Get out of my car!"
+282.915042	285.899937	<Y> "You're not leaving me many options, Isaac."
+285.886588	285.886588	[HideScreen]
+285.967435	286.372420	<W> "[whacks]"
+287.422384	288.247355	<W> "[car door opens]"
+288.764837	289.814800	<W> "[trunk slams]"
+290.384780	292.274714	<Y> "Police: That's our guy, take him!"
+294.344641	296.084580	<Y> "Police: He's trying to shake off his glasses!"
+296.542064	297.802020	<Y> "Don't look in his eyes!"
+298.094510	299.871947	<W> "[explosion]"
+300.006943	300.884412	<Y> "Police: You son of a-"
+300.884412	301.784380	<W> "[explosion]"
+301.784380	304.049301	<Y> "Put this over his head - don't look!"
+304.994268	305.651026	<Y> "Jesus-"
+305.651026	307.684768	<W> "[explosion]"
+309.269118	311.841977	<Y> "Police: They're gonna love you at the lab you sick son of a-"
+311.841977	314.384156	<W> "[explosion]"
+314.384156	316.791748	<W> "[footsteps running away]"
+316.903850	318.103808	<WI> "Yikes,"
+318.261303	320.091239	<WI> "he really whacked me hard."
+320.661219	323.038635	<WI> "My head... is throbbin'"
+323.901105	325.843537	<WI> "He seemed to know who I was,"
+326.241023	327.493479	<WI> "But if he did,"
+327.943463	330.418377	<WI> "Why did he pretend not to at first?"
+330.770864	332.878291	<WI> "How did he know Matias' name?"
+333.673263	335.293206	<WI> "What the hell is goin' on?"
+335.908184	338.503093	<WI> "Oh man, I can't... move..."
+339.133071	341.465490	<WI> "My head is... spinnin'..."

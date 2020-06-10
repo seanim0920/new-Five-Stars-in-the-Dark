@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public class SkipCutscenes : MonoBehaviour
 {
-    public Text textToDisable;
     public static bool isSkipping = false;
 
     public AudioSource levelDialogue;
