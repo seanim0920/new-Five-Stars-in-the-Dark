@@ -54,6 +54,9 @@ public class subtitleText : MonoBehaviour
                             // Debug.Log("markers text: " + ConstructLevelFromMarkers.subtitleMessage.Substring(4).Trim('"'));
                         }
                     }
+                } else
+                {
+                    subText.text = "";
                 }
 
                 if (ConstructLevelFromMarkers.levelDialogue != null && !ConstructLevelFromMarkers.levelDialogue.isPlaying)

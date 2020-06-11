@@ -6,7 +6,7 @@ public class LoadCurrentLevelFromInstructions : MonoBehaviour
 {
     public LoadScene localLoadScene;
     int beginningIndex = 3;
-    int endIndex = 13;
+    int endIndex = 12;
     int sceneToLoad = 3;
     // Start is called before the first frame update
     void Start()

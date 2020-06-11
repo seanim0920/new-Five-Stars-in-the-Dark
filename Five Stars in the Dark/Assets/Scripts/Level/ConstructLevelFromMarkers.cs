@@ -662,7 +662,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     {
                         if (subtitleMarkers[1].spawnTime - subtitleMarker.despawnTime > 1)
                         {
-                            subtitleMessage = "";
+                            StartCoroutine(emptySubtitleAfterDelay());
                         }
                     }
                     subtitleMarkers.RemoveAt(0);
@@ -674,6 +674,12 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 }
             }
         }
+    }
+
+    private IEnumerator emptySubtitleAfterDelay()
+    {
+        yield return new WaitForSeconds(1);
+        subtitleMessage = "";
     }
 
     IEnumerator startCar()
