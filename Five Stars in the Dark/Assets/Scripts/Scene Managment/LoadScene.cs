@@ -38,7 +38,19 @@ public class LoadScene : MonoBehaviour
         load.allowSceneActivation = false;
         GameObject transition = Instantiate(wipe, wipe.transform.position, wipe.transform.rotation, GameObject.FindGameObjectWithTag("Canvas").transform);
         transition.GetComponent<Animator>().Play("Wipe_Anim_Down");
-        yield return new WaitForSeconds(0.9f);
+        while (transition.GetComponent<RectTransform>().anchoredPosition.x < -790)
+        {
+            AudioListener.volume *= 0.9f;
+            yield return new WaitForSeconds(0);
+        }
+        AudioListener.volume *= 0f;
+        transition.GetComponent<Animator>().speed = 0;
+        yield return new WaitForSeconds(1);
+        foreach (AudioSource audio in GameObject.FindObjectsOfType<AudioSource>())
+        {
+            audio.volume = 0;
+        }
+        AudioListener.volume = 1f;
         load.allowSceneActivation = true;
     }
 
