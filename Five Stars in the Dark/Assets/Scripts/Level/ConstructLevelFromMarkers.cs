@@ -187,7 +187,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         }
 
         carStart = Resources.Load<AudioClip>("Audio/Car-SFX/Car Ambience/Car-EngineStart");
-        carPark = Resources.Load<AudioClip>("Audio/Car-SFX/Car Ambience/Car-EngineStart");
+        carPark = Resources.Load<AudioClip>("Audio/Car-SFX/Car Ambience/Car-EngineEnd");
 
 
         debugMessage = "starting level now, level ends at " + endOfLevel;
