@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class WaitForCreditsToEnd : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class WaitForCreditsToEnd : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (!PlaythroughManager.hasPlayedLevel(SceneManager.GetActiveScene().buildIndex))
+        {
+            PlaythroughManager.saveLevelHistory(SceneManager.GetActiveScene().buildIndex);
+        }
         blackOverlay.GetComponent<Image>().canvasRenderer.SetAlpha(0);
         blackOverlay.SetActive(true);
     }
