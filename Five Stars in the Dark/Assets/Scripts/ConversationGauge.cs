@@ -31,12 +31,10 @@ public class ConversationGauge : MonoBehaviour
             float distance = difference.magnitude;
             float eyesight = transform.localScale.y * transform.parent.transform.localScale.y;
             noise.pitch = Mathf.Pow(((-distance / (eyesight)) + 1), 2) * 4f;
+
             Vector3 posRelativeToPlayer = transform.parent.transform.InverseTransformPoint(col.gameObject.transform.position);
-            noise.panStereo = - posRelativeToPlayer.x / (transform.localScale.x / 2);
             gauge -= noise.pitch * 10 * Time.deltaTime;
-            noise.volume = gauge/100;
             convo.panStereo = noise.panStereo;
-            convo.volume = 1 - gauge/100;
             convo.pitch = noise.pitch;
             if (gauge <= 0 && !destroyed)
             {
@@ -63,7 +61,6 @@ public class ConversationGauge : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        //should be adjusted to detect the closest car to the player, if there are multiple cars in the zone
         if (col.gameObject.tag == "Player")
         {
             convo.volume = 0;
