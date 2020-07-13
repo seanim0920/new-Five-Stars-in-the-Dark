@@ -40,10 +40,11 @@ public class LoadScene : MonoBehaviour
         transition.GetComponent<Animator>().Play("Wipe_Anim_Down");
         while (transition.GetComponent<RectTransform>().anchoredPosition.x < -790)
         {
-            AudioListener.volume *= 0.9f;
+            AudioListener.volume *= 0.7f;
             yield return new WaitForSeconds(0);
         }
         AudioListener.volume *= 0f;
+
         transition.GetComponent<Animator>().speed = 0;
         yield return new WaitForSeconds(1);
         foreach (AudioSource audio in GameObject.FindObjectsOfType<AudioSource>())
