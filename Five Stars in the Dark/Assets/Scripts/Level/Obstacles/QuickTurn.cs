@@ -69,6 +69,7 @@ public class QuickTurn : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D other)
     {
+        print("quickturn exited");
         if (other.transform.CompareTag("Player"))
         {
             //StartCoroutine(camMovement.resetSidewaysCoroutine());
