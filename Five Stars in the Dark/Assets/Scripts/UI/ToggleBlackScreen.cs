@@ -7,7 +7,7 @@ public class ToggleBlackScreen : MonoBehaviour
     private bool isBlack = true;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Backslash) && Input.GetKeyDown(KeyCode.Comma) && Input.GetKeyDown(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.Backslash) && Input.GetKeyDown(KeyCode.Comma) && Input.GetKeyDown(KeyCode.B))
         {   
             isBlack = !isBlack;
         }

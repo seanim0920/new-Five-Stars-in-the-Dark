@@ -16,7 +16,7 @@ public class QuickTurn : MonoBehaviour
     private float enterSpeedometerAngle;
     private RotateSpeedometer speedometer;
     public PlayerControls playerCtrl;
-    public MovementShake camMovement;
+    public QuickTurnCameraRotate camMovement;
     public bool mustTurnLeft;
 
     void Awake()
@@ -41,6 +41,7 @@ public class QuickTurn : MonoBehaviour
         speedometer = canvas.GetComponentInChildren<RotateSpeedometer>();
         enterSpeed = 0f;
         enterSpeedometerAngle = 0f;
+        camMovement = GameObject.Find("Main Camera").GetComponentInChildren<QuickTurnCameraRotate>();
     }
 
     // Update is called once per frame
@@ -51,20 +52,28 @@ public class QuickTurn : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        print("quickturn entered");
         // Begin Quick Turn sequence
         if (other.transform.CompareTag("Player"))
         {
             playerCtrl = other.gameObject.GetComponent<PlayerControls>();
             other.GetComponentInParent<GamepadControl>().gamepad.Gameplay.Disable();
             Debug.Log("Turn " + turnDirection + "!"); // We potentially want to play a quick turn warning audio clip
+            StopAllCoroutines();
+            if (mustTurnLeft)
+                StartCoroutine(camMovement.turnLeftCoroutine());
+            else
+                StartCoroutine(camMovement.turnRightCoroutine());
         }
     }
 
     void OnTriggerStay2D(Collider2D other)
     {
-        float s = (mustTurnLeft ? -playerCtrl.movementSpeed : playerCtrl.movementSpeed) * 0.3f + playerCtrl.getStrafeAmount() * 3;
-        playerCtrl.transform.position += new Vector3(s, 0, 0);
-        //camMovement.sidewaysPosition += s;
+        if (other.transform.CompareTag("Player") && playerCtrl != null)
+        {
+            float s = (mustTurnLeft ? -playerCtrl.movementSpeed : playerCtrl.movementSpeed) * 0.3f + playerCtrl.getStrafeAmount() * 3;
+            other.transform.position += new Vector3(s, 0, 0);
+        }
     }
 
     void OnTriggerExit2D(Collider2D other)
@@ -72,7 +81,8 @@ public class QuickTurn : MonoBehaviour
         print("quickturn exited");
         if (other.transform.CompareTag("Player"))
         {
-            //StartCoroutine(camMovement.resetSidewaysCoroutine());
+            StopAllCoroutines();
+            camMovement.stopTurning();
             Destroy(gameObject);
         }
     }

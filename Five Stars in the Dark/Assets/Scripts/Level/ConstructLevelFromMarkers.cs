@@ -743,7 +743,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.Backslash) && Input.GetKeyDown(KeyCode.Comma) && Input.GetKeyDown(KeyCode.T)))
+        if ((Input.GetKeyDown(KeyCode.Backslash) && Input.GetKeyDown(KeyCode.Comma) && Input.GetKeyDown(KeyCode.S)))
         {
             skipSection = true;
         }
