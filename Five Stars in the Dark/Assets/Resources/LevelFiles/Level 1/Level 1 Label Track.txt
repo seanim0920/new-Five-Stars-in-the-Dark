@@ -6,40 +6,40 @@
 12.076589	13.151068	<Y> "Many are asking for-"
 13.168454	14.406366	<Y> "[static]"
 14.441138	21.677355	<W> "[engine rumbles]"
-21.698219	23.662881	<W> "Isaac, monologuing: Driving fast is a sport,"
-24.580883	26.455136	<W> "but driving blind is a puzzle."
-27.327933	29.066572	<W> "If you pay close attention"
-30.332302	32.199601	<W> "everything you hear is a piece"
-34.560673	35.742948	<W> "Rumble of an engine,"
+21.698219	23.662881	<WI> "Isaac, monologuing: Driving fast is a sport,"
+24.580883	26.455136	<WI> "but driving blind is a puzzle."
+27.327933	29.066572	<WI> "If you pay close attention"
+30.332302	32.199601	<WI> "everything you hear is a piece"
+34.560673	35.742948	<WI> "Rumble of an engine,"
 36.288880	37.446814	<W> "[engine rumbles]"
-37.759769	38.966385	<W> "woman on the phone,"
-41.233571	42.958301	<W> "the wail of a police siren"
+37.759769	38.966385	<WI> "woman on the phone,"
+41.233571	42.958301	<WI> "the wail of a police siren"
 43.073051	44.616963	<W> "[police siren wails]"
-44.975122	46.553807	<W> "the lightin' of a cigarette,"
-48.275060	48.532379	<W> "a-"
+44.975122	46.553807	<WI> "the lightin' of a cigarette,"
+48.275060	48.532379	<WI> "a-"
 48.532379	48.751447	<W> "[car door opens]"
 50.931701	52.110498	<Y> "Dianne: Hi, for Dianne?"
 52.583408	54.137752	<W> "You're in the right place, Dianne."
 54.391593	55.632982	<W> "Let's get a move on."
 57.402916	58.206168	<W> "[car door slams]"
-59.044192	61.321810	<W> "monologuing: If I don't wear these black out glasses,"
+59.044192	61.321810	<WI> "If I don't wear these black out glasses,"
 61.356582	61.568696	<W> "[seatbelt clicks]"
-61.603469	63.842837	<W> "very bad things will happen."
+61.603469	63.842837	<WI> "very bad things will happen."
 63.961064	64.235769	<W> "[engine turns over]"
-65.014679	66.683773	<W> "They already have..."
+65.014679	66.683773	<WI> "They already have..."
 67.650457	69.357801	<Y> "Oh, I love this station!"
 69.399528	70.369689	<Y> "You've got good taste!"
 70.741757	72.421283	<W> "Heh, really?"
-73.534012	75.443038	<W> "monologuing: He liked this station too..."
+73.534012	75.443038	<WI> "He liked this station too..."
 76.820041	78.642135	<Y> "Nice sunglasses, by the way. [laughs]"
 78.937703	80.502479	<Y> "I hope they don't make it hard to see, though."
 80.982343	81.757776	<Y> "It is such a lovely d-
-81.789072	83.479029	<W> "monologuing: She doesn't know the half of it."
-84.522213	86.921535	<W> "I can't see anything with these shades,"
-87.537013	88.750584	<W> "and for good reason..."
+81.789072	83.479029	<WI> "She doesn't know the half of it."
+84.522213	86.921535	<WI> "I can't see anything with these shades,"
+87.537013	88.750584	<WI> "and for good reason..."
 88.774925	90.426632	<Y> "Wait, can you hear me up there?"
 91.469816	93.789161	<W> "Oh, sorry, what were you askin'?"
-94.230775	96.723984	<Y> "Oh, no, it's all good, I wans't saying much."
+94.230775	96.723984	<Y> "Oh, no, it's all good, I wasn't saying much."
 96.758757	98.973783	<Y> "Just that it's really busy out on the road today."
 102.169402	104.248815	<Y> "I just hope traffic won't slow us down."
 104.502656	106.564682	<Y> "I really can't afford to be late to this."
@@ -83,14 +83,14 @@
 208.664539	209.019221	<W> "[car door slams]"
 0.000000	66.666387	Dialogue
 0.000000	0.000000	[HideScreen]
-48.5	48.5	[RevealScreen]
+21.614764	21.614764	[RevealScreen]
 63.981928	63.981928	[StartControl]
 67.041933	67.041933	[GPSStart]
 67.459206	75.470856	Dialogue
 76.722677	99.005079	Dialogue
 101.898174	147.186252	Dialogue
 150.134984	181.680856	Dialogue
-182.543222	196.893059	Dialogue
+182.543222	193.893059	Dialogue
 194.671970	194.671970	[GPSWarn]
 198.399612	212.503455	Dialogue
 199.567978	199.567978	[GPSEnd]
