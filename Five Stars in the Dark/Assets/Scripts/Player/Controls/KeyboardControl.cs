@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class KeyboardControl : MonoBehaviour
 {
+    public static KeyCode Forwards = KeyCode.UpArrow;
+    public static KeyCode Backwards = KeyCode.DownArrow;
+    public static KeyCode SteerLeft = KeyCode.LeftArrow;
+    public static KeyCode SteerRight = KeyCode.RightArrow;
+
     private PlayerControls controlFunctions;
     private float accelAmount = 0;
     private float breakAmount = 0;
@@ -17,13 +22,13 @@ public class KeyboardControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if ((Input.GetKey("up") || Input.GetKey("down")))
+        if ((Input.GetKey(Forwards) || Input.GetKey(Backwards)))
         {
-            if (Input.GetKey("up"))
+            if (Input.GetKey(Forwards))
             {
                 controlFunctions.speedUp(accelAmount);
             }
-            if (Input.GetKey("down"))
+            if (Input.GetKey(Backwards))
             {
                 controlFunctions.slowDown(breakAmount);
                 strafeAmount *= 0.92f;
@@ -39,18 +44,18 @@ public class KeyboardControl : MonoBehaviour
         controlFunctions.strafe(strafeAmount); //2.08f normalizes strafeamount
         if (!controlFunctions.enabled) strafeAmount = 0;
 
-        if (Input.GetKey("up") && accelAmount < 0.98f)
+        if (Input.GetKey(Forwards) && accelAmount < 0.98f)
         {
             accelAmount += 0.02f;
         }
-        if (Input.GetKey("down") && breakAmount < 0.98f)
+        if (Input.GetKey(Backwards) && breakAmount < 0.98f)
         {
             // breakAmount += 0.02f;
             breakAmount = 0.02f;
         }
-        if (Input.GetKey("left") || Input.GetKey("right"))
+        if (Input.GetKey(SteerLeft) || Input.GetKey(SteerRight))
         {
-            if (Input.GetKey("right"))
+            if (Input.GetKey(SteerRight))
             {
                 strafeAmount += 0.01f;
             }
