@@ -7,15 +7,15 @@ InputManager:
   m_Axes:
   - serializedVersion: 3
     m_Name: Horizontal
-    descriptiveName: 
-    descriptiveNegativeName: 
+    descriptiveName: SteerRight
+    descriptiveNegativeName: SteerLeft
     negativeButton: left
     positiveButton: right
     altNegativeButton: a
     altPositiveButton: d
     gravity: 3
-    dead: 0.001
-    sensitivity: 3
+    dead: 0.01
+    sensitivity: 0.1
     snap: 0
     invert: 0
     type: 2
@@ -23,8 +23,8 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Vertical
-    descriptiveName: 
-    descriptiveNegativeName: 
+    descriptiveName: Acceleration
+    descriptiveNegativeName: Deceleration
     negativeButton: down
     positiveButton: up
     altNegativeButton: s
