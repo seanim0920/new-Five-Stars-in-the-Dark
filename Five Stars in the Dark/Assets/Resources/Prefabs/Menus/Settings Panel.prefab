@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8017572173567487402}
   - component: {fileID: 2742610727073345332}
   m_Layer: 5
-  m_Name: Key Setter
+  m_Name: CaptureInputAccel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3637,7 +3637,7 @@ GameObject:
   - component: {fileID: 6588620881111844935}
   - component: {fileID: 4551933997682865915}
   m_Layer: 5
-  m_Name: Key Setter (1)
+  m_Name: CaptureInputDecel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7910,7 +7910,7 @@ GameObject:
   - component: {fileID: 3857038498489687762}
   - component: {fileID: 7234506790343182110}
   m_Layer: 5
-  m_Name: Key Setter (2)
+  m_Name: CaptureInputLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8166,7 +8166,7 @@ GameObject:
   - component: {fileID: 153421354119510255}
   - component: {fileID: 7164250343677127761}
   m_Layer: 5
-  m_Name: Key Setter (3)
+  m_Name: CaptureInputRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
