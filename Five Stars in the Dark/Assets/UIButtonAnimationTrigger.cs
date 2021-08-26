@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PauseButtonMovement : MonoBehaviour
+public class UIButtonAnimationTrigger : MonoBehaviour
 {
+    // should this work with a controller too? maybe if pressing a button that isnt mapped to an action?
     Vector3 lastMouseCoordinate = Vector3.zero;
     float lastTimeMoved = 2;
     Animator anim;

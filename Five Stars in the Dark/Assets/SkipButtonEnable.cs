@@ -9,14 +9,14 @@ public class SkipButtonEnable : MonoBehaviour
     GameObject level;
     Text text;
     Button button;
-    // Start is called before the first frame update
+
     void Start()
     {
         level = GameObject.Find("LevelConstructor");
         text = GetComponentInChildren<Text>();
         button = GetComponent<Button>();
         GetComponent<Button>().onClick.AddListener(() => {
-            StartCoroutine(level.GetComponent<SkipCutscenes>().skipIntroCoroutine());
+            StartCoroutine(level.GetComponent<SkipCutscenes>().skipCutsceneCoroutine());
             text.enabled = false;
         });
 
@@ -68,7 +68,7 @@ public class SkipButtonEnable : MonoBehaviour
 
             if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame))
             {
-                StartCoroutine(level.GetComponent<SkipCutscenes>().skipIntroCoroutine());
+                StartCoroutine(level.GetComponent<SkipCutscenes>().skipCutsceneCoroutine());
                 text.enabled = false;
             }
         }

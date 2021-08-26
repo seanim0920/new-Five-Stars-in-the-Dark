@@ -6,24 +6,14 @@ using UnityEngine.InputSystem;
 
 public class SkipCutscenes : MonoBehaviour
 {
-    public static bool isSkipping = false;
+    public static bool isSkipping = false; //could be altered in pause screen
 
     public AudioSource levelDialogue;
     public AudioSource skipStartSound;
     public AudioSource skipLoopSound;
     public AudioSource skipEndSound;
-    // Start is called before the first frame update
-    void Start()
-    {
-        isSkipping = false;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
-
-    public IEnumerator skipIntroCoroutine()
+    public IEnumerator skipCutsceneCoroutine()
     {
         if (!CountdownTimer.getTracking() && !PauseMenu.isPaused)
         {
