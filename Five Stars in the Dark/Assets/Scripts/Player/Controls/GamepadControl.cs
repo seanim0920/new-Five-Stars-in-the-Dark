@@ -34,16 +34,14 @@ public class GamepadControl : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(gamepadConnected && keyboardScript.enabled)
-        {
-            keyboardScript.enabled = false;
-        }
-
         if (isBraking || isAccelerating)
         {
             if (isBraking)
             {
                 controlFunctions.slowDown(brakeAmt);
+                //strafeAmount *= 0.92f; //necessary? should be as simple as possible for a visualless driving game, but it's more realistic I think 
+                //wait, this was to stop the car from moving left and right when the brakes are held down.
+                //our car, I think, should have a set speed moving forward that gets adjusted by the brakes, and the steering just adjusts the forward angle of the car. it gets reset when the wheel is let go though.
             }
             if (isAccelerating)
             {
@@ -52,10 +50,12 @@ public class GamepadControl : MonoBehaviour
         }
         else
         {
-            controlFunctions.returnToNeutralSpeed();
+            controlFunctions.crawl();
         }
 
         strafeAcceleration = (strafeFinal - strafeInitial) / 90f; // 90f is a magic number for the wheel rotation speed
+        //how does this work?
+
         if(isStrafing)
         {
             // If velocity < 1/3 or velocity > 1/3, but acceleration is in opposite direction
@@ -68,15 +68,14 @@ public class GamepadControl : MonoBehaviour
             {
                 strafeVelocity += strafeAcceleration * 1.4f;
             }
-            controlFunctions.strafe(strafeVelocity);
-            // if (!controlFunctions.enabled) strafeVelocity = 0;
 
         }
         else
         {
             strafeVelocity *= 0.97f;
-            if (!controlFunctions.enabled) strafeVelocity = 0;
         }
+
+        if (!controlFunctions.enabled) strafeVelocity = 0;
         controlFunctions.strafe(strafeVelocity);
     }
 
