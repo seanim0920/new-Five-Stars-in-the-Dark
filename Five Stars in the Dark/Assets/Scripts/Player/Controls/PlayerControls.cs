@@ -7,9 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerControls : MonoBehaviour
 {
     //sound effects and haptic feedback
-    public AudioSource releasePedalSound;
-    public AudioSource accelPedalSound;
-    public AudioSource brakePedalSound;
+    public AudioSource releaseAccelPedalSound;
+    public AudioSource releaseBrakePedalSound;
+    public AudioSource pressAccelPedalSound;
+    public AudioSource pressBrakePedalSound;
     public AudioSource disabledWheelSound;
     public AudioSource engineSound;
     public AudioSource rollSound;
@@ -29,6 +30,10 @@ public class PlayerControls : MonoBehaviour
     public float neutralSpeed = 1f;
     public float acceleration = 0.01f;
     public float currentSpeed = 0f;
+
+    private float accelAmount = 0;
+    private float breakAmount = 0;
+    private float strafeAmount = 0;
 
     private Rigidbody2D body;
     private Vector3 movementDirection;
@@ -51,7 +56,7 @@ public class PlayerControls : MonoBehaviour
 
         // AudioMixerSnapshot[] engineSounds = {restToCoast, coastToAccel};
     }
-    
+
     void FixedUpdate()
     {
         //balance the ambient audio sfx
@@ -63,6 +68,7 @@ public class PlayerControls : MonoBehaviour
         //move the car
         transform.position += movementDirection * currentSpeed;
         //print(currentSpeed);
+        }
 
         /*
          * if not accelerating and not braking
@@ -79,7 +85,6 @@ public class PlayerControls : MonoBehaviour
          * put control logic in here. only have keyboardcontrol and gamepadcontrol fire events onkeydown or onkeyup, on player input, not while doing nothing. should eliminate bugs. only potential bugs are if both gamepad and keyboard are used at once
          * 
          * 
-        if (!controlFunctions.enabled) strafeVelocity = 0;
         controlFunctions.strafe(strafeVelocity);
 
         if (!isStrafing) {
@@ -88,17 +93,42 @@ public class PlayerControls : MonoBehaviour
          */
     }
 
+    public void SteerLeft()
+    {
+        strafeAmount -= 0.01f;
+    }
+
+    public void SteerRight()
+    {
+        strafeAmount += 0.01f;
+    }
+    public void AccelerateStart()
+    {
+        pressAccelPedalSound.volume = 0.5f - currentSpeed / maxSpeed;
+        pressAccelPedalSound.Play();
+        acceling = true;
+    }
+    public void AccelerateEnd()
+    {
+        releaseAccelPedalSound.volume = 0.5f - currentSpeed / maxSpeed;
+        releaseAccelPedalSound.Play();
+        acceling = false;
+    }
+    public void BrakeStart()
+    {
+        pressBrakePedalSound.volume = 0.5f - currentSpeed / maxSpeed;
+        pressBrakePedalSound.Play();
+        braking = true;
+    }
+    public void BrakeEnd()
+    {
+        releaseBrakePedalSound.volume = 0.5f - currentSpeed / maxSpeed;
+        releaseBrakePedalSound.Play();
+        braking = false;
+    }
+
     public void coast()
     {
-        if (acceling || braking)
-        {
-            releasePedalSound.volume = 0.5f-currentSpeed / maxSpeed;
-            releasePedalSound.Play();
-        }
-        acceling = false;
-        braking = false;
-        if (!this.enabled) return; //when stopping the car
-
         // Transform engineSounds = engineSound.transform; // Get Engine children
         // Debug.Log("Inside returnToNeutralSpeed");
         if (Mathf.Abs(neutralSpeed - currentSpeed) < 0.005f)
@@ -121,29 +151,19 @@ public class PlayerControls : MonoBehaviour
             // Blend form MaxSpeed to Coasting
             // Debug.Log("MaxSpeed->Coasting");
             BlendSnapshot(3, 0.5f);
-            slowDown(0.001f, true);
+            slowDown(0.001f);
         }
         else
         {
             // Blend from Rest to Coasting
             // Debug.Log("Rest->Coasting");
             BlendSnapshot(0, 1.5f);
-            speedUp(0.1f, true);
+            speedUp(0.1f);
         }
     }
 
-    public void slowDown(float amount, bool coasting = false)
+    public void slowDown(float amount)
     {
-        if (!coasting)
-        {
-            if (!braking)
-            {
-                brakePedalSound.volume = 0.5f-currentSpeed / maxSpeed;
-                brakePedalSound.Play();
-            }
-            braking = true;
-        }
-        if (!this.enabled) return;
         if (currentSpeed <= minSpeed) return;
         // Play Slowing Down Clip
         if (!engineSound.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
@@ -162,18 +182,8 @@ public class PlayerControls : MonoBehaviour
         currentSpeed *= 1 - amount;
         //setRadioTempo(getRadioTempo()*(1-amount));
     }
-    public void speedUp(float amount, bool coasting = false)
+    public void speedUp(float amount)
     {
-        if (!coasting)
-        {
-            if (!acceling)
-            {
-                accelPedalSound.volume = 0.5f-currentSpeed / maxSpeed;
-                accelPedalSound.Play();
-            }
-            acceling = true;
-        }
-        if (!this.enabled) return;
         // Play Accelerating Clip
         if (!engineSound.transform.GetChild(1).GetComponent<AudioSource>().isPlaying)
         {
