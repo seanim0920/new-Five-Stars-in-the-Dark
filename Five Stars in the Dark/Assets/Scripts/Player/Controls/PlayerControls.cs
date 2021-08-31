@@ -6,32 +6,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerControls : MonoBehaviour
 {
+    //sound effects and haptic feedback
     public AudioSource releasePedalSound;
     public AudioSource accelPedalSound;
     public AudioSource brakePedalSound;
     public AudioSource disabledWheelSound;
     public AudioSource engineSound;
-    public AudioSource tireSound;
+    public AudioSource rollSound;
     public AudioSource slidingSound;
-    public AudioSource grabWheel;
-
-    public float minSpeed = 0f;
-    public float maxSpeed = 1.5f;
-    public float neutralSpeed = 1f;
-    public float acceleration = 0.01f;
-    public float movementSpeed = 0f;
-
-    private Rigidbody2D body;
-    private AudioClip bump;
-    private Vector3 movementDirection;
-    private int blockedSide = 0;
-    private float lastRecordedStrafe = 0;
-    private int strafingDirection = -1;
-
-    private bool coasting = false;
-    private bool acceling = false;
-    private bool braking = false;
-    private bool isTurning = false;
+    public AudioSource wheelGrabSound;
+    public AudioClip bump;
+    public SteeringWheelInput wheelFunctions;
 
     public AudioSource strafeSound;
 
@@ -39,52 +24,85 @@ public class PlayerControls : MonoBehaviour
     public AudioMixerSnapshot[] engineSounds;
     public AudioMixerSnapshot shutOffSound;
 
+    //car speed stats
+    public float minSpeed = 0f;
+    public float maxSpeed = 1.5f;
+    public float neutralSpeed = 1f;
+    public float acceleration = 0.01f;
+    public float currentSpeed = 0f;
+
+    private Rigidbody2D body;
+    private Vector3 movementDirection;
+    private int blockedSide = 0;
+    private float lastRecordedStrafe = 0;
+    private int strafingDirection = -1;
+
+    private bool acceling = false;
+    private bool braking = false;
+    private bool isTurning = false;
+
     [Header("Private Attributes (visible for debugging)")]
     public float[] snapshotWeights;
-
-    private SteeringWheelInput wheelFunctions;
-
-    private string[] instruments = { "Lead", "Bass", "Keyboard", "Wind", "Support", "Drums" };
 
     void Start()
     {
         // engineSounds = engineSound.transform;
         body = GetComponent<Rigidbody2D>();
-        bump = Resources.Load<AudioClip>("Audio/bumpend");
         movementDirection = transform.up;
 
         // AudioMixerSnapshot[] engineSounds = {restToCoast, coastToAccel};
-
-        wheelFunctions = GetComponent<SteeringWheelInput>();
     }
     
     void FixedUpdate()
     {
-        engineSound.volume = -Mathf.Pow((movementSpeed / maxSpeed), 2) + 1;
-        tireSound.volume = Mathf.Pow((movementSpeed / maxSpeed), 2);
-        if (strafeSound != null)
-            strafeSound.volume = tireSound.volume / 2;
-        //wheelFunctions.PlayDirtRoadForce((int)(Mathf.Pow((1-(movementSpeed/maxSpeed)),1) * 25));
-        // Discrete turn l/r 
-        transform.position += movementDirection * movementSpeed;
-        //print(movementSpeed);
+        //balance the ambient audio sfx
+        engineSound.volume = -Mathf.Pow((currentSpeed / maxSpeed), 2) + 1;
+        rollSound.volume = Mathf.Pow((currentSpeed / maxSpeed), 2);
+        strafeSound.volume = rollSound.volume / 2;
+        //wheelFunctions.PlayDirtRoadForce((int)(Mathf.Pow((1-(currentSpeed/maxSpeed)),1) * 25));
+        
+        //move the car
+        transform.position += movementDirection * currentSpeed;
+        //print(currentSpeed);
+
+        /*
+         * if not accelerating and not braking
+         * coast()
+         * what happens if you brake and accel at the same time?
+         * have counters for digital strafing, accelerating and braking. the counters either increase every time the functions are called, or we only listen for keydown/keyup and increase the counters, then stop increasing when keyup/keydown. but then we'd need to debounce in the latter method maybe. 
+         * would take less code in the controller scripts if they didnt have to worry about counters.
+         * 
+         * if (!acceling && !braking) {
+         * 
+         * }
+         * 
+         * use keyup and keydown to toggle acceling and braking flags
+         * put control logic in here. only have keyboardcontrol and gamepadcontrol fire events onkeydown or onkeyup, on player input, not while doing nothing. should eliminate bugs. only potential bugs are if both gamepad and keyboard are used at once
+         * 
+         * 
+        if (!controlFunctions.enabled) strafeVelocity = 0;
+        controlFunctions.strafe(strafeVelocity);
+
+        if (!isStrafing) {
+            strafeVelocity *= 0.97f;
+        }
+         */
     }
 
-    public void returnToNeutralSpeed()
+    public void coast()
     {
         if (acceling || braking)
         {
-            releasePedalSound.volume = 0.5f-movementSpeed / maxSpeed;
+            releasePedalSound.volume = 0.5f-currentSpeed / maxSpeed;
             releasePedalSound.Play();
         }
         acceling = false;
         braking = false;
-        if (!this.enabled) return;
-        coasting = true;
+        if (!this.enabled) return; //when stopping the car
 
         // Transform engineSounds = engineSound.transform; // Get Engine children
         // Debug.Log("Inside returnToNeutralSpeed");
-        if (Mathf.Abs(neutralSpeed - movementSpeed) < 0.005f)
+        if (Mathf.Abs(neutralSpeed - currentSpeed) < 0.005f)
         {
             // Play Coasting Clip
             if (!engineSound.transform.GetChild(0).GetComponent<AudioSource>().isPlaying)
@@ -96,39 +114,38 @@ public class PlayerControls : MonoBehaviour
 
             // Blend from whatever to only Coasting
             BlendSnapshot(1, 0.5f);
-            movementSpeed = neutralSpeed;
+            currentSpeed = neutralSpeed;
             //setRadioTempo(1f);
         }
-        else if (movementSpeed > neutralSpeed)
+        else if (currentSpeed > neutralSpeed)
         {
             // Blend form MaxSpeed to Coasting
             // Debug.Log("MaxSpeed->Coasting");
             BlendSnapshot(3, 0.5f);
-            slowDown(0.001f);
+            slowDown(0.001f, true);
         }
         else
         {
             // Blend from Rest to Coasting
             // Debug.Log("Rest->Coasting");
             BlendSnapshot(0, 1.5f);
-            speedUp(0.1f);
+            speedUp(0.1f, true);
         }
-        coasting = false;
     }
 
-    public void slowDown(float amount)
+    public void slowDown(float amount, bool coasting)
     {
         if (!coasting)
         {
             if (!braking)
             {
-                brakePedalSound.volume = 0.5f-movementSpeed / maxSpeed;
+                brakePedalSound.volume = 0.5f-currentSpeed / maxSpeed;
                 brakePedalSound.Play();
             }
             braking = true;
         }
         if (!this.enabled) return;
-        if (movementSpeed <= minSpeed) return;
+        if (currentSpeed <= minSpeed) return;
         // Play Slowing Down Clip
         if (!engineSound.transform.GetChild(2).GetComponent<AudioSource>().isPlaying)
         {
@@ -137,22 +154,22 @@ public class PlayerControls : MonoBehaviour
         }
 
         // Blend from Coasting to Rest
-        if (movementSpeed <= neutralSpeed)
+        if (currentSpeed <= neutralSpeed)
         {
             // Debug.Log("Coasting->Rest");
             BlendSnapshot(4, 4f);
         }
 
-        movementSpeed *= 1 - amount;
+        currentSpeed *= 1 - amount;
         //setRadioTempo(getRadioTempo()*(1-amount));
     }
-    public void speedUp(float amount)
+    public void speedUp(float amount, bool coasting)
     {
         if (!coasting)
         {
             if (!acceling)
             {
-                accelPedalSound.volume = 0.5f-movementSpeed / maxSpeed;
+                accelPedalSound.volume = 0.5f-currentSpeed / maxSpeed;
                 accelPedalSound.Play();
             }
             acceling = true;
@@ -166,7 +183,7 @@ public class PlayerControls : MonoBehaviour
         }
 
         // Blend from Coasting to Max Speed
-        if (movementSpeed > neutralSpeed)
+        if (currentSpeed > neutralSpeed)
         {
             // Debug.Log("Coasting->MaxSpeed");
             BlendSnapshot(2, 0.5f);
@@ -178,12 +195,13 @@ public class PlayerControls : MonoBehaviour
             BlendSnapshot(0, 0.5f);
         }
 
-        if (movementSpeed < maxSpeed)
+        if (currentSpeed < maxSpeed)
         {
-            movementSpeed += acceleration * amount;
+            currentSpeed += acceleration * amount;
             //setRadioTempo(getRadioTempo() + acceleration*amount/neutralSpeed);
         }
     }
+
     public void blockDirection(int direction)
     {
         blockedSide = direction;
@@ -197,7 +215,7 @@ public class PlayerControls : MonoBehaviour
         {
             if (!isTurning && Mathf.Abs(amount) > 0)
             {
-                StartCoroutine(turnFail(amount > 0));
+                StartCoroutine(turnFailCoroutine(amount > 0));
             }
             return;
         }
@@ -217,7 +235,7 @@ public class PlayerControls : MonoBehaviour
             isTurning = false;
             if (slidingSound.isPlaying && Mathf.Abs(amount) > 0.02f)
             {
-                grabWheel.Play();
+                wheelGrabSound.Play();
             }
             slidingSound.Stop();
         }
@@ -237,7 +255,7 @@ public class PlayerControls : MonoBehaviour
         }
         else if (Mathf.Abs(amount) > 0.01f)
         {
-            transform.position += amount * (movementSpeed) * transform.right;
+            transform.position += amount * (currentSpeed) * transform.right;
         }
 
         lastRecordedStrafe = amount;
@@ -251,11 +269,43 @@ public class PlayerControls : MonoBehaviour
             child.gameObject.GetComponent<AudioSource>().panStereo = amount * 3;
         }
         ConstructLevelFromMarkers.levelDialogue.panStereo = -amount * 1.5f;
-        if (strafeSound != null)
-            strafeSound.panStereo = amount * 2.5f;
+        strafeSound.panStereo = amount * 2.5f;
     }
 
-    public IEnumerator turnFail(bool right)
+    private void OnDisable()
+    {
+        isTurning = false;
+    }
+
+    private IEnumerator stopCarCoroutine()
+    {
+        enabled = false;
+        while (currentSpeed > 0.01f)
+        {
+            lastRecordedStrafe *= 0.97f;
+            currentSpeed *= 0.97f;
+
+            rollSound.volume *= 0.97f;
+            strafeSound.volume *= 0.98f;
+            engineSound.volume *= 0.98f;
+            foreach (Transform child in engineSound.gameObject.transform)
+            {
+                child.gameObject.GetComponent<AudioSource>().volume *= 0.98f;
+            }
+            yield return new WaitForFixedUpdate();
+        }
+        rollSound.volume = 0;
+        strafeSound.volume = 0;
+        lastRecordedStrafe = 0;
+        currentSpeed = 0;
+        engineSound.volume = 0;
+        foreach (Transform child in engineSound.gameObject.transform)
+        {
+            child.gameObject.GetComponent<AudioSource>().volume = 0;
+        }
+    }
+
+    public IEnumerator turnFailCoroutine(bool right)
     {
         isTurning = true;
         disabledWheelSound.Play();
@@ -285,13 +335,13 @@ public class PlayerControls : MonoBehaviour
         int totalIterations = 15;
         float maxHDisplacement = (force.x / 20);
         float maxVDisplacement = (Mathf.Pow(Mathf.Abs(force.y), 0.1f) * (force.y > 0 ? 1 : -1) / 2f);
-        float origMovementSpeed = movementSpeed;
+        float origMovementSpeed = currentSpeed;
         float origStrafe = lastRecordedStrafe;
         for (int i = 0; i < totalIterations; i++)
         {
             Blur.setAmount(-Mathf.Pow((i - totalIterations), 2) / (totalIterations * (totalIterations / 1)) + 1);
             lastRecordedStrafe = -Mathf.Pow((i - totalIterations), 2)/(totalIterations * (totalIterations/maxHDisplacement)) + maxHDisplacement + origStrafe;
-            movementSpeed = -Mathf.Pow((i - totalIterations), 2) / (totalIterations * (totalIterations / maxVDisplacement)) + maxVDisplacement + origMovementSpeed;
+            currentSpeed = -Mathf.Pow((i - totalIterations), 2) / (totalIterations * (totalIterations / maxVDisplacement)) + maxVDisplacement + origMovementSpeed;
             yield return new WaitForFixedUpdate();
         }
         while (body.velocity.magnitude > 0.05f || lastRecordedStrafe > 0.02f)
@@ -299,7 +349,7 @@ public class PlayerControls : MonoBehaviour
             body.velocity *= 0.975f;
             Blur.setAmount(Blur.getAmount() * 0.97f);
             lastRecordedStrafe *= 0.97f;
-            movementSpeed *= 0.95f;
+            currentSpeed *= 0.95f;
             yield return new WaitForFixedUpdate();
         }
         body.velocity *= 0;
@@ -307,21 +357,16 @@ public class PlayerControls : MonoBehaviour
         {
             Blur.setAmount(0);
             lastRecordedStrafe = 0;
-            movementSpeed = 0;
+            currentSpeed = 0;
             body.bodyType = RigidbodyType2D.Kinematic;
             this.enabled = true;
         }
     }
 
-    private void OnDisable()
-    {
-        isTurning = false;
-    }
-
-    public IEnumerator shutOff()
+    public IEnumerator shutOffCoroutine()
     {
         enabled = false;
-        StartCoroutine(stopCar());
+        StartCoroutine(stopCarCoroutine());
         for (int i = 0; i < 200; i++)
         {
             shutOffSound.TransitionTo(0.5f);
@@ -339,35 +384,7 @@ public class PlayerControls : MonoBehaviour
 
     public void parkCar()
     {
-        StartCoroutine(stopCar());
-    }
-
-    private IEnumerator stopCar()
-    {
-        enabled = false;
-        while (movementSpeed > 0.01f)
-        {
-            lastRecordedStrafe *= 0.97f;
-            movementSpeed *= 0.97f;
-
-            tireSound.volume *= 0.97f;
-            strafeSound.volume *= 0.98f;
-            engineSound.volume *= 0.98f;
-            foreach (Transform child in engineSound.gameObject.transform)
-            {
-                child.gameObject.GetComponent<AudioSource>().volume *= 0.98f;
-            }
-            yield return new WaitForFixedUpdate();
-        }
-        tireSound.volume = 0;
-        strafeSound.volume = 0;
-        lastRecordedStrafe = 0;
-        movementSpeed = 0;
-        engineSound.volume = 0;
-        foreach (Transform child in engineSound.gameObject.transform)
-        {
-            child.gameObject.GetComponent<AudioSource>().volume = 0;
-        }
+        StartCoroutine(stopCarCoroutine());
     }
 
     public float getStrafeAmount()
