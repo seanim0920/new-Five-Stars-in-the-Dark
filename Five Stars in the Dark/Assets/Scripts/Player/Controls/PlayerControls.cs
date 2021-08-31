@@ -64,11 +64,32 @@ public class PlayerControls : MonoBehaviour
         rollSound.volume = Mathf.Pow((currentSpeed / maxSpeed), 2);
         strafeSound.volume = rollSound.volume / 2;
         //wheelFunctions.PlayDirtRoadForce((int)(Mathf.Pow((1-(currentSpeed/maxSpeed)),1) * 25));
-        
+
         //move the car
         transform.position += movementDirection * currentSpeed;
-        //print(currentSpeed);
+
+        if (acceling)
+        {
+            speedUp(accelAmount);
+            if (accelAmount < 1f)
+            {
+                accelAmount += 0.02f;
+            }
         }
+        else if (braking)
+        {
+            slowDown(breakAmount);
+            strafeAmount *= 0.92f;
+            breakAmount = 0.02f;
+        }
+        else
+        {
+            coast();
+        }
+
+        strafe(strafeAmount); //2.08f normalizes strafeamount
+        strafeAmount *= 0.97f;
+        accelAmount *= 0.97f;
 
         /*
          * if not accelerating and not braking
