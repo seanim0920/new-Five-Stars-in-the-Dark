@@ -15,7 +15,6 @@ public class PlayerControls : MonoBehaviour
     public AudioSource rollSound;
     public AudioSource slidingSound;
     public AudioSource wheelGrabSound;
-    public AudioClip bump;
     public SteeringWheelInput wheelFunctions;
 
     public AudioSource strafeSound;
@@ -133,7 +132,7 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    public void slowDown(float amount, bool coasting)
+    public void slowDown(float amount, bool coasting = false)
     {
         if (!coasting)
         {
@@ -163,7 +162,7 @@ public class PlayerControls : MonoBehaviour
         currentSpeed *= 1 - amount;
         //setRadioTempo(getRadioTempo()*(1-amount));
     }
-    public void speedUp(float amount, bool coasting)
+    public void speedUp(float amount, bool coasting = false)
     {
         if (!coasting)
         {

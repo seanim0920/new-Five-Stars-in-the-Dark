@@ -630,14 +630,10 @@ MonoBehaviour:
   brakePedalSound: {fileID: 7544007007010926185}
   disabledWheelSound: {fileID: 4591494895408158065}
   engineSound: {fileID: 7061727681930009386}
-  tireSound: {fileID: 6775186469063522964}
+  rollSound: {fileID: 6775186469063522964}
   slidingSound: {fileID: 2829606724205138482}
-  grabWheel: {fileID: 1442299655}
-  minSpeed: 0
-  maxSpeed: 1.5
-  neutralSpeed: 1
-  acceleration: 0.02
-  movementSpeed: 0
+  wheelGrabSound: {fileID: 1442299655}
+  wheelFunctions: {fileID: 4148996918431534961}
   strafeSound: {fileID: 6775186468797847363}
   engineMixer: {fileID: 24100000, guid: d266e19fb9e87fe4cacf93d1ffc191e8, type: 2}
   engineSounds:
@@ -648,6 +644,11 @@ MonoBehaviour:
   - {fileID: -214203039708733533, guid: d266e19fb9e87fe4cacf93d1ffc191e8, type: 2}
   shutOffSound: {fileID: -1268211204583706612, guid: d266e19fb9e87fe4cacf93d1ffc191e8,
     type: 2}
+  minSpeed: 0
+  maxSpeed: 1.5
+  neutralSpeed: 1
+  acceleration: 0.02
+  currentSpeed: 0
   snapshotWeights:
   - 0
   - 0
