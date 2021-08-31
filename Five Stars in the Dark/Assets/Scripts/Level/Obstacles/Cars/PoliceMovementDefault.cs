@@ -112,7 +112,7 @@ public class PoliceMovementDefault : MonoBehaviour
             posRelativeToPlayer = player.transform.InverseTransformPoint(transform.position);
             print("aligning with player");
             //if this car is getting ahead of the player, slow down until it's aligned with the player, then ram into them.
-            moveFunctions.movementSpeed *= 0.98f;
+            moveFunctions.currentSpeed *= 0.98f;
             yield return new WaitForFixedUpdate();
         }
 
@@ -128,11 +128,11 @@ public class PoliceMovementDefault : MonoBehaviour
         Vector3 posRelativeToPlayer = player.transform.InverseTransformPoint(transform.position);
 
         // Stalk the player for a second
-        float originalSpeed = moveFunctions.movementSpeed;
+        float originalSpeed = moveFunctions.currentSpeed;
         if(posRelativeToPlayer.x < 5 && 
            posRelativeToPlayer.x > -5)
         {
-            moveFunctions.movementSpeed = player.GetComponent<PlayerControls>().movementSpeed;
+            moveFunctions.currentSpeed = player.GetComponent<PlayerControls>().currentSpeed;
             yield return new WaitForSeconds(1f);
         }
         else
@@ -155,14 +155,14 @@ public class PoliceMovementDefault : MonoBehaviour
         {
             while(pullOver.isPlaying)
             {
-                moveFunctions.movementSpeed = player.GetComponent<PlayerControls>().movementSpeed;
+                moveFunctions.currentSpeed = player.GetComponent<PlayerControls>().currentSpeed;
                 yield return new WaitForFixedUpdate();
             }
             yield return new WaitForSeconds(1f);
         }
 
         // However the player breaks out of that loop, be on your merry way
-        moveFunctions.movementSpeed = originalSpeed;
+        moveFunctions.currentSpeed = originalSpeed;
         currentMoveState = MoveState.Coasting;
         yield break;
     }

@@ -36,7 +36,7 @@ public class CheckLosing : MonoBehaviour
         PlayerControls controls;
         controls = GameObject.Find("Player").GetComponent<PlayerControls>();
         controls.gameObject.tag = "Pedestrian";
-        StartCoroutine(controls.shutOff());
+        StartCoroutine(controls.shutOffCoroutine());
         //if we stop it, carcollisions can restart the clip again after the collision is finished
         ConstructLevelFromMarkers.levelDialogue.volume = 0;
         yield return new WaitForSeconds(4);

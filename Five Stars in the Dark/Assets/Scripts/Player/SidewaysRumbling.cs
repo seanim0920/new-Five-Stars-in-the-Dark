@@ -46,7 +46,7 @@ public class SidewaysRumbling : MonoBehaviour
             //print("side ray distance" + distance);
             //leftSource.SetFloat("LowF", (minFrequency + (((maxFrequency - minFrequency) / (Mathf.Pow((hearingDistance - minDistance), sharpness))) * Mathf.Pow((distance - minDistance), sharpness))));
 
-            float speedDifference = controls.movementSpeed;
+            float speedDifference = controls.currentSpeed;
             bool backCarExists = (backDetected &&
                 (back.collider.gameObject.CompareTag("Car") || back.collider.gameObject.CompareTag("Target")));
             bool frontCarExists = (frontDetected &&

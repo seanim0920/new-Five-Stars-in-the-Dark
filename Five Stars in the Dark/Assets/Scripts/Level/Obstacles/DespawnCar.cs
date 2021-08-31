@@ -29,7 +29,7 @@ public class DespawnCar : MonoBehaviour
         {
             // Reset the position
             // Calculate x position based off of player strafe amount
-            float xpos = player.transform.position.x + player.GetComponent<PlayerControls>().getStrafeAmount() * player.GetComponent<PlayerControls>().movementSpeed;
+            float xpos = player.transform.position.x + player.GetComponent<PlayerControls>().getStrafeAmount() * player.GetComponent<PlayerControls>().currentSpeed;
             transform.position = new Vector3(xpos,
                                                 player.transform.position.y + 150,
                                                 player.transform.position.z);

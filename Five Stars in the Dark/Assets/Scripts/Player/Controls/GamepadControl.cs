@@ -50,7 +50,7 @@ public class GamepadControl : MonoBehaviour
         }
         else
         {
-            controlFunctions.crawl();
+            controlFunctions.coast();
         }
 
         strafeAcceleration = (strafeFinal - strafeInitial) / 90f; // 90f is a magic number for the wheel rotation speed

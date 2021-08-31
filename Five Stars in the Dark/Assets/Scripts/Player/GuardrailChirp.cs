@@ -34,7 +34,7 @@ public class GuardrailChirp : MonoBehaviour
         AudioSource sound = soundObj.GetComponent<AudioSource>();
         bool backDetected = back.collider != null;
         bool frontDetected = front.collider != null;
-        sound.volume = 1 - (0.9f*controls.movementSpeed/controls.maxSpeed);
+        sound.volume = 1 - (0.9f*controls.currentSpeed/controls.maxSpeed);
         if ((backDetected && back.collider.gameObject.tag != "Zone") || (frontDetected && front.collider.gameObject.tag != "Zone"))
         {
             if(!sound.isPlaying)

@@ -34,7 +34,7 @@ public class CarCollision : MonoBehaviour
     {
         NPCMovement movement = NPC.GetComponent<NPCMovement>();
         Rigidbody2D NPCbody = NPC.GetComponent<Rigidbody2D>();
-        movement.movementSpeed = 0;
+        movement.currentSpeed = 0;
         movement.enabled = false;
         NPCbody.AddForce((NPC.transform.position - transform.position).normalized * speed * 70, ForceMode2D.Impulse);
         if (speed > 0.5f)
@@ -118,7 +118,7 @@ public class CarCollision : MonoBehaviour
             {
                 lightCollisionSound.Play();
             }
-            TrackErrors.IncrementErrors(0.01f * controlFunctions.movementSpeed / controlFunctions.maxSpeed);
+            TrackErrors.IncrementErrors(0.01f * controlFunctions.currentSpeed / controlFunctions.maxSpeed);
             StartCoroutine(PlayError.PlayWarningCoroutine("Oofs", false));//change when we have proper sfx
         }
 
@@ -132,10 +132,10 @@ public class CarCollision : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Guardrail"))
         {
-            hitSoundObject.GetComponent<AudioSource>().volume = controlFunctions.movementSpeed / controlFunctions.maxSpeed;
-            hitSoundObject.GetComponent<AudioSource>().pitch = 0.5f * controlFunctions.movementSpeed / controlFunctions.maxSpeed + 0.5f;
-            TrackErrors.IncrementErrorsWithoutCollisions(0.01f * controlFunctions.movementSpeed / controlFunctions.maxSpeed);
-            controlFunctions.movementSpeed *= 0.995f;
+            hitSoundObject.GetComponent<AudioSource>().volume = controlFunctions.currentSpeed / controlFunctions.maxSpeed;
+            hitSoundObject.GetComponent<AudioSource>().pitch = 0.5f * controlFunctions.currentSpeed / controlFunctions.maxSpeed + 0.5f;
+            TrackErrors.IncrementErrorsWithoutCollisions(0.01f * controlFunctions.currentSpeed / controlFunctions.maxSpeed);
+            controlFunctions.currentSpeed *= 0.995f;
         }
     }
     void OnCollisionExit2D(Collision2D col)

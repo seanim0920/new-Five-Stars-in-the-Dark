@@ -26,11 +26,11 @@ public class MovementShake : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Vector2 displacement = Quaternion.Euler(0, 0, Random.Range(0, 360)) * Vector2.right * shakeOffset * (controls.movementSpeed / controls.maxSpeed);
+        Vector2 displacement = Quaternion.Euler(0, 0, Random.Range(0, 360)) * Vector2.right * shakeOffset * (controls.currentSpeed / controls.maxSpeed);
         rect.anchoredPosition = modifiedPosition + displacement;
 
         modifiedPosition.x = originalx + controls.getStrafeAmount() * 150;
-        modifiedPosition.y = originaly + 125*(controls.movementSpeed / controls.maxSpeed);
-        rect.localScale = new Vector3(1.0f + (controls.movementSpeed / controls.maxSpeed / 2.25f), 1.0f + (controls.movementSpeed / controls.maxSpeed / 2.25f), 1);
+        modifiedPosition.y = originaly + 125*(controls.currentSpeed / controls.maxSpeed);
+        rect.localScale = new Vector3(1.0f + (controls.currentSpeed / controls.maxSpeed / 2.25f), 1.0f + (controls.currentSpeed / controls.maxSpeed / 2.25f), 1);
     }
 }

@@ -66,7 +66,7 @@ public class TargetMovement : MonoBehaviour
         }
         for (int i = 0; i < 100; i++)
         {
-            movementFunctions.movementSpeed += 0.01f;
+            movementFunctions.currentSpeed += 0.01f;
             body.velocity *= 0.97f;
         }
         body.velocity *= 0;

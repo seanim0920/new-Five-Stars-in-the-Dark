@@ -7,7 +7,7 @@ public class NPCMovement : MonoBehaviour
     private static GameObject player;
     public AudioSource honk;
     public AudioSource engineSound;
-    public float movementSpeed = 0f;
+    public float currentSpeed = 0f;
     public float neutralSpeed = 1f;
     public float maxSpeed;
     public float minSpeed;
@@ -25,7 +25,7 @@ public class NPCMovement : MonoBehaviour
         //keep refreshing movementdirection, car may rotate
         movementDirection = transform.up;
 
-        transform.position += movementDirection * movementSpeed;
+        transform.position += movementDirection * currentSpeed;
     }
 
     public GameObject SeesObstacle(Vector3 direction)
@@ -43,18 +43,18 @@ public class NPCMovement : MonoBehaviour
 
     public IEnumerator Coast()
     {
-        while (movementSpeed < neutralSpeed)
+        while (currentSpeed < neutralSpeed)
         {
-            movementSpeed += acceleration;
+            currentSpeed += acceleration;
             yield return new WaitForFixedUpdate();
         }
-        while (movementSpeed > neutralSpeed)
+        while (currentSpeed > neutralSpeed)
         {
-            movementSpeed -= acceleration;
+            currentSpeed -= acceleration;
             yield return new WaitForFixedUpdate();
         }
-        movementSpeed = neutralSpeed;
-        //print(movementSpeed);
+        currentSpeed = neutralSpeed;
+        //print(currentSpeed);
     }
 
     public IEnumerator SwitchLaneRight(bool isRight, float strafeSpeed)
@@ -83,36 +83,36 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     public IEnumerator speedUp()
     {
-        while (movementSpeed < maxSpeed)
+        while (currentSpeed < maxSpeed)
         {
-            movementSpeed += acceleration;
+            currentSpeed += acceleration;
             yield return new WaitForFixedUpdate();
         }
-        movementSpeed = maxSpeed;
+        currentSpeed = maxSpeed;
     }
     public IEnumerator slowDown()
     {
-        while (movementSpeed > minSpeed)
+        while (currentSpeed > minSpeed)
         {
-            movementSpeed *= 0.98f;
+            currentSpeed *= 0.98f;
             yield return new WaitForFixedUpdate();
         }
-        while (movementSpeed < minSpeed)
+        while (currentSpeed < minSpeed)
         {
-            movementSpeed += acceleration/2;
+            currentSpeed += acceleration/2;
             yield return new WaitForFixedUpdate();
         }
-        movementSpeed = minSpeed;
+        currentSpeed = minSpeed;
     }
     public IEnumerator suddenStop()
     {
-        while (movementSpeed > 0.01f)
+        while (currentSpeed > 0.01f)
         {
             //print("trying to stop car");
-            movementSpeed *= 0.96f;
+            currentSpeed *= 0.96f;
             yield return new WaitForFixedUpdate();
         }
-        movementSpeed = 0;
+        currentSpeed = 0;
     }
     public void resetMovement()
     {
@@ -121,11 +121,11 @@ public class NPCMovement : MonoBehaviour
 
     public void setSpeed(float speed)
     {
-        movementSpeed = speed;
+        currentSpeed = speed;
     }
 
     public static float getRelativeSpeed(GameObject npc)
     {
-        return (player.GetComponent<PlayerControls>().movementSpeed - npc.GetComponent<NPCMovement>().movementSpeed * Vector3.Dot(npc.transform.up, player.transform.up));
+        return (player.GetComponent<PlayerControls>().currentSpeed - npc.GetComponent<NPCMovement>().currentSpeed * Vector3.Dot(npc.transform.up, player.transform.up));
     }
 }

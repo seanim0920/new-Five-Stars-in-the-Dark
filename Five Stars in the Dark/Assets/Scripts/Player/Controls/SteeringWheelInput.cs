@@ -66,7 +66,7 @@ public class SteeringWheelInput : MonoBehaviour
             }
             else
             {
-                controlFunctions.returnToNeutralSpeed();
+                controlFunctions.coast();
             }
 
             controlFunctions.strafe(rec.lX / 32768f);

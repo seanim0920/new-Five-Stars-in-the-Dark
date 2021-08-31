@@ -71,7 +71,7 @@ public class QuickTurn : MonoBehaviour
     {
         if (other.transform.CompareTag("Player") && playerCtrl != null)
         {
-            float s = (mustTurnLeft ? -playerCtrl.movementSpeed : playerCtrl.movementSpeed) * 0.3f + playerCtrl.getStrafeAmount() * 3;
+            float s = (mustTurnLeft ? -playerCtrl.currentSpeed : playerCtrl.currentSpeed) * 0.3f + playerCtrl.getStrafeAmount() * 3;
             other.transform.position += new Vector3(s, 0, 0);
         }
     }

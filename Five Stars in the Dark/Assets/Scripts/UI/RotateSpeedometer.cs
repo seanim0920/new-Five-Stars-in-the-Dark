@@ -29,7 +29,7 @@ public class RotateSpeedometer : MonoBehaviour
     {
         if(!isQuickTurning)
         {
-            float maxSpeedPercentage = controls.movementSpeed / controls.maxSpeed;
+            float maxSpeedPercentage = controls.currentSpeed / controls.maxSpeed;
             float deltaAngle = angleRange * maxSpeedPercentage;
             actualAngle = leftNeedleAngle - deltaAngle;
             // Map the needle angle to PlayerControls.movementSpeed

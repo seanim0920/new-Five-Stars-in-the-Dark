@@ -21,7 +21,7 @@ public class StopWhenTouched : MonoBehaviour
         //should be adjusted to detect the closest car to the player, if there are multiple cars in the zone
         if (col.gameObject.CompareTag("Car"))
         {
-            col.gameObject.GetComponent<NPCMovement>().movementSpeed *= 0.95f;
+            col.gameObject.GetComponent<NPCMovement>().currentSpeed *= 0.95f;
         }
     }
 }
