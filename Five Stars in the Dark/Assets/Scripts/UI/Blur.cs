@@ -1,53 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class Blur : MonoBehaviour
 {
-    public Image Wheel;
-    public Image Dashboard;
-    public Image BlurredWheel;
-    public Image BlurredDashboard;
-    public Image LeftNeedle;
-    public Image RightNeedle;
-    public Image BrakePedal;
-    public Image AccelPedal;
-    private static float amount = 0;
-    private Color BlurColor;
-    private Color SmallColor;
-    private Color VisColor;
+    PostProcessVolume m_Volume;
+    DepthOfField m_Depth;
+    private static float blurAmount = 0;
     // Start is called before the first frame update
     void Start()
     {
-        amount = 0;
-        BlurColor = new Color(1,1,1,0);
-        SmallColor = new Color(1, 1, 1, 1);
-        VisColor = new Color(1, 1, 1, 1);
+        m_Depth = ScriptableObject.CreateInstance<DepthOfField>();
+        m_Depth.enabled.Override(true);
+        m_Depth.kernelSize.Override(KernelSize.VeryLarge);
+        m_Depth.focalLength.Override(300f);
+
+        m_Volume = PostProcessManager.instance.QuickVolume(gameObject.layer, 100f, m_Depth);
+        m_Volume.weight = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        BlurColor.a = Mathf.Sqrt(amount);
-        SmallColor.a = 1 - amount;
-        VisColor.a = Mathf.Pow(1-amount,2) + 0.5f;
-        Wheel.color = VisColor;
-        Dashboard.color = VisColor;
-        BlurredWheel.color = BlurColor;
-        BlurredDashboard.color = BlurColor;
-        LeftNeedle.color = SmallColor;
-        RightNeedle.color = SmallColor;
-        BrakePedal.color = SmallColor;
-        AccelPedal.color = SmallColor;
+        //max blur amount?
+        m_Volume.weight = blurAmount;
+        //BlurColor.a = Mathf.Sqrt(blurAmount);
+        //SmallColor.a = 1 - blurAmount;
+        //VisColor.a = Mathf.Pow(1-blurAmount,2) + 0.5f;
+    }
+    void OnDestroy()
+    {
+        RuntimeUtilities.DestroyVolume(m_Volume, true, true);
     }
 
     public static float getAmount()
     {
-        return amount;
+        return blurAmount;
     }
     public static void setAmount(float newAmount)
     {
-        amount = newAmount;
+        blurAmount = newAmount;
     }
 }
