@@ -5,7 +5,7 @@
 8.689719	11.621065	<Y> "Calling the fallout from the eclipse some sort of natural disaster."
 12.076589	13.151068	<Y> "Many are asking for-"
 13.168454	14.406366	<Y> "[static]"
-14.441138	21.677355	<W> "[engine rumbles]"
+14.441138	21.677355	<W> "[cars passing]"
 21.698219	23.662881	<WI> "Isaac, monologuing: Driving fast is a sport,"
 24.580883	26.455136	<WI> "but driving blind is a puzzle."
 27.327933	29.066572	<WI> "If you pay close attention"
@@ -83,7 +83,7 @@
 208.664539	209.019221	<W> "[car door slams]"
 0.000000	66.666387	Dialogue
 0.000000	0.000000	[HideScreen]
-21.614764	21.614764	[RevealScreen]
+48.5	48.5	[RevealScreen]
 63.981928	63.981928	[StartControl]
 67.041933	67.041933	[GPSStart]
 67.459206	75.470856	Dialogue
