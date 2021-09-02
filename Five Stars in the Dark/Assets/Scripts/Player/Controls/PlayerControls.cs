@@ -43,7 +43,9 @@ public class PlayerControls : MonoBehaviour
 
     private bool acceling = false;
     private bool braking = false;
-    private bool isTurning = false;
+    private bool steeringRight = false;
+    private bool steeringLeft = false;
+    private int steerDirection = 0;
 
     [Header("Private Attributes (visible for debugging)")]
     public float[] snapshotWeights;
@@ -76,7 +78,7 @@ public class PlayerControls : MonoBehaviour
                 accelAmount += 0.02f;
             }
         }
-        else if (braking)
+        else if (braking) //means we cant hold brake and accel at the same time
         {
             slowDown(breakAmount);
             strafeAmount *= 0.92f;
@@ -87,8 +89,18 @@ public class PlayerControls : MonoBehaviour
             coast();
         }
 
+        if (steerDirection == 1)
+        {
+            strafeAmount += 0.01f;
+        }
+        else if (steerDirection == -1)
+        {
+            strafeAmount -= 0.01f;
+        }
+
         strafe(strafeAmount); //2.08f normalizes strafeamount
         strafeAmount *= 0.97f;
+        if (Mathf.Abs(strafeAmount) < 0.01f && slidingSound.isPlaying) slidingSound.Stop();
         accelAmount *= 0.97f;
 
         /*
@@ -112,6 +124,61 @@ public class PlayerControls : MonoBehaviour
             strafeVelocity *= 0.97f;
         }
          */
+    }
+
+    public void StartSteer(bool steerRight)
+    {
+        print("Start steer fired" + steerRight);
+        if (!this.enabled)
+        {
+            StartCoroutine(turnFailCoroutine(steerRight));
+            return;
+        } else if (steerRight)
+        {
+            print("Start steering right");
+            steerDirection = 1;
+            steeringRight = true;
+        } else
+        {
+            print("Start steering left");
+            steerDirection = -1;
+            steeringLeft = true;
+        }
+
+        if (slidingSound.isPlaying)
+        {
+            //wheelGrabSound.Play();
+            slidingSound.Stop();
+        }
+    }
+    public void EndSteer(bool steerRight)
+    {
+        print("End steer fired" + steerRight);
+        if (steerRight)
+        {
+            steeringRight = false;
+        }
+        else
+        {
+            steeringLeft = false;
+        }
+
+        if (steeringRight)
+        {
+            steerDirection = 1;
+        } else if (steeringLeft)
+        {
+            steerDirection = -1;
+        } else
+        {
+            if (!slidingSound.isPlaying)
+            {
+                slidingSound.panStereo = steerDirection;
+                slidingSound.Play();
+            }
+            print("Stop steering");
+            steerDirection = 0;
+        }
     }
 
     public void SteerLeft()
@@ -241,35 +308,6 @@ public class PlayerControls : MonoBehaviour
     {
         panCarSounds(amount);
 
-        if (!this.enabled)
-        {
-            if (!isTurning && Mathf.Abs(amount) > 0)
-            {
-                StartCoroutine(turnFailCoroutine(amount > 0));
-            }
-            return;
-        }
-
-        //check if the player has begun turning (may not work for gamepad)
-        if (!isTurning && Mathf.Abs(amount) > Mathf.Abs(lastRecordedStrafe))
-        {
-            isTurning = true;
-            if (!slidingSound.isPlaying)
-            {
-                slidingSound.Play();
-            }
-            slidingSound.panStereo = amount * 3f;
-        }
-        else if (isTurning && Mathf.Abs(amount) < Mathf.Abs(lastRecordedStrafe))
-        {
-            isTurning = false;
-            if (slidingSound.isPlaying && Mathf.Abs(amount) > 0.02f)
-            {
-                wheelGrabSound.Play();
-            }
-            slidingSound.Stop();
-        }
-
         //prevents car from moving if it's only nudged left/right
         //moves car to the side if there is no curb
         if (blockedSide / amount > 0)
@@ -304,7 +342,7 @@ public class PlayerControls : MonoBehaviour
 
     private void OnDisable()
     {
-        isTurning = false;
+        steerDirection = 0; //when does this fire? on collision?
     }
 
     private IEnumerator stopCarCoroutine()
@@ -337,7 +375,6 @@ public class PlayerControls : MonoBehaviour
 
     public IEnumerator turnFailCoroutine(bool right)
     {
-        isTurning = true;
         disabledWheelSound.Play();
         float inc = -0.005f;
         if (right)
@@ -354,7 +391,6 @@ public class PlayerControls : MonoBehaviour
             lastRecordedStrafe -= inc;
             yield return new WaitForFixedUpdate();
         }
-        isTurning = false;
     }
 
     public IEnumerator impactCoroutine(Vector2 force)

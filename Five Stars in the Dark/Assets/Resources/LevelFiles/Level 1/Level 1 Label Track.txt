@@ -6,7 +6,7 @@
 12.076589	13.151068	<Y> "Many are asking for-"
 13.168454	14.406366	<Y> "[static]"
 14.441138	21.677355	<W> "[cars passing]"
-21.698219	23.662881	<WI> "Isaac, monologuing: Driving fast is a sport,"
+21.698219	23.662881	<WI> "Isaac (monologue): Driving fast is a sport,"
 24.580883	26.455136	<WI> "but driving blind is a puzzle."
 27.327933	29.066572	<WI> "If you pay close attention"
 30.332302	32.199601	<WI> "everything you hear is a piece"

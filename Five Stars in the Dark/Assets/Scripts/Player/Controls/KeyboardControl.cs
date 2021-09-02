@@ -12,10 +12,8 @@ public class KeyboardControl : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        if (!controlFunctions.enabled) return;
-
         if (Input.GetButtonDown("Accel"))
         {
             controlFunctions.AccelerateStart();
@@ -32,13 +30,21 @@ public class KeyboardControl : MonoBehaviour
         {
             controlFunctions.BrakeEnd();
         }
-        if (Input.GetButton("SteerLeft"))
+        if (Input.GetButtonDown("SteerLeft"))
         {
-            controlFunctions.SteerLeft();
+            controlFunctions.StartSteer(false);
         }
-        if (Input.GetButton("SteerRight"))
+        if (Input.GetButtonUp("SteerLeft"))
         {
-            controlFunctions.SteerRight();
+            controlFunctions.EndSteer(false);
+        }
+        if (Input.GetButtonDown("SteerRight"))
+        {
+            controlFunctions.StartSteer(true);
+        }
+        if (Input.GetButtonUp("SteerRight"))
+        {
+            controlFunctions.EndSteer(true);
         }
     }
 }
