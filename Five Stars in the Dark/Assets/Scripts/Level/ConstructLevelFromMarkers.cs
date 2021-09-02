@@ -135,7 +135,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     sortedMarkerInsert(dialogueMarkers, newMarker);
                 }
                 
-                Debug.Log(newMarker.data);
+                //Debug.Log(newMarker.data);
             } else
             {
                 Marker newMarker = new Marker(spawnTime, despawnTime, string.Join(" ", tokens, 2, tokens.Length - 2));
@@ -146,7 +146,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 {
                     sortedMarkerInsert(timedObstacleMarkers, newMarker);
                 }
-                Debug.Log(newMarker.data);
+                //Debug.Log(newMarker.data);
             }
             //print("amount of tokens are " + tokens.Length);
             lineNumber++;
@@ -316,7 +316,7 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     {
         levelDialogue.Play();
         nextDialogueStartTime = levelDialogue.clip.length;
-        print("current level time is " + levelDialogue.time);
+        //print("current level time is " + levelDialogue.time);
         //perform these checks every frame for as long as the dialogue plays
         while (dialogueMarkers.Count > 0 || timedObstacleMarkers.Count > 0 || commandMarkers.Count > 0 || levelDialogue.isPlaying || levelDialogue.time != 0)
         {
@@ -451,8 +451,8 @@ public class ConstructLevelFromMarkers : MonoBehaviour
             if (timedObstacleMarkers.Count > 0)
             {
                 Marker obstacleMarker = timedObstacleMarkers[0];
-                print("trying to spawn obstacle at time " + obstacleMarker.spawnTime);
-                print("level dialogue playing? " + levelDialogue.isPlaying);
+                //print("trying to spawn obstacle at time " + obstacleMarker.spawnTime);
+                //print("level dialogue playing? " + levelDialogue.isPlaying);
 
                 //if the next obstacle is due or if the obstacle trigger was touched, spawn it
                 if (obstacleMarker.spawnTime < levelDialogue.time)
