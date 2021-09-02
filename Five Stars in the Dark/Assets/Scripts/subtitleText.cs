@@ -5,14 +5,13 @@ using UnityEngine.UI;
 public class subtitleText : MonoBehaviour
 {
     private static Text subText;
-    private bool italics = false;
+    private string lastMessage = "";
     private static float changeDuration = 0;
     // Start is called before the first frame update
     void Start()
     {
         ConstructLevelFromMarkers.subtitleMessage = "";
         subText = GetComponent<Text>();
-        changeDuration = 0;
     }
 
     // Update is called once per frame
@@ -26,34 +25,9 @@ public class subtitleText : MonoBehaviour
                 {
                     subText.enabled = true;
                 }
-                if (ConstructLevelFromMarkers.subtitleMessage.Length > 0)
+                if (ConstructLevelFromMarkers.subtitleMessage.Length >= 5)
                 {
-                    if (char.ToLower(ConstructLevelFromMarkers.subtitleMessage[2]) == 'i')
-                    {
-                        if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage.Substring(5).Trim('"')))
-                        {
-
-                            // Debug.Break();
-                            subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
-                            subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
-                            //Debug.Log("subtitle time: " + ConstructLevelFromMarkers.levelDialogue.time);
-                            // Debug.Log("subText: " + subText.text);
-                            // Debug.Log("markers text: " + ConstructLevelFromMarkers.subtitleMessage.Substring(5).Trim('"'));
-                        }
-                    }
-                    else
-                    {
-                        if (!string.Equals(subText.text, ConstructLevelFromMarkers.subtitleMessage.Substring(4).Trim('"')))
-                        {
-
-                            // Debug.Break();
-                            subText.fontStyle = italics ? FontStyle.Italic : FontStyle.Normal;
-                            subText.text = matchColorandTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
-                            //Debug.Log("subtitle time: " + ConstructLevelFromMarkers.levelDialogue.time);
-                            // Debug.Log("subText: " + subText.text);
-                            // Debug.Log("markers text: " + ConstructLevelFromMarkers.subtitleMessage.Substring(4).Trim('"'));
-                        }
-                    }
+                    styleAndTrimQuotes(ConstructLevelFromMarkers.subtitleMessage);
                 } else
                 {
                     subText.text = "";
@@ -80,30 +54,27 @@ public class subtitleText : MonoBehaviour
         changeDuration = duration;
     }
 
-    string matchColorandTrimQuotes(string message)
+    void styleAndTrimQuotes(string message)
     {
-        if (message.Length >= 5)
+        if (string.Equals(lastMessage, message)) return;
+        if (message[0] == '<' && char.ToLower(message[1]) == 'y')
         {
-            //string[] tokens = message.Trim().Split(new char[0], System.StringSplitOptions.RemoveEmptyEntries);
-            if (message[0] == '<' && char.ToLower(message[1]) == 'y')
-            {
-                subText.color = Color.yellow;
-            }
-            else
-            {
-                subText.color = Color.white;
-            }
-            if (char.ToLower(message[2]) == 'i')
-            {
-                italics = true;
-                return message.Substring(5).Trim('"');
-            }
-            else
-            {
-                italics = false;
-                return message.Substring(4).Trim('"');
-            }
+            subText.color = Color.yellow;
         }
-        return "";
+        else
+        {
+            subText.color = Color.white;
+        }
+        if (char.ToLower(message[2]) == 'i')
+        {
+            subText.fontStyle = FontStyle.Italic;
+            subText.text = message.Substring(5).Trim('"');
+        }
+        else
+        {
+            subText.fontStyle = FontStyle.Normal;
+            subText.text = message.Substring(4).Trim('"');
+        }
+        lastMessage = message;
     }
 }
