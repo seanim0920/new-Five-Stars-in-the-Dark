@@ -18,7 +18,8 @@ public class TimeSpent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		remainder = CountdownTimer.levelCompleteTime - CountdownTimer.getCurrentTime();
+        print("TIME SPENTT - FIX SCORING. GAME DESIGN SCORING RANK, HOW TO? FIVE STARS SHOULD HAVE A MIN CAP, OTHERWISE THE MAX A HUMAN CAN GET WOULD BE LIKE 4.8 STARS");
+        remainder = 100f; //8999.0f - CountdownTimer.getCurrentTime(); //hmm
         remainder /= 2;
         if((remainder%60) > 9)		
 			time.text = "TIME: 0" + Mathf.Floor(remainder/60) + ":" + Mathf.Floor(remainder%60);
