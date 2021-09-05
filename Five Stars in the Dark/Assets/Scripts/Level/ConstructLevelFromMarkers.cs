@@ -692,14 +692,14 @@ public class ConstructLevelFromMarkers : MonoBehaviour
         {
             skipText.GetComponent<Text>().enabled = false;
         }
-        ambience.Play();
+        ambience.Play(); //???
         CountdownTimer.setTracking(true); //marks when the level is commanded to start
         yield return new WaitForSeconds(1);
         secondSource.PlayOneShot(carStart);
         StartCoroutine(wheelRumble());
         yield return new WaitForSeconds(1);
         controls.enabled = true;
-        CountdownTimer.decrementTime(2); //to make up for the two seconds took to start the engine
+        CountdownTimer.decrementTime(2); //to make up for the two seconds took to start the engine (why do we need this? why can't we start tracking the level here?
     }
     IEnumerator parkCar()
     {
