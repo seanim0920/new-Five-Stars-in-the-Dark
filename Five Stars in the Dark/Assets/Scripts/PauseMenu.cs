@@ -11,6 +11,7 @@ public class PauseMenu : MonoBehaviour
     public AudioSource pauseStartSound;
     public AudioSource pauseMenuSound;
     public AudioSource pauseEndSound;
+    public AudioSource pauseMusic;
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
     private float shakeStore;
@@ -51,6 +52,7 @@ public class PauseMenu : MonoBehaviour
         {
             videoPlayer.playbackSpeed = 1;
         }
+        pauseMusic.Pause();
         SkipCutscenes.isSkipping = false;
         SkipMovies.isSkipping = false;
         OverlayStatic.overlaid = false;
@@ -88,6 +90,7 @@ public class PauseMenu : MonoBehaviour
         {
             settings.SetActive(false);
         }
+        pauseMusic.Play();
     }
 
     public void toMenu()
