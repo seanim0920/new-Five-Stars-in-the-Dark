@@ -12,9 +12,6 @@ public class QuickTurn : MonoBehaviour
     private AudioSource turnSound;
     private string turnDirection;
     private GameObject player;
-    private float enterSpeed;
-    private float enterSpeedometerAngle;
-    private RotateSpeedometer speedometer;
     public PlayerControls playerCtrl;
     public QuickTurnCameraRotate camMovement;
     public bool mustTurnLeft;
@@ -38,9 +35,6 @@ public class QuickTurn : MonoBehaviour
         turnSound = GetComponent<AudioSource>();
         player = GameObject.Find("Player");
         GameObject canvas = GameObject.Find("Main Camera");
-        speedometer = canvas.GetComponentInChildren<RotateSpeedometer>();
-        enterSpeed = 0f;
-        enterSpeedometerAngle = 0f;
         camMovement = GameObject.Find("Main Camera").GetComponentInChildren<QuickTurnCameraRotate>();
     }
 

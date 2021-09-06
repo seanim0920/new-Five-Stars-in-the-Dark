@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CountdownTimer : MonoBehaviour
 {
-    public static float levelCompleteTime { get; set; }
+    private static float maxTime = 600.0f;
     private static float currentTime { get; set; }
 
     private static bool isTracking = false;
@@ -13,8 +13,7 @@ public class CountdownTimer : MonoBehaviour
     {
         // waitTime = 100.0f;
         isTracking = false;
-        levelCompleteTime = 600.0f;
-        currentTime = levelCompleteTime;
+        currentTime = maxTime;
     }
 
     // Update is called once per frame
@@ -22,7 +21,7 @@ public class CountdownTimer : MonoBehaviour
     {
         if (isTracking)
         {
-            currentTime -= 1 * Time.deltaTime;
+            currentTime -= Time.deltaTime;
         }
     }
 
@@ -37,8 +36,7 @@ public class CountdownTimer : MonoBehaviour
     {
         //same as Start()
         isTracking = false;
-        levelCompleteTime = 600.0f;
-        currentTime = levelCompleteTime;
+        currentTime = maxTime;
     }
     public static float decrementTime(float seconds)
     {
@@ -51,5 +49,9 @@ public class CountdownTimer : MonoBehaviour
     public static bool getTracking()
     {
         return isTracking;
+    }
+    public static float getProgress()
+    {
+        return currentTime / maxTime;
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CheckEngineDisplay : MonoBehaviour
+public class LowFuelDisplay : MonoBehaviour
 {
     Image image;
     AudioSource audio;
@@ -21,12 +21,12 @@ public class CheckEngineDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (5 - TrackErrors.getErrors() <= 1)
+        if (CountdownTimer.getProgress() <= 0.1f)
         {
             if (!image.enabled)
             {
-                audio.volume = 0.25f*(controls.currentSpeed / controls.maxSpeed) + 0.5f;
-                audio.Play();
+                audio.volume = 0.25f * (controls.currentSpeed / controls.maxSpeed) + 0.5f;
+                GetComponent<AudioSource>().Play();
             }
             image.color = SmallColor;
             image.enabled = true;
