@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CheckEngineDisplay : MonoBehaviour
+public class LowFuelDisplay : MonoBehaviour
 {
     Image image;
     private Color SmallColor;
@@ -17,7 +17,7 @@ public class CheckEngineDisplay : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (5 - TrackErrors.getErrors() <= 1)
+        if (CountdownTimer.getProgress() <= 0.1f)
         {
             if (!image.enabled)
             {

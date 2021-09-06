@@ -7,8 +7,8 @@ public class FuelGauge : MonoBehaviour
 {
     [SerializeField] private Image needle;
     private float needleAngle;
-    private const float minAngle = -65f;
-    private const float maxAngle = 30f;
+    private const float minAngle = 35f;
+    private const float maxAngle = -160f;
     private float angleRange;
     public float actualAngle;
     // Start is called before the first frame update
