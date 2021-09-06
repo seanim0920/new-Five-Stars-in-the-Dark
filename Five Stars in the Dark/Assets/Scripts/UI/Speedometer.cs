@@ -11,7 +11,6 @@ public class Speedometer : MonoBehaviour
     private const float minAngle = 35f;
     private const float maxAngle = -90f;
     private float angleRange;
-    public bool isQuickTurning = false;
     public float actualAngle;
     // Start is called before the first frame update
     void Start()
@@ -25,13 +24,10 @@ public class Speedometer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!isQuickTurning)
-        {
-            float maxSpeedPercentage = controls.currentSpeed / controls.maxSpeed;
-            float deltaAngle = angleRange * maxSpeedPercentage;
-            actualAngle = needleAngle - deltaAngle;
-            // Map the needle angle to PlayerControls.movementSpeed
-            needle.rectTransform.rotation = Quaternion.Euler(0, 0, actualAngle);
-        }
+        float maxSpeedPercentage = controls.currentSpeed / controls.maxSpeed;
+        float deltaAngle = angleRange * maxSpeedPercentage;
+        actualAngle = needleAngle - deltaAngle;
+        // Map the needle angle to PlayerControls.movementSpeed
+        needle.rectTransform.rotation = Quaternion.Euler(0, 0, actualAngle);
     }
 }

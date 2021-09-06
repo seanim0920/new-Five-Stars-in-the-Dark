@@ -6,10 +6,14 @@ using UnityEngine.UI;
 public class CheckEngineDisplay : MonoBehaviour
 {
     Image image;
+    AudioSource audio;
+    private PlayerControls controls;
     private Color SmallColor;
     // Start is called before the first frame update
     void Start()
     {
+        controls = GameObject.Find("Player").GetComponent<PlayerControls>();
+        audio = GetComponent<AudioSource>();
         image = GetComponent<Image>();
         SmallColor = new Color(1, 1, 1, 1);
     }
@@ -21,7 +25,8 @@ public class CheckEngineDisplay : MonoBehaviour
         {
             if (!image.enabled)
             {
-                GetComponent<AudioSource>().Play();
+                audio.volume = 0.25f*(controls.currentSpeed / controls.maxSpeed) + 0.5f;
+                audio.Play();
             }
             image.color = SmallColor;
             image.enabled = true;

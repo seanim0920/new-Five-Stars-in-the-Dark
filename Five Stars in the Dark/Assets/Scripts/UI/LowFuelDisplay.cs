@@ -6,10 +6,14 @@ using UnityEngine.UI;
 public class LowFuelDisplay : MonoBehaviour
 {
     Image image;
+    AudioSource audio;
+    private PlayerControls controls;
     private Color SmallColor;
     // Start is called before the first frame update
     void Start()
     {
+        controls = GameObject.Find("Player").GetComponent<PlayerControls>();
+        audio = GetComponent<AudioSource>();
         image = GetComponent<Image>();
         SmallColor = new Color(1, 1, 1, 1);
     }
@@ -21,6 +25,7 @@ public class LowFuelDisplay : MonoBehaviour
         {
             if (!image.enabled)
             {
+                audio.volume = 0.25f * (controls.currentSpeed / controls.maxSpeed) + 0.5f;
                 GetComponent<AudioSource>().Play();
             }
             image.color = SmallColor;
