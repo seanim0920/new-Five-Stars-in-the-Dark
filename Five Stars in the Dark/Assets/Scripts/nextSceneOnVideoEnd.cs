@@ -5,7 +5,7 @@ using UnityEngine;
 public class nextSceneOnVideoEnd : MonoBehaviour
 {
     // Start is called before the first frame update
-    public static UnityEngine.Video.VideoPlayer videoPlayer;
+    private UnityEngine.Video.VideoPlayer videoPlayer;
     private ConstructLevelFromMarkers levelScript;
     private AudioSource dialogue;
 
@@ -17,7 +17,7 @@ public class nextSceneOnVideoEnd : MonoBehaviour
 
     private void Awake()
     {
-        UnityEngine.Video.VideoPlayer videoPlayer = GetComponent<UnityEngine.Video.VideoPlayer>();
+        videoPlayer = GetComponent<UnityEngine.Video.VideoPlayer>();
         videoPlayer.Prepare();
         videoPlayer.loopPointReached += MovieFinished;
 
@@ -40,6 +40,7 @@ public class nextSceneOnVideoEnd : MonoBehaviour
         while (dialogue.isPlaying)
         {
             OverlayStatic.overlaid = true;
+            videoPlayer.time = dialogue.time;
             yield return new WaitForSeconds(0);
         }
         rewindText.SetActive(false);
@@ -51,7 +52,7 @@ public class nextSceneOnVideoEnd : MonoBehaviour
         levelScript.enabled = true;
         dialogue.pitch = 1;
         dialogue.Play();
-        GetComponent<UnityEngine.Video.VideoPlayer>().Play();
+        videoPlayer.Play();
     }
 
     void MovieFinished(UnityEngine.Video.VideoPlayer vp)
