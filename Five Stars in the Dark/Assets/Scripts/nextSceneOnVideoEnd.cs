@@ -8,6 +8,7 @@ public class nextSceneOnVideoEnd : MonoBehaviour
     private UnityEngine.Video.VideoPlayer videoPlayer;
     private ConstructLevelFromMarkers levelScript;
     private AudioSource dialogue;
+    private AudioSource reverseDialogue;
 
     public AudioSource playSfx;
     public AudioSource pauseSfx;
@@ -24,6 +25,7 @@ public class nextSceneOnVideoEnd : MonoBehaviour
         levelScript = GameObject.Find("LevelConstructor").GetComponent<ConstructLevelFromMarkers>();
         levelScript.enabled = false;
         dialogue = GameObject.Find("LevelConstructor").GetComponent<AudioSource>();
+        reverseDialogue = GetComponent<AudioSource>();
 
         StartCoroutine(rewindEffectThenPlayCoroutine());
     }
@@ -34,13 +36,11 @@ public class nextSceneOnVideoEnd : MonoBehaviour
         //pauseScript.enabled = false; //menu is old and I dont have time to replace it
         pauseSfx.Play();
         OverlayStatic.overlaid = true;
-        dialogue.pitch = -7;
-        dialogue.timeSamples = dialogue.clip.samples - 2;
-        dialogue.Play();
-        while (dialogue.isPlaying)
+        reverseDialogue.Play();
+        while (reverseDialogue.isPlaying)
         {
             OverlayStatic.overlaid = true;
-            videoPlayer.time = dialogue.time;
+            videoPlayer.time = (reverseDialogue.clip.length - reverseDialogue.time) * 5;
             yield return new WaitForSeconds(0);
         }
         rewindText.SetActive(false);
