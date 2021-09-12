@@ -55,7 +55,7 @@ public class PauseMenu : MonoBehaviour
         pauseMusic.Pause();
         SkipCutscenes.isSkipping = false;
         SkipMovies.isSkipping = false;
-        OverlayStatic.overlaid = false;
+        OverlayStatic.turnOffStatic();
         pauseMenuSound.Stop();
         pauseEndSound.Play();
         AudioListener.pause = false;
@@ -72,7 +72,7 @@ public class PauseMenu : MonoBehaviour
         {
             videoPlayer.playbackSpeed = 0;
         }
-        OverlayStatic.overlaid = true;
+        OverlayStatic.turnOnStatic();
         pauseMenuSound.Play();
         pauseStartSound.Play();
         AudioListener.pause = true;

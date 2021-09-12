@@ -43,8 +43,8 @@ public class DisplayStrafeTableaux : MonoBehaviour
     void Update()
     {
         // Check if 1 seconds have elapsed && Accelerate to continue text is not enabled
-        if (!OverlayStatic.overlaid)
-        {
+        //if (!OverlayStatic.overlaid) im gay
+        //{
             pauseScript.resumeGame();
             for (int i = 1; i < pauseButtons.transform.childCount; i++)
             {
@@ -56,6 +56,6 @@ public class DisplayStrafeTableaux : MonoBehaviour
             }
             tableauxType.gameObject.SetActive(false);
             Destroy(gameObject);
-        }
+        //}
     }
 }

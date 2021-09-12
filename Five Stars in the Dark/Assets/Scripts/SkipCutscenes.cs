@@ -17,7 +17,7 @@ public class SkipCutscenes : MonoBehaviour
     {
         if (!CountdownTimer.getTracking() && !PauseMenu.isPaused)
         {
-            OverlayStatic.overlaid = true;
+            OverlayStatic.turnOnStatic();
             isSkipping = true;
             skipStartSound.Play();
             skipLoopSound.Play();
@@ -30,7 +30,7 @@ public class SkipCutscenes : MonoBehaviour
             skipEndSound.Play();
             skipLoopSound.Stop();
             isSkipping = false;
-            OverlayStatic.overlaid = false;
+            OverlayStatic.turnOffStatic();
             //print(levelDialogue.time);
         }
     }

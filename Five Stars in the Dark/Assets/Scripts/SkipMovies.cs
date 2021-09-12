@@ -34,7 +34,7 @@ public class SkipMovies : MonoBehaviour
     {
         if (!PauseMenu.isPaused)
         {
-            OverlayStatic.overlaid = true;
+            OverlayStatic.turnOnStatic();
             isSkipping = true;
             skipStartSound.Play();
             skipLoopSound.Play();
@@ -47,7 +47,7 @@ public class SkipMovies : MonoBehaviour
             skipEndSound.Play();
             skipLoopSound.Stop();
             isSkipping = false;
-            OverlayStatic.overlaid = false;
+            OverlayStatic.turnOffStatic();
         }
     }
 }

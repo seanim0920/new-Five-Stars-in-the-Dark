@@ -2,27 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering.PostProcessing;
 
 public class OverlayStatic : MonoBehaviour
 {
-    public Image noise;
-    public Sprite[] noiseImages;
-    private int i = 0;
-    public static bool overlaid = false;
+    private static Image noise;
+    private PostProcessVolume quickStaticVolume;
+    private static Grain m_Grain;
     // Start is called before the first frame update
     void Start()
     {
-        overlaid = false;
+        noise = GetComponent<Image>();
+        // Create an instance of a vignette
+        m_Grain = ScriptableObject.CreateInstance<Grain>();
+        m_Grain.lumContrib.Override(1f);
+        m_Grain.size.Override(2f);
+        m_Grain.enabled.Override(true);
+        // Use the QuickVolume method to create a volume with a priority of 100, and assign the vignette to this volume
+        quickStaticVolume = PostProcessManager.instance.QuickVolume(4, 100f, m_Grain);
+    }
+    void OnDestroy()
+    {
+        RuntimeUtilities.DestroyVolume(quickStaticVolume, true, true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public static void turnOnStatic()
     {
-        noise.enabled = overlaid;
-        if (overlaid)
-        {
-            i = (i + Random.Range(0, 4)) % 12;
-            noise.sprite = noiseImages[i / 3];
-        }
+        m_Grain.intensity.Override(1f);
+        noise.enabled = true;
+    }
+
+    public static void turnOffStatic()
+    {
+        m_Grain.intensity.Override(0f);
+        noise.enabled = false;
     }
 }

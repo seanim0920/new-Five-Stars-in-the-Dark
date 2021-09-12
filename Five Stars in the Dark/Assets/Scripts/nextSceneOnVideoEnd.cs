@@ -35,17 +35,16 @@ public class nextSceneOnVideoEnd : MonoBehaviour
         rewindText.SetActive(true);
         //pauseScript.enabled = false; //menu is old and I dont have time to replace it
         pauseSfx.Play();
-        OverlayStatic.overlaid = true;
+        OverlayStatic.turnOnStatic();
         reverseDialogue.Play();
         while (reverseDialogue.isPlaying)
         {
-            OverlayStatic.overlaid = true;
             videoPlayer.time = (reverseDialogue.clip.length - reverseDialogue.time) * 5;
             yield return new WaitForSeconds(0);
         }
         rewindText.SetActive(false);
         playSfx.Play();
-        OverlayStatic.overlaid = false;
+        OverlayStatic.turnOffStatic();
         //pauseScript.enabled = true;
         yield return new WaitForSeconds(1);
         dialogue.timeSamples = 0;
