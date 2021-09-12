@@ -15,8 +15,9 @@ public class OverlayStatic : MonoBehaviour
         noise = GetComponent<Image>();
         // Create an instance of a vignette
         m_Grain = ScriptableObject.CreateInstance<Grain>();
-        m_Grain.lumContrib.Override(1f);
-        m_Grain.size.Override(2f);
+        m_Grain.colored.Override(false);
+        m_Grain.lumContrib.Override(0.2f);
+        m_Grain.size.Override(3f);
         m_Grain.enabled.Override(true);
         // Use the QuickVolume method to create a volume with a priority of 100, and assign the vignette to this volume
         quickStaticVolume = PostProcessManager.instance.QuickVolume(4, 100f, m_Grain);
