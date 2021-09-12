@@ -6,9 +6,10 @@ using UnityEngine.Rendering.PostProcessing;
 
 public class OverlayStatic : MonoBehaviour
 {
-    private static Image noise;
+    private Image noise;
     private PostProcessVolume quickStaticVolume;
-    private static Grain m_Grain;
+    private Grain m_Grain;
+    private static bool overlayOn = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,15 +28,20 @@ public class OverlayStatic : MonoBehaviour
         RuntimeUtilities.DestroyVolume(quickStaticVolume, true, true);
     }
 
+    private void Update()
+    {
+        noise.enabled = overlayOn;
+        if (overlayOn) m_Grain.intensity.Override(0.9f);
+        else m_Grain.intensity.Override(0f);
+    }
+
     public static void turnOnStatic()
     {
-        m_Grain.intensity.Override(1f);
-        noise.enabled = true;
+        overlayOn = true;
     }
 
     public static void turnOffStatic()
     {
-        m_Grain.intensity.Override(0f);
-        noise.enabled = false;
+        overlayOn = false;
     }
 }
