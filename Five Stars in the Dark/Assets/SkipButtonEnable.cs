@@ -68,8 +68,12 @@ public class SkipButtonEnable : MonoBehaviour
 
             if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonEast.wasPressedThisFrame))
             {
-                StartCoroutine(level.GetComponent<SkipCutscenes>().skipCutsceneCoroutine());
-                text.enabled = false;
+                if (!SkipCutscenes.isSkipping)
+                {
+                    StartCoroutine(level.GetComponent<SkipCutscenes>().skipCutsceneCoroutine());
+                    text.enabled = false;
+                }
+                else SkipCutscenes.isSkipping = false;
             }
         }
     }
