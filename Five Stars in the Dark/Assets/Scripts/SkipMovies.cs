@@ -7,13 +7,16 @@ public class SkipMovies : MonoBehaviour
 {
     public static bool isSkipping = false;
 
+    public GameObject rewindText;
     public AudioSource skipStartSound;
     public AudioSource skipLoopSound;
     public AudioSource skipEndSound;
     private UnityEngine.Video.VideoPlayer videoPlayer;
+    private AudioSource dialogue;
     // Start is called before the first frame update
     void Start()
     {
+        dialogue = GameObject.Find("LevelConstructor").GetComponent<AudioSource>();
         isSkipping = false;
         if (GetComponent<UnityEngine.Video.VideoPlayer>())
         {
@@ -24,9 +27,12 @@ public class SkipMovies : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
+        if (!rewindText.activeSelf && Input.GetKeyDown("l") || (Gamepad.current != null && Gamepad.current.buttonNorth.isPressed))
         {
-            StartCoroutine(skipIntro());
+            if (isSkipping)
+                isSkipping = false;
+            else
+                StartCoroutine(skipIntro());
         }
     }
 
@@ -38,11 +44,13 @@ public class SkipMovies : MonoBehaviour
             isSkipping = true;
             skipStartSound.Play();
             skipLoopSound.Play();
+            dialogue.pitch = 10;
             videoPlayer.playbackSpeed = 10;
             while (videoPlayer.isPlaying && isSkipping)
             {
                 yield return new WaitForSeconds(0);
             }
+            dialogue.pitch = 1;
             videoPlayer.playbackSpeed = 1;
             skipEndSound.Play();
             skipLoopSound.Stop();

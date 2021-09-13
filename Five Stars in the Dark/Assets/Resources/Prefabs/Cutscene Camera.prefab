@@ -2855,6 +2855,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cbf693a939f8e498a2633ed7742f50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rewindText: {fileID: 375708119}
   skipStartSound: {fileID: 2500728747446048250}
   skipLoopSound: {fileID: 1343095428787089642}
   skipEndSound: {fileID: 1987115937346214439}
