@@ -11,21 +11,20 @@ public class DisplayStrafeTableaux : MonoBehaviour
     private Text proceed;
     private float startTime = 0f;
     public int tableauxNum;
-    public PauseMenu pauseScript;
-    public GameObject pauseButtons;
-    public GameObject player;
+    private PauseMenu pauseScript;
+    private GameObject pauseButtons;
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         tableaux = GameObject.Find("TableauxMockups");
-        Debug.Log(tableaux);
         tableauxType = tableaux.transform.GetChild(tableauxNum);
-        Debug.Log(tableauxType);
         tableauxType.gameObject.SetActive(true);
         proceed = tableaux.GetComponentInChildren<Text>();
 
         player = GameObject.Find("Player");
-        pauseScript = GameObject.Find("Main Camera").GetComponentInChildren<PauseMenu>();
+        pauseScript = GameObject.FindGameObjectWithTag("Main Camera").GetComponentInChildren<PauseMenu>();
+
         Debug.Log("Attempting to pause the game");
         pauseScript.pauseGame();
         pauseButtons = pauseScript.gameObject.transform.GetChild(0).transform.GetChild(0).gameObject;
