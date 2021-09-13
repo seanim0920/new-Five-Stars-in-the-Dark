@@ -13,8 +13,8 @@ public static class PlaythroughManager
     public static bool hasPlayedLevel(int levelBuildIndex)
     {
         string path = Application.persistentDataPath + "/PlayHistory.txt";
-        Debug.Log("Playthrough Manager");
-        Debug.Log("Path: " + path);
+        //Debug.Log("Playthrough Manager");
+        //Debug.Log("Path: " + path);
         // Path doesn't exist => first play session
         if(!File.Exists(path))
         {
@@ -23,9 +23,9 @@ public static class PlaythroughManager
 
         // Else read from file and copy contents into temp list
         string textLevels = File.ReadAllText(path);
-        Debug.Log("levels as text: " + textLevels);
+        //Debug.Log("levels as text: " + textLevels);
         string[] levels = textLevels.Split('-');
-        Debug.Log("num levels played: " + levels.Length);
+        //Debug.Log("num levels played: " + levels.Length);
         List<int> tempList = new List<int>();
         for(int i = 0; i < levels.Length; i++)
         {
@@ -41,7 +41,7 @@ public static class PlaythroughManager
         // Set actual list to temp list to prevent adding multiple of the same level
         // when checking for play history
         playedLevels = tempList;
-        Debug.Log("Played this level? " + (playedLevels.Contains(levelBuildIndex) ? "y" : "n"));
+        //Debug.Log("Played this level? " + (playedLevels.Contains(levelBuildIndex) ? "y" : "n"));
         return playedLevels.Contains(levelBuildIndex);
     }
 
@@ -62,20 +62,20 @@ public static class PlaythroughManager
         playedLevels.Add(levelBuildIndex);
 
         string path = Application.persistentDataPath + "/PlayHistory.txt";
-        Debug.Log("Playthrough Manager");
-        Debug.Log("Path: " + path);
+        //Debug.Log("Playthrough Manager");
+        //Debug.Log("Path: " + path);
         string textLevels = "";
         foreach (int level in playedLevels)
         {
             textLevels += level + "-";
         }
-        Debug.Log("levels as text: " + textLevels);
+        //Debug.Log("levels as text: " + textLevels);
         File.WriteAllText(path, textLevels);
-        Debug.Log("Played this level? " + (playedLevels.Contains(levelBuildIndex) ? "y" : "n"));
+        //Debug.Log("Played this level? " + (playedLevels.Contains(levelBuildIndex) ? "y" : "n"));
     }
 
     private static void Print(int n)
     {
-        Debug.Log("Played Level " + n);
+        //Debug.Log("Played Level " + n);
     }
 }
