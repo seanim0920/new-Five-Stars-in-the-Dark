@@ -26,9 +26,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
     private PlayerControls controls;
     private KeyboardControl keyboard;
     private GamepadControl gamepad;
-    private static int controlType; // 0 = Steering Wheel
-                                    // 1 = Keyboard
-                                    // 2 = Gamepad
 
     //for lowering the volume when dialogue is playing
     //public Transform leftSpeaker;
@@ -180,10 +177,10 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
         if (!blackScreen.enabled)
         {
-            enableControllers();
+            controls.enabled = true;
         } else
         {
-            disableControllers();
+            controls.enabled = false;
         }
 
         carStart = Resources.Load<AudioClip>("Audio/Car-SFX/Car Ambience/Car-EngineStart");
@@ -203,72 +200,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
 
         StartCoroutine(lockWheel());
         StartCoroutine(playLevel());
-    }
-
-    public void setControls()
-    {
-        if(!blackScreen.enabled)
-        {
-            enableControllers();
-        }
-    }
-
-    public void enableControllers()
-    {
-        if (SettingsManager.toggles[0])
-        {
-            // Idk how else to do all this because apparently these things
-            // become null if you reference them when they're disabled
-            if(gamepad != null)
-            {
-                gamepad.enabled = false;
-            }
-            if(keyboard != null)
-            {
-                keyboard.enabled = false;
-            }
-            if(wheelFunctions != null)
-            {
-                wheelFunctions.enabled = true;
-            }
-        }
-        else if (SettingsManager.toggles[2])
-        {
-            if(wheelFunctions != null)
-            {
-                wheelFunctions.enabled = false;
-            }
-            if(keyboard != null)
-            {
-                keyboard.enabled = false;
-            }
-            if(gamepad != null)
-            {
-                gamepad.enabled = true;
-            }
-        }
-        else
-        {
-            if(wheelFunctions != null)
-            {
-                wheelFunctions.enabled = false;
-            }
-            if(gamepad != null)
-            {
-                gamepad.enabled = false;
-            }
-            if(keyboard != null)
-            {
-                keyboard.enabled = true;
-            }
-        }
-    }
-
-    void disableControllers()
-    {
-        wheelFunctions.enabled = false;
-        gamepad.enabled = false;
-        keyboard.enabled = false;
     }
 
     void constructLevelMap(int curbType)
@@ -373,7 +304,6 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                 if (dialogueStopper != null && !dialogueStopper.CompareTag("Car")) Destroy(dialogueStopper);
                 print("dialogue is good to go");
                 controls.enabled = true;
-                enableControllers();
                 replaceMarker(nextDialogueStartTime);
                 if (wasPlaying)
                 {
@@ -412,12 +342,12 @@ public class ConstructLevelFromMarkers : MonoBehaviour
                     }
                     else if (string.Equals(command, "[RevealScreen]") || string.Equals(command, "[ShowUI]"))
                     {
-                        enableControllers();
+                        controls.enabled = true;
                         blackScreen.enabled = false;
                     }
                     else if (string.Equals(command, "[HideScreen]") || string.Equals(command, "[HideUI]"))
                     {
-                        disableControllers();
+                        controls.enabled = false;
                         blackScreen.enabled = true;
                     }
                     else if (string.Equals(command, "[StartCar]") || string.Equals(command, "[StartControl]"))
