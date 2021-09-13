@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,5 +34,47 @@ public static class SettingsManager
         Debug.Log(stringToggles);
         // Otherwise only keyboard controls are
         // toggled and we don't need to do anything
+    }
+
+    public static void saveSettings()
+    {
+        string path = Application.persistentDataPath + "/Settings.txt";
+        string settings = "";
+        foreach (float volume in volumes)
+        {
+            settings += volume + "-";
+        }
+        settings += "\n";
+        foreach (bool toggle in toggles)
+        {
+            settings += toggle + "-";
+        }
+        //Debug.Log("levels as text: " + textLevels);
+        File.WriteAllText(path, settings);
+        //Debug.Log("Played this level? " + (playedLevels.Contains(levelBuildIndex) ? "y" : "n"));
+    }
+
+    public static void loadSettings()
+    {
+        //load settings
+        string path = Application.persistentDataPath + "/Settings.txt";
+        if (!File.Exists(path))
+        {
+            return;
+        }
+
+        // Else read from file and copy contents into temp list
+        string savedSettings = File.ReadAllText(path);
+        string[] volumesandtoggles = savedSettings.Split('\n');
+        string[] savedVolumes = volumesandtoggles[0].Split('-');
+        string[] savedToggles = volumesandtoggles[1].Split('-');
+        for (int i = 0; i < savedVolumes.Length; i++)
+        {
+            volumes[i] = float.Parse(savedVolumes[i]);
+        }
+        for (int i = 0; i < savedToggles.Length; i++)
+        {
+            toggles[i] = bool.Parse(savedToggles[i]);
+        }
     }
 }
