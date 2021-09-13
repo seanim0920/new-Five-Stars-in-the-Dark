@@ -15,6 +15,5 @@ public class ToggleSubtitles : MonoBehaviour
         {
             SettingsManager.toggles[3] = true;
         }
-        Debug.Log(SettingsManager.toggles[3]);
     }
 }

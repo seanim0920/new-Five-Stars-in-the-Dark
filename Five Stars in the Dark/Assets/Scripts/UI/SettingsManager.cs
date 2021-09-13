@@ -31,7 +31,7 @@ public static class SettingsManager
         {
             stringToggles += (toggle) ? "toggled; " : "not toggled; ";
         }
-        Debug.Log(stringToggles);
+        //Debug.Log(stringToggles);
         // Otherwise only keyboard controls are
         // toggled and we don't need to do anything
     }
@@ -66,13 +66,14 @@ public static class SettingsManager
         // Else read from file and copy contents into temp list
         string savedSettings = File.ReadAllText(path);
         string[] volumesandtoggles = savedSettings.Split('\n');
+        if (volumesandtoggles.Length <= 1) return;
         string[] savedVolumes = volumesandtoggles[0].Split('-');
         string[] savedToggles = volumesandtoggles[1].Split('-');
-        for (int i = 0; i < savedVolumes.Length; i++)
+        for (int i = 0; i < savedVolumes.Length-1; i++) //we need to exclude the last character because it's blank
         {
             volumes[i] = float.Parse(savedVolumes[i]);
         }
-        for (int i = 0; i < savedToggles.Length; i++)
+        for (int i = 0; i < savedToggles.Length-1; i++)
         {
             toggles[i] = bool.Parse(savedToggles[i]);
         }
