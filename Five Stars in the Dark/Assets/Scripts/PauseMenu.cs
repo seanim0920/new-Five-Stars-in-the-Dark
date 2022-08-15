@@ -14,6 +14,7 @@ public class PauseMenu : MonoBehaviour
     public AudioSource pauseMusic;
     public static bool isPaused = false;
     public GameObject pauseMenuUI;
+    public GameObject menuUI;
     private float shakeStore;
     private Button resumeButton;
     private UnityEngine.Video.VideoPlayer videoPlayer;
@@ -61,6 +62,7 @@ public class PauseMenu : MonoBehaviour
         AudioListener.pause = false;
         isPaused = false;
         pauseMenuUI.SetActive(false);
+        menuUI.SetActive(true);
         Time.timeScale = 1f;
         MovementShake.shakeOffset = shakeStore;
         EventSystem.current.SetSelectedGameObject(null);
@@ -77,6 +79,7 @@ public class PauseMenu : MonoBehaviour
         pauseStartSound.Play();
         AudioListener.pause = true;
         isPaused = true;
+        menuUI.SetActive(false);
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         shakeStore = MovementShake.shakeOffset;
