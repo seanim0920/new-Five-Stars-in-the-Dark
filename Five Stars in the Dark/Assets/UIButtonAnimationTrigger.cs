@@ -8,10 +8,16 @@ public class UIButtonAnimationTrigger : MonoBehaviour
     Vector3 lastMouseCoordinate = Vector3.zero;
     float lastTimeMoved = 2;
     Animator anim;
+    Vector2 pos;
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
+        lastMouseCoordinate = Input.mousePosition;
+        if (!PlaythroughManager.hasPlayedLevel(PlaythroughManager.currentLevelIndex))
+        {
+            anim.speed = 0; //start buttons at the bottom of the screen if they haven't played this level yet
+        }
     }
 
     // Update is called once per frame
@@ -23,9 +29,10 @@ public class UIButtonAnimationTrigger : MonoBehaviour
         // Then we check if it has moved to the left.
         if (!anim.IsInTransition(0))
         {
-            if (mouseDelta.y > 100)
+            if (mouseDelta.sqrMagnitude > 10000)
             {
                 lastTimeMoved = Time.time;
+                anim.speed = 1;
                 anim.CrossFade("PauseUp", 0.6f);
             }
             else
